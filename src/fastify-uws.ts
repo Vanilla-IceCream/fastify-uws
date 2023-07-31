@@ -1,11 +1,11 @@
 import type { FastifyServerFactory, RawServerBase, RawServerDefault } from 'fastify';
 import EventEmitter from 'events';
-import { writeFileSync } from 'fs';
-import assert from 'assert';
+// import { writeFileSync } from 'fs';
+// import assert from 'assert';
 
 import uws from 'uWebSockets.js';
 import ipaddr from 'ipaddr.js';
-import tempy from 'tempy';
+// import tempy from 'tempy';
 
 import { ERR_ADDRINUSE, ERR_UWS_APP_NOT_FOUND, ERR_ENOTFOUND, ERR_SOCKET_BAD_PORT } from './errors';
 import { HTTPSocket } from './http-socket';
@@ -15,16 +15,16 @@ import { kHttps, kHandler, kAddress, kListenSocket, kListen, kApp, kClosed, kWs 
 
 function createApp(https) {
   if (!https) return uws.App();
-  if (!https.key) return uws.SSLApp(https);
-  const keyFile = tempy.file();
-  writeFileSync(keyFile, https.key);
-  const certFile = tempy.file();
-  writeFileSync(certFile, https.cert);
-  return uws.SSLApp({
-    key_file_name: keyFile,
-    cert_file_name: certFile,
-    passphrase: https.passphrase,
-  });
+  // if (!https.key) return uws.SSLApp(https);
+  // const keyFile = tempy.file();
+  // writeFileSync(keyFile, https.key);
+  // const certFile = tempy.file();
+  // writeFileSync(certFile, https.cert);
+  // return uws.SSLApp({
+  //   key_file_name: keyFile,
+  //   cert_file_name: certFile,
+  //   passphrase: https.passphrase,
+  // });
 }
 
 const mainServer = {};
@@ -34,13 +34,13 @@ export class Server extends EventEmitter {
 
     const { connectionTimeout = 0, https = false } = opts;
 
-    assert(
-      !https ||
-        (typeof https === 'object' &&
-          typeof https.key === 'string' &&
-          typeof https.cert === 'string'),
-      'https must be a valid object { key: string, cert: string }',
-    );
+    // assert(
+    //   !https ||
+    //     (typeof https === 'object' &&
+    //       typeof https.key === 'string' &&
+    //       typeof https.cert === 'string'),
+    //   'https must be a valid object { key: string, cert: string }',
+    // );
 
     this[kHandler] = handler;
     this.timeout = connectionTimeout;
