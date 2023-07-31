@@ -11,15 +11,14 @@
     "@sinclair/typebox": "^0.29.6",
     "fastify": "^4.21.0",
     "fastify-plugin": "^4.5.1",
-    "fastify-uws": "link:../",
-    "ws": "^8.13.0"
+    "fastify-uws": "link:../"
   },
   "devDependencies": {
     "typescript": "^5.1.6",
     "vite": "^4.4.7",
     "vite-node": "^0.33.0",
     "vite-plugin-fastify": "^1.2.4",
-    "vite-plugin-fastify-routes": "^0.4.0",
+    "vite-plugin-fastify-routes": "^1.0.1",
     "vitest": "^0.33.0"
   }
 }

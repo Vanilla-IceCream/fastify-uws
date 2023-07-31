@@ -1,5 +1,5 @@
 import fastify from 'fastify';
-import { serverFactory, websocket } from 'fastify-uws';
+import { serverFactory, websocket, eventsource } from 'fastify-uws';
 
 import router from '~/plugins/router';
 
@@ -14,6 +14,7 @@ export default () => {
   });
 
   app.register(websocket);
+  app.register(eventsource);
 
   app.register(router);
 

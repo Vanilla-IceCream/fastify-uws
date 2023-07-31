@@ -1,16 +1,10 @@
 import plugin from 'fastify-plugin';
 
-// import routes from 'virtual:fastify-routes';
+import routes from 'virtual:fastify-routes';
 
 export default plugin(
-  async (app, opts) => {
-    const { prefix = '/api' } = opts;
-
-    // routes(app, { prefix: '/api' });
-
-    app.register(import('~/routes/hello-http/+handler'), { prefix: prefix + '/hello-http' });
-    // app.register(import('~/routes/hello-ws/+handler'), { prefix: prefix + '/hello-ws' });
-    // app.register(import('~/routes/hello-sse/+handler'), { prefix: prefix + '/hello-sse' });
+  async (app) => {
+    routes(app, { prefix: '/api' });
   },
   { name: 'router' },
 );
