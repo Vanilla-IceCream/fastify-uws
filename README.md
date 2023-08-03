@@ -21,7 +21,7 @@ $ bun add fastify-uws
 ```ts
 // app.ts
 import fastify from 'fastify';
-import { serverFactory, websocket, eventsource } from 'fastify-uws';
+import { serverFactory } from 'fastify-uws';
 
 import router from '~/plugins/router';
 
@@ -34,9 +34,6 @@ export default () => {
     },
     serverFactory,
   });
-
-  app.register(websocket);
-  app.register(eventsource);
 
   app.register(router);
 
@@ -93,7 +90,36 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
+#### With `multipart`
+
+```ts
+// app.ts
+import { multipart } from 'fastify-uws';
+
+app.register(multipart);
+```
+
+```ts
+// src/routes/hello-fd/+handler.ts
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
+
+export default (async (app) => {
+  app.post('', async (req, reply) => {
+    const data = await req.file();
+
+    return reply.send({ message: 'ok' });
+  });
+}) as FastifyPluginAsyncTypebox;
+```
+
 ### Use WebSocket
+
+```ts
+// app.ts
+import { websocket } from 'fastify-uws';
+
+app.register(websocket);
+```
 
 ```ts
 // src/routes/hello-ws/+handler.ts
@@ -117,6 +143,13 @@ export default (async (app) => {
 ```
 
 ### Use EventSource
+
+```ts
+// app.ts
+import { eventsource } from 'fastify-uws';
+
+app.register(eventsource);
+```
 
 ```ts
 // src/routes/hello-sse/+handler.ts
