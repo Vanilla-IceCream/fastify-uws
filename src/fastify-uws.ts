@@ -1,4 +1,9 @@
-import type { FastifyServerFactory, RawServerBase, RawServerDefault } from 'fastify';
+import type {
+  FastifyServerFactory,
+  FastifyServerFactoryHandler,
+  RawServerBase,
+  RawServerDefault,
+} from 'fastify';
 import EventEmitter from 'events';
 // import { writeFileSync } from 'fs';
 // import assert from 'assert';
@@ -13,7 +18,7 @@ import { Request } from './request';
 import { Response } from './response';
 import { kHttps, kHandler, kAddress, kListenSocket, kListen, kApp, kClosed, kWs } from './symbols';
 
-function createApp(https) {
+function createApp(https?: boolean) {
   if (!https) return uws.App();
   // if (!https.key) return uws.SSLApp(https);
   // const keyFile = tempy.file();
@@ -28,8 +33,23 @@ function createApp(https) {
 }
 
 const mainServer = {};
+
+interface FastifyUwsOptions {
+  connectionTimeout?: number;
+  https?: boolean;
+}
+
 export class Server extends EventEmitter {
-  constructor(handler, opts = {}) {
+  [kHandler]: FastifyServerFactoryHandler;
+  timeout?: number;
+  [kHttps]?: boolean | Record<string, string>;
+  [kWs]?: null | any;
+  [kAddress]?: null | any;
+  [kListenSocket]?: null | any;
+  [kApp]?: uws.TemplatedApp;
+  [kClosed]?: boolean;
+
+  constructor(handler: FastifyServerFactoryHandler, opts: FastifyUwsOptions = {}) {
     super();
 
     const { connectionTimeout = 0, https = false } = opts;
@@ -56,7 +76,7 @@ export class Server extends EventEmitter {
     return !!this[kHttps];
   }
 
-  setTimeout(timeout) {
+  setTimeout(timeout: number) {
     this.timeout = timeout;
   }
 
