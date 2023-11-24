@@ -90,7 +90,7 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-#### With `multipart`
+#### With `multipart` :x:
 
 ```ts
 // app.ts
@@ -112,7 +112,7 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-### Use WebSocket
+### Use WebSocket :warning:
 
 ```ts
 // app.ts
@@ -142,7 +142,7 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-### Use EventSource
+### Use EventSource :warning:
 
 ```ts
 // app.ts

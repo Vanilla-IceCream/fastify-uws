@@ -1,6 +1,7 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 
 export default (async (app) => {
+  // node client-ws.mjs
   app.get('', { websocket: true }, (con) => {
     console.log('Client connected');
 
