@@ -62,7 +62,7 @@ const start = async () => {
 start();
 ```
 
-### Use Fetch
+### Use [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 ```ts
 // src/routes/hello-http/+handler.ts
@@ -90,13 +90,13 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-#### With `multipart` :x:
+#### With [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) :x:
 
 ```ts
 // app.ts
-import { multipart } from 'fastify-uws';
+import { formdata } from 'fastify-uws';
 
-app.register(multipart);
+app.register(formdata);
 ```
 
 ```ts
@@ -107,12 +107,21 @@ export default (async (app) => {
   app.post('', async (req, reply) => {
     const data = await req.file();
 
+    data.file; // stream
+    data.fields; // other parsed parts
+    data.fieldname;
+    data.filename;
+    data.encoding;
+    data.mimetype;
+
+    // await data.toBuffer(); // Buffer
+
     return reply.send({ message: 'ok' });
   });
 }) as FastifyPluginAsyncTypebox;
 ```
 
-### Use WebSocket :warning:
+### Use [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) :warning:
 
 ```ts
 // app.ts
@@ -142,7 +151,7 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-### Use EventSource :warning:
+### Use [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) :warning:
 
 ```ts
 // app.ts
