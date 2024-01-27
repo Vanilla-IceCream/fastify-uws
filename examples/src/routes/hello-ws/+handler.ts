@@ -7,8 +7,10 @@ export default (async (app) => {
 
     con.socket.send('Hello from Fastify uWS!');
 
-    con.socket.on('message', (message: MessageEvent) => {
-      console.log(`Client message: ${message}`);
+    con.socket.on('message', (message) => {
+      const decoder = new TextDecoder();
+      const str = decoder.decode(message);
+      console.log(`Client message: ${str}`);
     });
 
     con.socket.on('close', () => {
