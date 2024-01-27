@@ -1,10 +1,7 @@
-// this plugin is inspired by https://github.com/fastify/fastify-websocket
-
 import fp from 'fastify-plugin';
 
-import { WebSocketServer, WebSocket } from './websocket-server.js';
-
-import { kWs, kRes } from './symbols.js';
+import { WebSocketServer, WebSocket } from './websocket-server';
+import { kWs, kRes } from './symbols';
 
 function defaultErrorHandler(err, request) {
   request.log.error(err);

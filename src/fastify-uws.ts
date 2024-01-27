@@ -7,7 +7,6 @@ import type {
 import EventEmitter from 'events';
 // import { writeFileSync } from 'fs';
 // import assert from 'assert';
-
 import uws from 'uWebSockets.js';
 import ipaddr from 'ipaddr.js';
 // import tempy from 'tempy';
