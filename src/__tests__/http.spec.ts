@@ -1,5 +1,4 @@
 import type { FastifyInstance } from 'fastify';
-import { beforeEach, test, expect } from 'vitest';
 import fastify from 'fastify';
 
 import { serverFactory } from '../fastify-uws';
