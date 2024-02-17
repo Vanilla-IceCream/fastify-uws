@@ -65,6 +65,10 @@ export class Request extends Readable {
     this.socket.destroy(err);
   }
 
+  unpipe(writable) {
+    writable.destroy();
+  }
+
   _read(cb) {
     if (this.destroyed || this.destroying || this.socket.destroyed) return cb();
 

@@ -90,13 +90,13 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-#### With [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) :x:
+#### With [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
 
 ```ts
 // app.ts
-import { formdata } from 'fastify-uws';
+import multipart from '@fastify/multipart';
 
-app.register(formdata);
+app.register(multipart);
 ```
 
 ```ts

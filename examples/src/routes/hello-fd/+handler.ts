@@ -10,6 +10,7 @@ export default (async (app) => {
         response: {
           200: Type.Object({
             message: Type.String(),
+            filename: Type.Optional(Type.String()),
           }),
         },
       },
@@ -18,7 +19,8 @@ export default (async (app) => {
       const data = await req.file();
 
       return reply.send({
-        message: data.fieldname,
+        message: 'OK',
+        filename: data?.filename,
       });
     },
   );

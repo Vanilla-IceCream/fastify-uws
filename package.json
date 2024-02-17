@@ -1,6 +1,6 @@
 {
   "name": "fastify-uws",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A performant HTTP and WebSocket server for Fastify with uWebSockets.",
   "main": "./dist/fastify-uws.cjs",
   "module": "./dist/fastify-uws.js",
