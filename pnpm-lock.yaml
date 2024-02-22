@@ -67,6 +67,15 @@ importers:
         specifier: ^8.16.0
         version: 8.16.0
 
+  benchmarks:
+    dependencies:
+      fastify:
+        specifier: ^4.26.1
+        version: 4.26.1
+      fastify-uws:
+        specifier: workspace:^
+        version: link:..
+
   examples:
     dependencies:
       '@fastify/multipart':
