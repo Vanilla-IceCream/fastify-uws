@@ -121,7 +121,7 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-### Use [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) :warning:
+### Use [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
 
 ```ts
 // app.ts
@@ -140,8 +140,8 @@ export default (async (app) => {
 
     con.socket.send('Hello from Fastify uWS!');
 
-    con.socket.on('message', (message: MessageEvent) => {
-      console.log(`Client message: ${message}`);
+    con.socket.on('message', (message) => {
+      console.log(`Client message: ${message.toString()}`);
     });
 
     con.socket.on('close', () => {
@@ -151,7 +151,7 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-### Use [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) :warning:
+### Use [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource)
 
 ```ts
 // app.ts

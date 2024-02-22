@@ -144,24 +144,28 @@ export class WebSocketServer extends EventEmitter {
         this.connections.delete(ws);
         ws.websocket[kEnded] = true;
         ws.req.socket.destroy();
-        ws.websocket.emit('close', code, message);
-        this.emit('close', ws, code, message);
+        const msg = message instanceof ArrayBuffer ? Buffer.from(message) : message;
+        ws.websocket.emit('close', code, msg);
+        this.emit('close', ws, code, msg);
       },
       drain: (ws) => {
         ws.websocket.emit('drain');
         this.emit('drain', ws);
       },
       message: (ws, message, isBinary) => {
-        ws.websocket.emit('message', message, isBinary);
-        this.emit('message', ws, message, isBinary);
+        const msg = message instanceof ArrayBuffer ? Buffer.from(message) : message;
+        ws.websocket.emit('message', msg, isBinary);
+        this.emit('message', ws, msg, isBinary);
       },
       ping: (ws, message) => {
-        ws.websocket.emit('ping', message);
-        this.emit('ping', ws, message);
+        const msg = message instanceof ArrayBuffer ? Buffer.from(message) : message;
+        ws.websocket.emit('ping', msg);
+        this.emit('ping', ws, msg);
       },
       pong: (ws, message) => {
-        ws.websocket.emit('pong', message);
-        this.emit('pong', ws, message);
+        const msg = message instanceof ArrayBuffer ? Buffer.from(message) : message;
+        ws.websocket.emit('pong', msg);
+        this.emit('pong', ws, msg);
       },
     });
   }
