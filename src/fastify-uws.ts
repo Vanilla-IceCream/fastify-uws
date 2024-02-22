@@ -183,8 +183,8 @@ export class Server extends EventEmitter {
 export const serverFactory: FastifyServerFactory<any> = (handler, opts) =>
   new Server(handler, opts);
 
-export { default as websocket } from './plugin.js';
-
+export { default as websocket } from './plugin-websocket';
+// export { default as eventsource } from './plugin-eventsource';
 export { FastifySSEPlugin as eventsource } from 'fastify-sse-v2';
 
 // export const getUws = (fastify) => {

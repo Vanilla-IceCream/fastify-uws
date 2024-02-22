@@ -1,7 +1,11 @@
 ### Benchmarks
 
 ```sh
-$ autocannon -c 100 -p 10 -d 40 http://127.0.0.1:3000 # (two rounds; one to warm-up, one to measure)
+$ curl http://127.0.0.1:3000
+# {"message":"Hello, World!"}
+
+$ autocannon -c 100 -p 10 -d 40 http://127.0.0.1:3000
+# (two rounds; one to warm-up, one to measure)
 ```
 
 |                | Version | Req/Sec (Avg) |

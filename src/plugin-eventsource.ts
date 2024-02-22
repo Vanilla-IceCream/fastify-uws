@@ -1,12 +1,12 @@
 import type { FastifyReply } from 'fastify';
 import fp from 'fastify-plugin';
 
+import { kWs, kRes } from './symbols';
+
 export default fp(
   async (instance, options) => {
     instance.decorateReply('sse', function (this: FastifyReply, source) {
-      if (!this.raw.headersSent) {
-        //
-      }
+      const res = this.request.raw.socket[kRes];
     });
   },
   {
