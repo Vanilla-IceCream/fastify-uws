@@ -11,7 +11,15 @@ export default defineConfig({
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
-      external: ['fs', 'assert', 'http', 'path', 'events', ...Object.keys(pkg.dependencies)],
+      external: [
+        'assert',
+        'events',
+        'fs',
+        'http',
+        'path',
+        'stream',
+        ...Object.keys(pkg.dependencies),
+      ],
     },
   },
   plugins: [dts()],

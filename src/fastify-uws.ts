@@ -5,13 +5,10 @@ import type {
   RawServerDefault,
 } from 'fastify';
 import EventEmitter from 'events';
-// import { writeFileSync } from 'fs';
-// import assert from 'assert';
 import uws from 'uWebSockets.js';
 import ipaddr from 'ipaddr.js';
-// import tempy from 'tempy';
 
-import { ERR_ADDRINUSE, ERR_UWS_APP_NOT_FOUND, ERR_ENOTFOUND, ERR_SOCKET_BAD_PORT } from './errors';
+import { ERR_ADDRINUSE, ERR_ENOTFOUND, ERR_SOCKET_BAD_PORT } from './errors';
 import { HTTPSocket } from './http-socket';
 import { Request } from './request';
 import { Response } from './response';
@@ -19,16 +16,6 @@ import { kHttps, kHandler, kAddress, kListenSocket, kListen, kApp, kClosed, kWs 
 
 function createApp(https?: boolean) {
   if (!https) return uws.App();
-  // if (!https.key) return uws.SSLApp(https);
-  // const keyFile = tempy.file();
-  // writeFileSync(keyFile, https.key);
-  // const certFile = tempy.file();
-  // writeFileSync(certFile, https.cert);
-  // return uws.SSLApp({
-  //   key_file_name: keyFile,
-  //   cert_file_name: certFile,
-  //   passphrase: https.passphrase,
-  // });
 }
 
 const mainServer = {};
@@ -38,7 +25,7 @@ interface FastifyUwsOptions {
   https?: boolean;
 }
 
-export class Server extends EventEmitter {
+class Server extends EventEmitter {
   [kHandler]: FastifyServerFactoryHandler;
   timeout?: number;
   [kHttps]?: boolean | Record<string, string>;
@@ -52,14 +39,6 @@ export class Server extends EventEmitter {
     super();
 
     const { connectionTimeout = 0, https = false } = opts;
-
-    // assert(
-    //   !https ||
-    //     (typeof https === 'object' &&
-    //       typeof https.key === 'string' &&
-    //       typeof https.cert === 'string'),
-    //   'https must be a valid object { key: string, cert: string }',
-    // );
 
     this[kHandler] = handler;
     this.timeout = connectionTimeout;
@@ -184,39 +163,21 @@ export const serverFactory: FastifyServerFactory<any> = (handler, opts) =>
   new Server(handler, opts);
 
 export { default as websocket } from './plugin-websocket';
-// export { default as eventsource } from './plugin-eventsource';
-export { FastifySSEPlugin as eventsource } from 'fastify-sse-v2';
-
-// export const getUws = (fastify) => {
-//   const { server } = fastify
-//   if (!server[kApp]) throw new ERR_UWS_APP_NOT_FOUND()
-//   return server[kApp]
-// }
-
-export {
-  DEDICATED_COMPRESSOR_128KB,
-  DEDICATED_COMPRESSOR_16KB,
-  DEDICATED_COMPRESSOR_256KB,
-  DEDICATED_COMPRESSOR_32KB,
-  DEDICATED_COMPRESSOR_3KB,
-  DEDICATED_COMPRESSOR_4KB,
-  DEDICATED_COMPRESSOR_64KB,
-  DEDICATED_COMPRESSOR_8KB,
-  DEDICATED_DECOMPRESSOR,
-  DEDICATED_DECOMPRESSOR_16KB,
-  DEDICATED_DECOMPRESSOR_1KB,
-  DEDICATED_DECOMPRESSOR_2KB,
-  DEDICATED_DECOMPRESSOR_32KB,
-  DEDICATED_DECOMPRESSOR_4KB,
-  DEDICATED_DECOMPRESSOR_512B,
-  DEDICATED_DECOMPRESSOR_8KB,
-  DISABLED,
-  SHARED_COMPRESSOR,
-  SHARED_DECOMPRESSOR,
-} from 'uWebSockets.js';
+export { default as eventsource } from './plugin-eventsource';
 
 declare module 'fastify' {
   interface RouteShorthandOptions<RawServer extends RawServerBase = RawServerDefault> {
     websocket?: boolean;
   }
+
+  interface FastifyReply {
+    sse(source: MessageEvent): void;
+  }
+}
+
+interface MessageEvent {
+  data: string | object;
+  id?: string;
+  type?: string;
+  retry?: number;
 }
