@@ -11,5 +11,5 @@ server.listen({ host: '127.0.0.1', port: 3000 }, (err, address) => {
 });
 
 // $ node fastify.mjs
-// $ deno run --allow-net --allow-sys fastify.mjs
+// $ deno run -A fastify.mjs
 // $ bun fastify.mjs

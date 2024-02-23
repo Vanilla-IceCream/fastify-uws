@@ -185,12 +185,10 @@ export default (async (app) => {
 
 ## Benchmarks
 
-```sh
-$ curl http://127.0.0.1:3000
-# {"message":"Hello, World!"}
+### [autocannon](https://github.com/mcollina/autocannon)
 
+```sh
 $ autocannon -c 100 -p 10 -d 40 http://127.0.0.1:3000
-# (two rounds; one to warm-up, one to measure)
 ```
 
 |                 |   Version |  Req/Sec (Avg) |
@@ -203,3 +201,37 @@ $ autocannon -c 100 -p 10 -d 40 http://127.0.0.1:3000
 | node            |   20.11.1 |     142,995.21 |
 | fastify         |    4.26.1 |     128,088.00 |
 | fastify (deno)  |    4.26.1 |      94,574.40 |
+
+### [oha](https://github.com/hatoo/oha)
+
+```sh
+$ oha -c 100 -n 10 -z 40s http://127.0.0.1:3000
+```
+
+|                 |   Version |    Requests/sec |
+| :-------------- | --------: | --------------: |
+| uws             |   20.42.0 |    178,313.1145 |
+| bun             |    1.0.28 |    167,834.1241 |
+| deno            |    1.41.0 |    126,947.8286 |
+| **fastify-uws** | **0.5.0** | **93,220.2602** |
+| node            |   20.11.1 |     75,221.4017 |
+| fastify (bun)   |    4.26.1 |     73,008.0009 |
+| fastify         |    4.26.1 |     68,916.1586 |
+| fastify (deno)  |    4.26.1 |     61,638.9279 |
+
+### [bombardier](https://github.com/codesenberg/bombardier)
+
+```sh
+$ bombardier http://127.0.0.1:3000
+```
+
+|                 |   Version |       Reqs/sec |
+| :-------------- | --------: | -------------: |
+| uws             |   20.42.0 |     198,435.48 |
+| bun             |    1.0.28 |     198,203.21 |
+| deno            |    1.41.0 |     135,906.07 |
+| **fastify-uws** | **0.5.0** | **110,698.53** |
+| node            |   20.11.1 |      85,637.71 |
+| fastify (bun)   |    4.26.1 |      85,075.90 |
+| fastify         |    4.26.1 |      78,194.26 |
+| fastify (deno)  |    4.26.1 |      68,026.92 |

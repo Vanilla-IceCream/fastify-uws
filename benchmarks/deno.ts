@@ -11,4 +11,4 @@ Deno.serve(
   },
 );
 
-// $ deno run --allow-net deno.ts
+// $ deno run -A deno.ts
