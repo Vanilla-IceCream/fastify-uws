@@ -20,7 +20,7 @@ import { ERR_STREAM_DESTROYED } from './errors';
 
 const localAddressIpv6 = Buffer.from([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
 
-const toHex = (buf, start, end) => buf.slice(start, end).toString('hex');
+const toHex = (buf, start, end) => buf.subarray(start, end).toString('hex');
 
 const noop = () => {};
 

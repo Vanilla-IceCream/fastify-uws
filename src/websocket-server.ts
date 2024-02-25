@@ -75,7 +75,7 @@ export class WebSocket extends EventEmitter {
 
   getTopics() {
     if (this[kEnded]) return [];
-    return this.connection.getTopics().map((topic) => topic.slice(topic.indexOf(SEP) + 1));
+    return this.connection.getTopics().map((topic) => topic.subarray(topic.indexOf(SEP) + 1));
   }
 
   close() {
