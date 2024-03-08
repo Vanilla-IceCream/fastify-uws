@@ -12,6 +12,9 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
+        'node:dns/promises',
+        'node:stream',
+        'node:crypto',
         'assert',
         'events',
         'fs',

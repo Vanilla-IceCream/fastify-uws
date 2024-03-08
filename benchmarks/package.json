@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "fastify": "^4.26.1",
+    "fastify": "^4.26.2",
     "fastify-uws": "workspace:^",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.42.0"
   }

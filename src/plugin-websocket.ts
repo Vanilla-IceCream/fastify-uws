@@ -1,4 +1,7 @@
+import { PassThrough } from 'node:stream';
+import { randomBytes } from 'node:crypto';
 import fp from 'fastify-plugin';
+import Duplexify from 'duplexify';
 
 import { WebSocketServer, WebSocket } from './websocket-server';
 import { kWs, kRes } from './symbols';
@@ -19,6 +22,63 @@ function fastifyUws(fastify, opts = {}, next) {
   const websocketServer = (server[kWs] = new WebSocketServer(options));
 
   fastify.decorate('websocketServer', websocketServer);
+
+  // async function injectWS(path = '/', upgradeContext = {}) {
+  //   const server2Client = new PassThrough();
+  //   const client2Server = new PassThrough();
+
+  //   const serverStream = new Duplexify(server2Client, client2Server);
+  //   const clientStream = new Duplexify(client2Server, server2Client);
+
+  //   const ws = new WebSocket(null, undefined, { isServer: false });
+  //   const head = Buffer.from([]);
+
+  //   let resolve, reject;
+  //   const promise = new Promise((_resolve, _reject) => {
+  //     resolve = _resolve;
+  //     reject = _reject;
+  //   });
+
+  //   ws.on('open', () => {
+  //     clientStream.removeListener('data', onData);
+  //     resolve(ws);
+  //   });
+
+  //   const onData = (chunk) => {
+  //     if (chunk.toString().includes('HTTP/1.1 101 Switching Protocols')) {
+  //       ws._isServer = false;
+  //       ws.setSocket(clientStream, head, { maxPayload: 0 });
+  //     } else {
+  //       clientStream.removeListener('data', onData);
+  //       const statusCode = Number(chunk.toString().match(/HTTP\/1.1 (\d+)/)[1]);
+  //       reject(new Error('Unexpected server response: ' + statusCode));
+  //     }
+  //   };
+
+  //   clientStream.on('data', onData);
+
+  //   const req = {
+  //     ...upgradeContext,
+  //     method: 'GET',
+  //     headers: {
+  //       ...upgradeContext.headers,
+  //       connection: 'upgrade',
+  //       upgrade: 'websocket',
+  //       'sec-websocket-version': 13,
+  //       'sec-websocket-key': randomBytes(16).toString('base64'),
+  //     },
+  //     httpVersion: '1.1',
+  //     url: path,
+  //     [kWs]: serverStream,
+  //     [kWsHead]: head,
+  //   };
+
+  //   websocketListenServer.emit('upgrade', req, req[kWs], req[kWsHead]);
+
+  //   return promise;
+  // }
+
+  // fastify.decorate('injectWS', injectWS);
 
   fastify.addHook('onRoute', (routeOptions) => {
     const isWebSocket = !!routeOptions.websocket;

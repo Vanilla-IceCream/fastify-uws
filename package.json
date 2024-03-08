@@ -1,6 +1,6 @@
 {
   "name": "fastify-uws",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A performant HTTP and WebSocket server for Fastify with uWebSockets.",
   "main": "./dist/fastify-uws.cjs",
   "module": "./dist/fastify-uws.js",
@@ -42,23 +42,24 @@
   "homepage": "https://github.com/Vanilla-IceCream/fastify-uws#readme",
   "dependencies": {
     "@fastify/error": "^3.4.1",
+    "duplexify": "^4.1.3",
     "fastify-plugin": "^4.5.1",
     "fastq": "^1.17.1",
     "ipaddr.js": "^2.1.0",
-    "streamx": "^2.15.8",
+    "streamx": "^2.16.1",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.42.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.19",
-    "@vitest/coverage-v8": "^1.3.0",
+    "@types/node": "^20.11.25",
+    "@vitest/coverage-v8": "^1.3.1",
     "axios": "^1.6.7",
     "eventsource": "^2.0.2",
-    "fastify": "^4.26.1",
+    "fastify": "^4.26.2",
     "form-data": "^4.0.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.3",
-    "vite-plugin-dts": "^3.7.2",
-    "vitest": "^1.3.0",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.5",
+    "vite-plugin-dts": "^3.7.3",
+    "vitest": "^1.3.1",
     "ws": "^8.16.0"
   }
 }

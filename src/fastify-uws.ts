@@ -4,6 +4,7 @@ import type {
   RawServerBase,
   RawServerDefault,
 } from 'fastify';
+import dns from 'node:dns/promises';
 import EventEmitter from 'events';
 import uws from 'uWebSockets.js';
 import ipaddr from 'ipaddr.js';
@@ -103,8 +104,10 @@ class Server extends EventEmitter {
 
     port = port === undefined || port === null ? 0 : Number(port);
 
+    const lookupAddress = await dns.lookup(host);
+
     this[kAddress] = {
-      address: host === 'localhost' ? '::1' : host,
+      ...lookupAddress,
       port,
     };
 
