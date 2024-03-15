@@ -191,15 +191,17 @@ export default (async (app) => {
 $ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
 ```
 
-|               | Version | Runtime | Router | Requests/sec |
-| :------------ | ------: | :------ | -----: | -----------: |
-| uws           | 20.42.0 | Node    |      ✗ | 187,394.6739 |
-| elysia        |  0.8.17 | Bun     |      ✓ | 145,652.9786 |
-| bun           |  1.0.30 | Bun     |      ✗ | 141,804.4331 |
-| hyper-express | 6.14.12 | Node    |      ✓ | 137,625.2170 |
-| hono          |   4.1.0 | Deno    |      ✓ | 102,834.0527 |
-| deno          |  1.41.3 | Deno    |      ✗ | 102,322.8169 |
-| fastify-uws   |   0.6.0 | Node    |      ✓ |  98,684.5636 |
-| node          | 20.11.1 | Node    |      ✗ |  75,703.2331 |
-| fastify       |  4.26.2 | Node    |      ✓ |  67,137.5293 |
-| h3            |  1.11.1 | Node    |      ✓ |  64,489.0815 |
+|               | Version | Runtime | Language   | Router | Requests/sec |
+| :------------ | ------: | :------ | :--------- | -----: | -----------: |
+| uws           | 20.42.0 | Node    | JavaScript |      ✗ | 187,394.6739 |
+| elysia        |  0.8.17 | Bun     | TypeScript |      ✓ | 145,652.9786 |
+| bun           |  1.0.30 | Bun     | TypeScript |      ✗ | 141,804.4331 |
+| hyper-express | 6.14.12 | Node    | JavaScript |      ✓ | 137,625.2170 |
+| hono          |   4.1.0 | Deno    | TypeScript |      ✓ | 102,834.0527 |
+| deno          |  1.41.3 | Deno    | TypeScript |      ✗ | 102,322.8169 |
+| fastify-uws   |   0.6.0 | Node    | JavaScript |      ✓ |  98,684.5636 |
+| warp          |   0.3.6 | -       | Rust       |      ✓ |  94,908.3410 |
+| node          | 20.11.1 | Node    | JavaScript |      ✗ |  75,703.2331 |
+| fastify       |  4.26.2 | Node    | JavaScript |      ✓ |  67,137.5293 |
+| h3            |  1.11.1 | Node    | JavaScript |      ✓ |  64,489.0815 |
+| rocket        |   0.5.0 | -       | Rust       |      ✓ |  12,638.0325 |
