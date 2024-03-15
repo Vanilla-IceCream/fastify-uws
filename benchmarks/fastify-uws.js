@@ -4,9 +4,22 @@ import { serverFactory } from 'fastify-uws';
 const server = fastify({ serverFactory });
 
 const router = async (app) => {
-  app.get('/hello-world', async (request, reply) => {
-    return reply.send({ message: 'Hello, World!' });
-  });
+  app.get(
+    '/hello-world',
+    {
+      schema: {
+        response: {
+          200: {
+            type: 'object',
+            properties: { message: { type: 'string' } },
+          },
+        },
+      },
+    },
+    async (request, reply) => {
+      return reply.send({ message: 'Hello, World!' });
+    },
+  );
 };
 
 server.register(router, { prefix: '/api' });
