@@ -2,7 +2,7 @@ use std::net::SocketAddr;
 use warp::Filter;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize)]
 struct HelloWorld {
     message: String,
 }

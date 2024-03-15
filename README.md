@@ -201,7 +201,9 @@ $ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
 | deno          |  1.41.3 | Deno    | TypeScript |      ✗ | 102,322.8169 |
 | fastify-uws   |   0.6.0 | Node    | JavaScript |      ✓ |  98,684.5636 |
 | warp          |   0.3.6 | -       | Rust       |      ✓ |  94,908.3410 |
+| actix-web     |   4.5.1 | -       | Rust       |      ✓ |  83,531.1064 |
 | node          | 20.11.1 | Node    | JavaScript |      ✗ |  75,703.2331 |
 | fastify       |  4.26.2 | Node    | JavaScript |      ✓ |  67,137.5293 |
+| axum          |   0.7.4 | -       | Rust       |      ✓ |  65,975.6328 |
 | h3            |  1.11.1 | Node    | JavaScript |      ✓ |  64,489.0815 |
 | rocket        |   0.5.0 | -       | Rust       |      ✓ |  12,638.0325 |
