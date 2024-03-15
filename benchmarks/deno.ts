@@ -6,9 +6,16 @@ Deno.serve(
       console.log(`Server listening at http://${hostname}:${port}`);
     },
   },
-  () => {
-    return Response.json({ message: 'Hello, World!' });
+  (request) => {
+    const path = new URL(request.url).pathname;
+
+    if (path === '/api/hello-world') {
+      return Response.json({ message: 'Hello, World!' });
+    }
+
+    return new Response('Not Found', { status: 404 });
   },
 );
 
 // $ deno run -A deno.ts
+// $ curl http://127.0.0.1:3000/api/hello-world

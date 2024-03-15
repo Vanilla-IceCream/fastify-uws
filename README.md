@@ -185,36 +185,21 @@ export default (async (app) => {
 
 ## Benchmarks
 
-### [oha](https://github.com/hatoo/oha)
+### [oha v1.4.0](https://github.com/hatoo/oha)
 
 ```sh
-$ oha -c 100 -z 30s http://127.0.0.1:3000
+$ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
 ```
 
-|                 |   Version |   Requests/sec |
-| :-------------- | --------: | -------------: |
-| uws             |   20.42.0 |     186,296.26 |
-| bun             |    1.0.28 |     172,787.09 |
-| deno            |    1.41.0 |     127,581.76 |
-| **fastify-uws** | **0.6.0** | **101,775.85** |
-| node            |   20.11.1 |      75,519.58 |
-| fastify (bun)   |    4.26.1 |      73,320.81 |
-| fastify         |    4.26.1 |      70,916.76 |
-| fastify (deno)  |    4.26.1 |      62,583.69 |
-
-### [bombardier](https://github.com/codesenberg/bombardier)
-
-```sh
-$ bombardier -c 100 -d 30s http://127.0.0.1:3000
-```
-
-|                 |   Version |   Requests/sec |
-| :-------------- | --------: | -------------: |
-| uws             |   20.42.0 |     203,021.23 |
-| bun             |    1.0.28 |     198,411.55 |
-| deno            |    1.41.0 |     136,654.51 |
-| **fastify-uws** | **0.6.0** | **123,715.10** |
-| node            |   20.11.1 |      86,161.47 |
-| fastify (bun)   |    4.26.1 |      83,639.41 |
-| fastify         |    4.26.1 |      78,550.22 |
-| fastify (deno)  |    4.26.1 |      70,608.36 |
+|               | Version | Runtime | Router | Requests/sec |
+| :------------ | ------: | :------ | -----: | -----------: |
+| uws           | 20.42.0 | Node    |      ✗ | 187,394.6739 |
+| elysia        |  0.8.17 | Bun     |      ✓ | 145,652.9786 |
+| bun           |  1.0.30 | Bun     |      ✗ | 141,804.4331 |
+| hyper-express | 6.14.12 | Node    |      ✓ | 137,625.2170 |
+| hono          |   4.1.0 | Deno    |      ✓ | 102,834.0527 |
+| deno          |  1.41.3 | Deno    |      ✗ | 102,322.8169 |
+| fastify-uws   |   0.6.0 | Node    |      ✓ |  98,684.5636 |
+| node          | 20.11.1 | Node    |      ✗ |  75,703.2331 |
+| fastify       |  4.26.2 | Node    |      ✓ |  67,137.5293 |
+| h3            |  1.11.1 | Node    |      ✓ |  64,489.0815 |
