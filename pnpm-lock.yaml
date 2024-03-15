@@ -66,6 +66,9 @@ importers:
 
   benchmarks:
     dependencies:
+      '@hono/node-server':
+        specifier: ^1.8.2
+        version: 1.8.2
       fastify:
         specifier: ^4.26.2
         version: 4.26.2
@@ -75,6 +78,9 @@ importers:
       h3:
         specifier: ^1.11.1
         version: 1.11.1(uWebSockets.js@20.42.0)
+      hono:
+        specifier: ^4.1.0
+        version: 4.1.0
       hyper-express:
         specifier: ^6.14.12
         version: 6.14.12
@@ -427,6 +433,11 @@ packages:
       '@sinclair/typebox': '>=0.26 <=0.32'
     dependencies:
       '@sinclair/typebox': 0.32.15
+    dev: false
+
+  /@hono/node-server@1.8.2:
+    resolution: {integrity: sha512-h8l2TBLCPHZBUrrkosZ6L5CpBLj6zdESyF4B+zngiCDF7aZFQJ0alVbLx7jn8PCVi9EyoFf8a4hOZFi1tD95EA==}
+    engines: {node: '>=18.14.1'}
     dev: false
 
   /@isaacs/cliui@8.0.2:
@@ -1479,6 +1490,11 @@ packages:
     dependencies:
       glob: 8.1.0
       readable-stream: 3.6.2
+    dev: false
+
+  /hono@4.1.0:
+    resolution: {integrity: sha512-9no6DCHb4ijB1tWdFXU6JnrnFgzwVZ1cnIcS1BjAFnMcjbtBTOMsQrDrPH3GXbkNEEEkj8kWqcYBy8Qc0bBkJQ==}
+    engines: {node: '>=16.0.0'}
     dev: false
 
   /html-escaper@2.0.2:

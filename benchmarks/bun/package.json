@@ -2,6 +2,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "elysia": "^0.8.17"
+    "elysia": "^0.8.17",
+    "h3": "^1.11.1",
+    "hono": "^4.1.0"
   }
 }

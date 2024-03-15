@@ -197,6 +197,7 @@ $ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
 | elysia        |  0.8.17 | Bun     | TypeScript |      ✓ | 145,652.9786 |
 | bun           |  1.0.30 | Bun     | TypeScript |      ✗ | 141,804.4331 |
 | hyper-express | 6.14.12 | Node    | JavaScript |      ✓ | 137,625.2170 |
+| hono          |   4.1.0 | Bun     | TypeScript |      ✓ | 117,491.5960 |
 | hono          |   4.1.0 | Deno    | TypeScript |      ✓ | 102,834.0527 |
 | deno          |  1.41.3 | Deno    | TypeScript |      ✗ | 102,322.8169 |
 | fastify-uws   |   0.6.0 | Node    | JavaScript |      ✓ |  98,684.5636 |
@@ -205,5 +206,8 @@ $ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
 | node          | 20.11.1 | Node    | JavaScript |      ✗ |  75,703.2331 |
 | fastify       |  4.26.2 | Node    | JavaScript |      ✓ |  67,137.5293 |
 | axum          |   0.7.4 | -       | Rust       |      ✓ |  65,975.6328 |
+| hono          |   4.1.0 | Node    | JavaScript |      ✓ |   65704.3542 |
 | h3            |  1.11.1 | Node    | JavaScript |      ✓ |  64,489.0815 |
+| h3            |  1.11.1 | Bun     | TypeScript |      ✓ |  62,165.1468 |
+| h3            |  1.11.1 | Deno    | TypeScript |      ✓ |  53,684.6082 |
 | rocket        |   0.5.0 | -       | Rust       |      ✓ |  12,638.0325 |

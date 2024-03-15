@@ -1,6 +1,6 @@
 {
   "imports": {
-    "std/": "https://deno.land/std@0.220.0/",
+    "h3": "https://esm.sh/h3@1.11.1",
     "hono": "https://deno.land/x/hono@v4.1.0/mod.ts"
   }
 }
