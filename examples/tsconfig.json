@@ -11,7 +11,9 @@
       "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "vitest"],
+    "types": ["vite/client"],
+
+    "noEmit": true,
 
     "allowJs": true,
 
@@ -25,5 +27,6 @@
 
     "skipLibCheck": true
   },
+  "include": ["src", "vite.config.ts"],
   "exclude": ["node_modules", "dist", "coverage"]
 }

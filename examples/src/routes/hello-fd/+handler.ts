@@ -2,7 +2,7 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
 export default (async (app) => {
-  // node client-fd.mjs
+  // $ node client-fd.mjs
   app.post(
     '',
     {

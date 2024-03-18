@@ -1,8 +1,7 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-
-import pkg from './package.json';
+import nodeExternals from 'rollup-plugin-node-externals';
 
 export default defineConfig({
   build: {
@@ -10,24 +9,17 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/fastify-uws.ts'),
       formats: ['es', 'cjs'],
     },
-    rollupOptions: {
-      external: [
-        'node:dns/promises',
-        'node:stream',
-        'node:crypto',
-        'assert',
-        'events',
-        'fs',
-        'http',
-        'path',
-        'stream',
-        ...Object.keys(pkg.dependencies),
-      ],
-    },
   },
-  plugins: [dts()],
+  plugins: [
+    dts({
+      exclude: ['**/__tests__/**'],
+    }),
+    {
+      ...nodeExternals(),
+      enforce: 'pre',
+    },
+  ],
   test: {
     globals: true,
-    testTimeout: 10_000,
   },
 });

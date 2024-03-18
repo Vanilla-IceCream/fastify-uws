@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 
 export default (async (app) => {
-  // node client-es.mjs
+  // $ node client-es.mjs
   app.get('', (req, reply) => {
     let index = 0;
 
@@ -16,5 +16,10 @@ export default (async (app) => {
         clearInterval(interval);
       }
     }, 1000);
+
+    req.raw.on('close', () => {
+      clearInterval(interval);
+      app.log.info('Client disconnected');
+    });
   });
 }) as FastifyPluginAsyncTypebox;
