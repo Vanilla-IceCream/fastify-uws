@@ -69,6 +69,9 @@ importers:
       '@hono/node-server':
         specifier: ^1.8.2
         version: 1.8.2
+      '@oak/oak':
+        specifier: npm:@jsr/oak__oak@14.2.0
+        version: /@jsr/oak__oak@14.2.0
       fastify:
         specifier: ^4.26.2
         version: 4.26.2
@@ -84,6 +87,9 @@ importers:
       hyper-express:
         specifier: ^6.14.12
         version: 6.14.12
+      polka:
+        specifier: 1.0.0-next.25
+        version: 1.0.0-next.25
       uWebSockets.js:
         specifier: github:uNetworking/uWebSockets.js#v20.42.0
         version: github.com/uNetworking/uWebSockets.js/f40213ec0a97d0d8721d9d32d92d6eb6ddcd22e7
@@ -494,6 +500,103 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
+  /@jsr/oak__commons@0.7.0:
+    resolution: {integrity: sha512-6Gj4tJcpjvB+WMlNz/MFbhnIo/FFa2V03dnbB/3QuOmVoqc2U4iS3Dga9OKjxYm/gNPSgMEO5yahj2ngO8lNuQ==, tarball: https://npm.jsr.io/~/7/@jsr/oak__commons/0.7.0.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+      '@jsr/std__media-types': 0.218.2
+    dev: false
+
+  /@jsr/oak__oak@14.2.0:
+    resolution: {integrity: sha512-tK8uCzkcLiwnEqiRLwvWRqEEYq792350EpSnE8drQjg341YZcnrqkJWOwlLG5NMjFuxZBE7fywx7MKxGadv04w==, tarball: https://npm.jsr.io/~/7/@jsr/oak__oak/14.2.0.tgz}
+    dependencies:
+      '@jsr/oak__commons': 0.7.0
+      '@jsr/std__assert': 0.218.2
+      '@jsr/std__bytes': 0.218.2
+      '@jsr/std__crypto': 0.218.2
+      '@jsr/std__encoding': 0.218.2
+      '@jsr/std__http': 0.218.2
+      '@jsr/std__io': 0.218.2
+      '@jsr/std__media-types': 0.218.2
+      '@jsr/std__path': 0.218.2
+      path-to-regexp: 6.2.1
+    dev: false
+
+  /@jsr/std__assert@0.218.2:
+    resolution: {integrity: sha512-q+GPURACyVh0XMypR3BBtBFKG7LDw67NiVWHn4FS9LKMDMKuGxFq69DWuS2+1g7YPcGCvLK/S6KVLtkMRruncA==, tarball: https://npm.jsr.io/~/7/@jsr/std__assert/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__fmt': 0.218.2
+    dev: false
+
+  /@jsr/std__async@0.218.2:
+    resolution: {integrity: sha512-jeH+u4aochWqwOALjmgIXc5JYfMnQz6jRSjG1gNZJiYM7pecgHtHh3oAtRDASdewPhlnBMuF2RNcCeTUkIFEzg==, tarball: https://npm.jsr.io/~/7/@jsr/std__async/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+    dev: false
+
+  /@jsr/std__bytes@0.218.2:
+    resolution: {integrity: sha512-5WZzfIjZ3lXc/PYvHv4GUC1goF48oAgSvWCKKSJ6dKRXDfWQKbEnW/G4EFgpWqBb+FkLWigd0qjY91I0zzB64A==, tarball: https://npm.jsr.io/~/7/@jsr/std__bytes/0.218.2.tgz}
+    dev: false
+
+  /@jsr/std__cli@0.218.2:
+    resolution: {integrity: sha512-R18hFV6EsSJ+Gb3ECWCysLbp/pObMpVf62UUTnmihBGn1F/sAJ7ultYBhDRG87nyzKq4iQge1pKxoepH0KdZhw==, tarball: https://npm.jsr.io/~/7/@jsr/std__cli/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+    dev: false
+
+  /@jsr/std__crypto@0.218.2:
+    resolution: {integrity: sha512-hv9+1gzPpKUv/dz5KPKBe/UD//fL0zHqBtambocqOptGQlPh8/8dqSEuis7f6Nw3h5sY6sydfiJFLPamGiR7TA==, tarball: https://npm.jsr.io/~/7/@jsr/std__crypto/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+      '@jsr/std__encoding': 0.218.2
+    dev: false
+
+  /@jsr/std__encoding@0.218.2:
+    resolution: {integrity: sha512-+Qt4tL56kI0vvfDzOufkmIKW99gWvZj7PJtGypLbT1FYTZsCXy6tsHcnGKNC7pMtBAP2YgoB4YKr7gA8MwRrBw==, tarball: https://npm.jsr.io/~/7/@jsr/std__encoding/0.218.2.tgz}
+    dev: false
+
+  /@jsr/std__fmt@0.218.2:
+    resolution: {integrity: sha512-WqgXDfzC7pAqQejZXXqqIJ2t5DoqPumb9j7ylLrlNFoTRbAO2bO6lLfTsEWMfk6I4w1XdLnXT3OB/s6au5lg+A==, tarball: https://npm.jsr.io/~/7/@jsr/std__fmt/0.218.2.tgz}
+    dev: false
+
+  /@jsr/std__http@0.218.2:
+    resolution: {integrity: sha512-+/XcMNzwUE3v3/jCLjnzm8xLIhKFZ/JwYWXtyiGjiYNnvPFkcofEW7S8GE90PEIblfQipIg5IMe5mb7KUVHXPQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__http/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+      '@jsr/std__async': 0.218.2
+      '@jsr/std__cli': 0.218.2
+      '@jsr/std__encoding': 0.218.2
+      '@jsr/std__fmt': 0.218.2
+      '@jsr/std__media-types': 0.218.2
+      '@jsr/std__path': 0.218.2
+      '@jsr/std__streams': 0.218.2
+    dev: false
+
+  /@jsr/std__io@0.218.2:
+    resolution: {integrity: sha512-eQSx3QwCTuxOaBJsVkf4dNWA0QEibtJ2XMS6GzAoNvk6aqnrOGQ5XTt0mBVT8FictJhIgIeS9Z0EQY2aroqCzg==, tarball: https://npm.jsr.io/~/7/@jsr/std__io/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+      '@jsr/std__bytes': 0.218.2
+    dev: false
+
+  /@jsr/std__media-types@0.218.2:
+    resolution: {integrity: sha512-nIbyI/K422cFUsbG7Vi4GYdDLXoqjBYHXc/3fT0vJDCy8rbS1Yl9/38U+ku7EXfdwLBThCpxGPSMw/TJbBeqXw==, tarball: https://npm.jsr.io/~/7/@jsr/std__media-types/0.218.2.tgz}
+    dev: false
+
+  /@jsr/std__path@0.218.2:
+    resolution: {integrity: sha512-4MR5JhAqCON068HtEwkCl0aCHr3y5vysgmjXFOPUN6tqwHhgVAXjWkZMoLdOuFhd/dxEBjSWO0cayy0UU5CZZQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__path/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+    dev: false
+
+  /@jsr/std__streams@0.218.2:
+    resolution: {integrity: sha512-7oXGuydkOGV3p4cWnvPkv2eU0VQ8Ys0nOyZ1B+pAJAY+mJh7lDwAu6DOdMY/OZfnw/JcVy1FEa9cnTnLuvZaYA==, tarball: https://npm.jsr.io/~/7/@jsr/std__streams/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+      '@jsr/std__bytes': 0.218.2
+      '@jsr/std__io': 0.218.2
+    dev: false
+
   /@microsoft/api-extractor-model@7.28.3(@types/node@20.11.25):
     resolution: {integrity: sha512-wT/kB2oDbdZXITyDh2SQLzaWwTOFbV326fP0pUwNW00WeliARs0qjmXBWmGWardEzp2U3/axkO3Lboqun6vrig==}
     dependencies:
@@ -543,6 +646,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@polka/url@1.0.0-next.25:
+    resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
+    dev: false
 
   /@rollup/pluginutils@5.1.0:
     resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
@@ -1876,6 +1983,10 @@ packages:
       minipass: 7.0.4
     dev: true
 
+  /path-to-regexp@6.2.1:
+    resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
+    dev: false
+
   /pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
 
@@ -1944,6 +2055,14 @@ packages:
       mlly: 1.6.1
       pathe: 1.1.2
     dev: true
+
+  /polka@1.0.0-next.25:
+    resolution: {integrity: sha512-LBgDEGL73aeb/5yAwO9JWsqCuqPdvEdwA/n25Y38F4kv6jqFaLbgIWVuZfsv9Sc9O052eoWWrAjGB75oCQvELw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@polka/url': 1.0.0-next.25
+      trouter: 4.0.0
+    dev: false
 
   /postcss@8.4.35:
     resolution: {integrity: sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==}
@@ -2034,6 +2153,11 @@ packages:
   /real-require@0.2.0:
     resolution: {integrity: sha512-57frrGM/OCTLqLOAh0mhVA9VBMHd+9U7Zb2THMGdBUoZVOtGbJzjxsYGDJ3A9AYYCP4hn6y1TVbaOfzWtm5GFg==}
     engines: {node: '>= 12.13.0'}
+
+  /regexparam@3.0.0:
+    resolution: {integrity: sha512-RSYAtP31mvYLkAHrOlh25pCNQ5hWnT106VukGaaFfuJrZFkGRX5GhUAdPqpSDXxOhA2c4akmRuplv1mRqnBn6Q==}
+    engines: {node: '>=8'}
+    dev: false
 
   /require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
@@ -2320,6 +2444,13 @@ packages:
   /toad-cache@3.7.0:
     resolution: {integrity: sha512-/m8M+2BJUpoJdgAHoG+baCwBT+tf2VraSfkBgl0Y00qIWt41DJ8R5B8nsEw0I58YwF5IZH6z24/2TobDKnqSWw==}
     engines: {node: '>=12'}
+
+  /trouter@4.0.0:
+    resolution: {integrity: sha512-bwwr76BThfiVwAFZqks5cJ+VoKNM3/2Yg1ZwJslkdmAUQ6S0UNoCoGYFDxdw+u1skfexggdmD2p35kW5Td4Cug==}
+    engines: {node: '>=6'}
+    dependencies:
+      regexparam: 3.0.0
+    dev: false
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}

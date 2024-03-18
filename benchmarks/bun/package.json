@@ -2,6 +2,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@oak/oak": "npm:@jsr/oak__oak@14.2.0",
     "elysia": "^0.8.17",
     "h3": "^1.11.1",
     "hono": "^4.1.0"
