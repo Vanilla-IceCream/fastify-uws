@@ -204,6 +204,7 @@ $ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
 | warp          |         0.3.6 | -       | Rust       |      ✓ |  94,908.3410 |
 | actix-web     |         4.5.1 | -       | Rust       |      ✓ |  83,531.1064 |
 | node          |       20.11.1 | Node    | JavaScript |      ✗ |  75,703.2331 |
+| salvo         |        0.66.2 | -       | Rust       |      ✓ |  74,396.3154 |
 | fastify       |        4.26.2 | Node    | JavaScript |      ✓ |  71,417.4915 |
 | axum          |         0.7.4 | -       | Rust       |      ✓ |  65,975.6328 |
 | hono          |         4.1.0 | Node    | JavaScript |      ✓ |  65,704.3542 |
