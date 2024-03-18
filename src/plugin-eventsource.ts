@@ -1,16 +1,20 @@
 import type { FastifyReply } from 'fastify';
 import { Writable, Readable, Transform } from 'stream';
 import fp from 'fastify-plugin';
-
-import { kWs, kRes } from './symbols';
+import toStream from 'it-to-stream';
+import { pushable } from 'it-pushable';
 
 export default fp(
   async (instance, options) => {
     instance.decorateReply('sse', function (this: FastifyReply, source: MessageEvent) {
-      if (this.raw.socket.aborted) return;
-
       if (!this.raw.headersSent) {
-        this.raw.setHeader('Content-Type', 'text/event-stream');
+        this.sseContext = { source: pushable({ objectMode: true }) };
+
+        Object.entries(this.getHeaders()).forEach(([key, value]) => {
+          this.raw.setHeader(key, value ?? '');
+        });
+
+        this.raw.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
         this.raw.setHeader('Connection', 'keep-alive');
         this.raw.setHeader(
           'Cache-Control',
@@ -19,17 +23,21 @@ export default fp(
         this.raw.setHeader('Pragma', 'no-cache');
         this.raw.setHeader('Expire', '0');
         this.raw.setHeader('X-Accel-Buffering', 'no');
+
+        handleAsyncIterable(this, this.sseContext.source);
       }
 
-      const res = this.raw.socket[kRes];
+      if (isAsyncIterable(source)) {
+        return handleAsyncIterable(this, source);
+      } else {
+        if (!this.sseContext?.source) {
+          this.sseContext = { source: pushable({ objectMode: true }) };
+          handleAsyncIterable(this, this.sseContext.source);
+        }
 
-      res.cork(() => {
-        res.write(transform(source));
-      });
-
-      res.onAborted(() => {
-        this.raw.socket.aborted = true;
-      });
+        this.sseContext.source.push(source);
+        return;
+      }
     });
   },
   {
@@ -37,6 +45,25 @@ export default fp(
     name: '@fastify/eventsource',
   },
 );
+
+function handleAsyncIterable(reply: FastifyReply, source: AsyncIterable<MessageEvent>): void {
+  toStream(transformAsyncIterable(source)).pipe(reply.raw);
+}
+
+export async function* transformAsyncIterable(
+  source: AsyncIterable<MessageEvent>,
+): AsyncIterable<string> {
+  for await (const message of source) {
+    yield transform(message);
+  }
+
+  yield transform({ event: 'end', data: 'Stream closed' });
+}
+
+function isAsyncIterable<T extends AsyncIterable<unknown>>(source: T | unknown): source is T {
+  if (source === null || source === undefined || typeof source !== 'object') return false;
+  return Symbol.asyncIterator in source;
+}
 
 const isUndefined = (obj: any): obj is undefined => typeof obj === 'undefined';
 const isNil = (val: any): val is null | undefined => isUndefined(val) || val === null;
@@ -54,14 +81,14 @@ function toDataString(data: string | object): string {
 }
 
 interface MessageEvent {
-  data: string | object;
+  data?: string | object;
   id?: string;
-  type?: string;
+  event?: string;
   retry?: number;
 }
 
 function transform(message: MessageEvent) {
-  let data = message.type ? `event: ${message.type}\n` : '';
+  let data = message.event ? `event: ${message.event}\n` : '';
   data += message.id ? `id: ${message.id}\n` : '';
   data += message.retry ? `retry: ${message.retry}\n` : '';
   data += message.data ? toDataString(message.data) : '';

@@ -136,16 +136,15 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 
 export default (async (app) => {
   app.get('', { websocket: true }, (con) => {
-    console.log('Client connected');
+    app.log.info('Client connected');
 
-    con.socket.send('Hello from Fastify uWS!');
-
-    con.socket.on('message', (message) => {
-      console.log(`Client message: ${message.toString()}`);
+    con.socket.on('message', (message: MessageEvent) => {
+      console.log(`Client message: ${message}`);
+      con.socket.send('Hello from Fastify!');
     });
 
     con.socket.on('close', () => {
-      console.log('Client disconnected');
+      app.log.info('Client disconnected');
     });
   });
 }) as FastifyPluginAsyncTypebox;
@@ -179,6 +178,12 @@ export default (async (app) => {
         clearInterval(interval);
       }
     }, 1000);
+
+    req.raw.on('close', () => {
+      clearInterval(interval);
+      app.log.info('Client disconnected');
+      reply.sse({ event: 'close' });
+    });
   });
 }) as FastifyPluginAsyncTypebox;
 ```

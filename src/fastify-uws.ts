@@ -179,8 +179,8 @@ declare module 'fastify' {
 }
 
 interface MessageEvent {
-  data: string | object;
+  data?: string | object;
   id?: string;
-  type?: string;
+  event?: string;
   retry?: number;
 }

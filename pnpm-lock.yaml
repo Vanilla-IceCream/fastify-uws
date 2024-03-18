@@ -23,6 +23,12 @@ importers:
       ipaddr.js:
         specifier: ^2.1.0
         version: 2.1.0
+      it-pushable:
+        specifier: ^3.2.3
+        version: 3.2.3
+      it-to-stream:
+        specifier: ^1.0.0
+        version: 1.0.0
       streamx:
         specifier: ^2.16.1
         version: 2.16.1
@@ -1523,6 +1529,10 @@ packages:
     resolution: {integrity: sha512-8vXOvuE167CtIc3OyItco7N/dpRtBbYOsPsXCz7X/PMnlGjYjSGuZJgM1Y7mmew7BKf9BqvLX2tnOVy1BBUsxQ==}
     dev: true
 
+  /get-iterator@1.0.2:
+    resolution: {integrity: sha512-v+dm9bNVfOYsY1OrhaCrmyOcYoSeVvbt+hHZ0Au+T+p1y+0Uyj9aMaGIeUTT6xdpRbWzDeYKvfOslPhggQMcsg==}
+    dev: false
+
   /get-stream@8.0.1:
     resolution: {integrity: sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==}
     engines: {node: '>=16'}
@@ -1704,6 +1714,23 @@ packages:
       html-escaper: 2.0.2
       istanbul-lib-report: 3.0.1
     dev: true
+
+  /it-pushable@3.2.3:
+    resolution: {integrity: sha512-gzYnXYK8Y5t5b/BnJUr7glfQLO4U5vyb05gPx/TyTw+4Bv1zM9gFk4YsOrnulWefMewlphCjKkakFvj1y99Tcg==}
+    dependencies:
+      p-defer: 4.0.0
+    dev: false
+
+  /it-to-stream@1.0.0:
+    resolution: {integrity: sha512-pLULMZMAB/+vbdvbZtebC0nWBTbG581lk6w8P7DfIIIKUfa8FbY7Oi0FxZcFPbxvISs7A9E+cMpLDBc1XhpAOA==}
+    dependencies:
+      buffer: 6.0.3
+      fast-fifo: 1.3.2
+      get-iterator: 1.0.2
+      p-defer: 3.0.0
+      p-fifo: 1.0.0
+      readable-stream: 3.6.2
+    dev: false
 
   /jackspeak@2.3.6:
     resolution: {integrity: sha512-N3yCS/NegsOBokc8GAdM8UcmfsKiSS8cipheD/nivzr700H+nsMOxJjQnvwOcRYVuFkdH0wGUvW2WbXGmrZGbQ==}
@@ -1932,6 +1959,23 @@ packages:
     dependencies:
       mimic-fn: 4.0.0
     dev: true
+
+  /p-defer@3.0.0:
+    resolution: {integrity: sha512-ugZxsxmtTln604yeYd29EGrNhazN2lywetzpKhfmQjW/VJmhpDmWbiX+h0zL8V91R0UXkhb3KtPmyq9PZw3aYw==}
+    engines: {node: '>=8'}
+    dev: false
+
+  /p-defer@4.0.0:
+    resolution: {integrity: sha512-Vb3QRvQ0Y5XnF40ZUWW7JfLogicVh/EnA5gBIvKDJoYpeI82+1E3AlB9yOcKFS0AhHrWVnAQO39fbR0G99IVEQ==}
+    engines: {node: '>=12'}
+    dev: false
+
+  /p-fifo@1.0.0:
+    resolution: {integrity: sha512-IjoCxXW48tqdtDFz6fqo5q1UfFVjjVZe8TC1QRflvNUJtNfCUhxOUw6MOVZhDPjqhSzc26xKdugsO17gmzd5+A==}
+    dependencies:
+      fast-fifo: 1.3.2
+      p-defer: 3.0.0
+    dev: false
 
   /p-limit@5.0.0:
     resolution: {integrity: sha512-/Eaoq+QyLSiXQ4lyYV23f14mZRQcXnxfHrN0vCai+ak9G0pp9iEQukIIZq5NccEvwRB8PUnZT0KsOoDCINS1qQ==}
