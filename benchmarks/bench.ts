@@ -34,7 +34,7 @@ const targets: Record<Language, Target[]> = {
     { name: 'node', version: '20.11.1', router: false },
     { name: 'oak', version: '14.2.0', router: true },
     { name: 'polka', version: '1.0.0-next.25', router: true },
-    { name: 'uws', version: '20.42.0', router: true },
+    { name: 'uws', version: '20.42.0', router: false },
   ],
   rust: [
     { name: 'actix-web', version: '4.5.1', router: true },
@@ -68,7 +68,7 @@ const alignment = `| :- | -: | :- | -: | -: |`;
 function row(target: Target) {
   const row = `| ${target.name} | ${target.version} | ${target.language} | ${
     target.router ? '✓' : '✗'
-  } | ${target.requestsPerSec?.toLocaleString()} |\n`;
+  } | ${target.requestsPerSec?.toLocaleString(undefined, { minimumFractionDigits: 4 })} |\n`;
 
   return row;
 }
