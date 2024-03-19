@@ -190,7 +190,7 @@ export default (async (app) => {
 
 ## Benchmarks
 
-### [oha v1.4.0](https://github.com/hatoo/oha)
+### [oha v1.4.1](https://github.com/hatoo/oha)
 
 ```sh
 $ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
@@ -198,30 +198,30 @@ $ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
 
 |               |       Version | Language        | Router | Requests/sec |
 | :------------ | ------------: | :-------------- | -----: | -----------: |
-| uws           |       20.42.0 | JavaScript/Node |      ✗ | 187,394.6739 |
-| elysia        |        0.8.17 | TypeScript/Bun  |      ✓ | 145,652.9786 |
-| bun           |        1.0.30 | TypeScript/Bun  |      ✗ | 141,804.4331 |
-| hyper-express |       6.14.12 | JavaScript/Node |      ✓ | 137,625.2170 |
-| hono          |         4.1.0 | TypeScript/Bun  |      ✓ | 117,491.5960 |
-| hono          |         4.1.0 | TypeScript/Deno |      ✓ | 102,834.0527 |
-| deno          |        1.41.3 | TypeScript/Deno |      ✗ | 102,322.8169 |
-| fastify-uws   |         0.6.1 | JavaScript/Node |      ✓ | 101,831.5034 |
-| warp          |         0.3.6 | Rust            |      ✓ |  94,908.3410 |
-| drash         |  3.0.0-beta.2 | TypeScript/Deno |      ✓ |  87,171.0702 |
-| actix-web     |         4.5.1 | Rust            |      ✓ |  83,531.1064 |
-| viz           |         0.8.3 | Rust            |      ✓ |  82,669.0577 |
-| node          |       20.11.1 | JavaScript/Node |      ✗ |  75,703.2331 |
-| salvo         |        0.66.2 | Rust            |      ✓ |  74,396.3154 |
-| graphul       |         1.0.1 | Rust            |      ✓ |  73,656.8885 |
-| fastify       |        4.26.2 | JavaScript/Node |      ✓ |  71,417.4915 |
-| poem          |         2.0.1 | Rust            |      ✓ |  68,746.3613 |
-| axum          |         0.7.4 | Rust            |      ✓ |  65,975.6328 |
-| hono          |         4.1.0 | JavaScript/Node |      ✓ |  65,704.3542 |
-| h3            |        1.11.1 | JavaScript/Node |      ✓ |  64,489.0815 |
-| h3            |        1.11.1 | TypeScript/Bun  |      ✓ |  62,165.1468 |
-| oak           |        14.2.0 | TypeScript/Bun  |      ✓ |  62,526.7515 |
-| polka         | 1.0.0-next.25 | JavaScript/Node |      ✓ |  60,301.0173 |
-| oak           |        14.2.0 | TypeScript/Deno |      ✓ |  59,103.1796 |
-| h3            |        1.11.1 | TypeScript/Deno |      ✓ |  53,684.6082 |
-| oak           |        14.2.0 | JavaScript/Node |      ✓ |  20,199.9936 |
-| rocket        |         0.5.0 | Rust            |      ✓ |  12,638.0325 |
+| uws           |       20.42.0 | JavaScript/Node |      ✓ |  193,818.198 |
+| elysia        |         1.0.4 | TypeScript/Bun  |      ✓ |   170,423.72 |
+| bun           |        1.0.30 | TypeScript/Bun  |      ✗ |  159,498.621 |
+| hyper-express |       6.14.12 | JavaScript/Node |      ✓ |  145,027.133 |
+| hono          |         4.1.0 | TypeScript/Deno |      ✓ |  127,961.687 |
+| hono          |         4.1.0 | TypeScript/Bun  |      ✓ |  127,473.884 |
+| deno          |        1.41.3 | TypeScript/Deno |      ✗ |  126,617.695 |
+| fastify-uws   |         0.6.1 | JavaScript/Node |      ✓ |  107,552.168 |
+| drash         |  3.0.0-beta.2 | TypeScript/Deno |      ✓ |  105,795.397 |
+| warp          |         0.3.6 | Rust            |      ✓ |   100,703.95 |
+| viz           |         0.8.3 | Rust            |      ✓ |   89,814.772 |
+| actix-web     |         4.5.1 | Rust            |      ✓ |   83,220.197 |
+| polka         | 1.0.0-next.25 | JavaScript/Node |      ✓ |   82,421.456 |
+| salvo         |        0.66.2 | Rust            |      ✓ |   82,377.801 |
+| node          |       20.11.1 | JavaScript/Node |      ✗ |   79,993.662 |
+| h3            |        1.11.1 | TypeScript/Bun  |      ✓ |   79,860.051 |
+| poem          |         2.0.1 | Rust            |      ✓ |   75,890.596 |
+| graphul       |         1.0.1 | Rust            |      ✓ |   75,836.835 |
+| h3            |        1.11.1 | JavaScript/Node |      ✓ |    72,336.22 |
+| oak           |        14.2.0 | TypeScript/Deno |      ✓ |   71,650.312 |
+| fastify       |        4.26.2 | JavaScript/Node |      ✓ |   71,211.493 |
+| axum          |         0.7.4 | Rust            |      ✓ |    69,168.68 |
+| hono          |         4.1.0 | JavaScript/Node |      ✓ |   64,784.203 |
+| oak           |        14.2.0 | TypeScript/Bun  |      ✓ |   64,782.043 |
+| h3            |        1.11.1 | TypeScript/Deno |      ✓ |   52,208.285 |
+| oak           |        14.2.0 | JavaScript/Node |      ✓ |   22,472.041 |
+| rocket        |         0.5.0 | Rust            |      ✓ |   12,523.604 |

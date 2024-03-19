@@ -131,6 +131,14 @@ dependencies = [
 
 [[package]]
 name = "actix-web"
+version = "0.0.0"
+dependencies = [
+ "actix-web 4.5.1",
+ "serde",
+]
+
+[[package]]
+name = "actix-web"
 version = "4.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "43a6556ddebb638c2358714d853257ed226ece6023ef9364f23f0c70737ea984"
@@ -1123,14 +1131,6 @@ name = "version_check"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
-
-[[package]]
-name = "warp"
-version = "0.0.0"
-dependencies = [
- "actix-web",
- "serde",
-]
 
 [[package]]
 name = "wasi"
