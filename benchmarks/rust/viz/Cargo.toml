@@ -1,0 +1,10 @@
+[package]
+name = "viz"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+tokio = { version = "1.36.0", features = ["full"] }
+viz = "0.8.3"
+serde = { version = "1.0", features = ["derive"] }
