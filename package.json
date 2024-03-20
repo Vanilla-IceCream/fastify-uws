@@ -42,7 +42,6 @@
   "homepage": "https://github.com/Vanilla-IceCream/fastify-uws#readme",
   "dependencies": {
     "@fastify/error": "^3.4.1",
-    "duplexify": "^4.1.3",
     "fastify-plugin": "^4.5.1",
     "fastq": "^1.17.1",
     "ipaddr.js": "^2.1.0",
