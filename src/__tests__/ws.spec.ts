@@ -1,7 +1,8 @@
 import type { FastifyInstance } from 'fastify';
 import fastify from 'fastify';
+import websocket from '@fastify/websocket';
 
-import { serverFactory, websocket } from '../fastify-uws';
+import { serverFactory } from '../fastify-uws';
 
 let app: FastifyInstance;
 
@@ -10,21 +11,19 @@ beforeEach(() => {
 });
 
 test('WS', async () => {
-  const app = fastify();
-
   app.register(websocket);
 
   app.register(
     async (_app) => {
-      _app.get('', { websocket: true }, (con) => {
+      _app.get('', { websocket: true }, (socket) => {
         app.log.info('Client connected');
 
-        con.socket.on('message', (message: MessageEvent) => {
+        socket.on('message', (message: MessageEvent) => {
           console.log(`Client message: ${message}`);
-          con.socket.send('Hello from Fastify!');
+          socket.send('Hello from Fastify!');
         });
 
-        con.socket.on('close', () => {
+        socket.on('close', () => {
           _app.log.info('Client disconnected');
         });
       });

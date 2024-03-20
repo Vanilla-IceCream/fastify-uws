@@ -135,15 +135,15 @@ app.register(websocket);
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 
 export default (async (app) => {
-  app.get('', { websocket: true }, (con) => {
+  app.get('', { websocket: true }, (socket, request) => {
     app.log.info('Client connected');
 
-    con.socket.on('message', (message: MessageEvent) => {
+    socket.on('message', (message: MessageEvent) => {
       console.log(`Client message: ${message}`);
-      con.socket.send('Hello from Fastify!');
+      socket.send('Hello from Fastify!');
     });
 
-    con.socket.on('close', () => {
+    socket.on('close', () => {
       app.log.info('Client disconnected');
     });
   });

@@ -17,6 +17,7 @@ export default defineConfig({
     {
       ...nodeExternals(),
       enforce: 'pre',
+      apply: 'build',
     },
   ],
   test: {

@@ -110,10 +110,11 @@ function fastifyUws(fastify, opts = {}, next) {
 
               let result;
               try {
-                request.log.info('fastify-uws: websocket connection opened');
-                conn.once('close', () => {
-                  request.log.info('fastify-uws: websocket connection closed');
-                });
+                // request.log.info('fastify-uws: websocket connection opened');
+
+                // conn.once('close', () => {
+                //   request.log.info('fastify-uws: websocket connection closed');
+                // });
 
                 requestRaw.once('error', () => {
                   conn.close();
@@ -123,14 +124,14 @@ function fastifyUws(fastify, opts = {}, next) {
                   conn.end();
                 });
 
-                result = handler.call(this, { socket: conn }, request, reply);
+                result = handler.call(this, conn, request, reply);
               } catch (err) {
-                return errorHandler.call(this, err, { socket: conn }, request, reply);
+                return errorHandler.call(this, err, conn, request, reply);
               }
 
               if (result && typeof result.catch === 'function') {
                 result.catch((err) =>
-                  errorHandler.call(this, err, { socket: conn }, request, reply),
+                  errorHandler.call(this, err, conn, request, reply),
                 );
               }
             },
