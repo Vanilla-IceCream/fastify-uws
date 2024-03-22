@@ -1,4 +1,10 @@
-import { join } from 'https://deno.land/std@0.220.1/path/mod.ts';
+import { join } from 'jsr:@std/path';
+import { parse } from 'jsr:@std/toml';
+
+import bunPkg from './bun/package.json' assert { type: 'json' };
+import denoPkg from './deno/deno.json' assert { type: 'json' };
+import nodePkg from './node/package.json' assert { type: 'json' };
+import fastifyUwsPkg from '../package.json' assert { type: 'json' };
 
 type Language = 'bun' | 'deno' | 'node' | 'rust';
 
@@ -12,41 +18,52 @@ interface Target {
 
 const targets: Record<Language, Target[]> = {
   bun: [
-    { name: 'bun', version: '1.0.30', router: false },
-    { name: 'elysia', version: '1.0.4', router: true },
-    { name: 'h3', version: '1.11.1', router: true },
-    { name: 'hono', version: '4.1.0', router: true },
-    { name: 'oak', version: '14.2.0', router: true },
+    { name: 'bun', version: '1.0.33', router: false },
+    { name: 'elysia', version: bunPkg.dependencies.elysia, router: true },
+    { name: 'h3', version: bunPkg.dependencies.h3, router: true },
+    { name: 'hono', version: bunPkg.dependencies.hono, router: true },
+    { name: 'oak', version: versionify(bunPkg.dependencies['@oak/oak']), router: true },
   ],
   deno: [
     { name: 'deno', version: '1.41.3', router: false },
-    { name: 'drash', version: '3.0.0-beta.2', router: true },
-    { name: 'h3', version: '1.11.1', router: true },
-    { name: 'hono', version: '4.1.0', router: true },
-    { name: 'oak', version: '14.2.0', router: true },
+    { name: 'drash', version: versionify(denoPkg.imports.drash), router: true },
+    { name: 'h3', version: versionify(denoPkg.imports.h3), router: true },
+    { name: 'hono', version: versionify(denoPkg.imports.hono), router: true },
+    { name: 'oak', version: versionify(denoPkg.imports['@oak/oak']), router: true },
   ],
   node: [
-    { name: 'fastify-uws', version: '0.6.1', router: true },
-    { name: 'fastify', version: '4.26.2', router: true },
-    { name: 'h3', version: '1.11.1', router: true },
-    { name: 'hono', version: '4.1.0', router: true },
-    { name: 'hyper-express', version: '6.14.12', router: true },
+    { name: 'fastify-uws', version: fastifyUwsPkg.version, router: true },
+    { name: 'fastify', version: nodePkg.dependencies.fastify, router: true },
+    { name: 'h3', version: nodePkg.dependencies.h3, router: true },
+    { name: 'hono', version: nodePkg.dependencies.hono, router: true },
+    { name: 'hyper-express', version: nodePkg.dependencies['hyper-express'], router: true },
     { name: 'node', version: '20.11.1', router: false },
-    { name: 'oak', version: '14.2.0', router: true },
-    { name: 'polka', version: '1.0.0-next.25', router: true },
-    { name: 'uws', version: '20.42.0', router: false },
+    { name: 'oak', version: versionify(nodePkg.dependencies['@oak/oak']), router: true },
+    { name: 'polka', version: nodePkg.dependencies.polka, router: true },
+    { name: 'uws', version: versionify(nodePkg.dependencies['uWebSockets.js']), router: false },
   ],
   rust: [
-    { name: 'actix-web', version: '4.5.1', router: true },
-    { name: 'axum', version: '0.7.4', router: true },
-    { name: 'graphul', version: '1.0.1', router: true },
-    { name: 'poem', version: '2.0.1', router: true },
-    { name: 'rocket', version: '0.5.0', router: true },
-    { name: 'salvo', version: '0.66.2', router: true },
-    { name: 'viz', version: '0.8.3', router: true },
-    { name: 'warp', version: '0.3.6', router: true },
+    { name: 'actix-web', version: rustPkg('actix-web'), router: true },
+    { name: 'axum', version: rustPkg('axum'), router: true },
+    { name: 'graphul', version: rustPkg('graphul'), router: true },
+    { name: 'poem', version: rustPkg('poem'), router: true },
+    { name: 'rocket', version: rustPkg('rocket'), router: true },
+    { name: 'salvo', version: rustPkg('salvo'), router: true },
+    { name: 'viz', version: rustPkg('viz'), router: true },
+    { name: 'warp', version: rustPkg('warp'), router: true },
   ],
 };
+
+function versionify(version: string) {
+  const match = version.match(/(?:@|v)([\d.]+(?:-beta\.\d+)?)(?:$|\/)/);
+  return match ? match[1] : '';
+}
+
+function rustPkg(name: string) {
+  const version = parse(Deno.readTextFileSync(`./rust/${name}/Cargo.toml`)).dependencies[name];
+  if (name === 'rocket') return version.version;
+  return version;
+}
 
 async function oha(target: Target) {
   const cmd = new Deno.Command('oha', {

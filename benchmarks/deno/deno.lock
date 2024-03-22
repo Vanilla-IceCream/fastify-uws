@@ -3,7 +3,7 @@
   "packages": {
     "specifiers": {
       "jsr:@oak/commons@0.7": "jsr:@oak/commons@0.7.0",
-      "jsr:@oak/oak@^14.2.0": "jsr:@oak/oak@14.2.0",
+      "jsr:@oak/oak@14.2.0": "jsr:@oak/oak@14.2.0",
       "jsr:@std/assert@0.218": "jsr:@std/assert@0.218.2",
       "jsr:@std/assert@^0.218.2": "jsr:@std/assert@0.218.2",
       "jsr:@std/bytes@0.218": "jsr:@std/bytes@0.218.2",
@@ -171,7 +171,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@oak/oak@^14.2.0"
+      "jsr:@oak/oak@14.2.0"
     ]
   }
 }

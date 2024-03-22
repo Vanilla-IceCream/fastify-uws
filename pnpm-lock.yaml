@@ -11,9 +11,6 @@ importers:
       '@fastify/error':
         specifier: ^3.4.1
         version: 3.4.1
-      duplexify:
-        specifier: ^4.1.3
-        version: 4.1.3
       fastify-plugin:
         specifier: ^4.5.1
         version: 4.5.1
@@ -79,25 +76,25 @@ importers:
   benchmarks/node:
     dependencies:
       '@hono/node-server':
-        specifier: ^1.8.2
+        specifier: 1.8.2
         version: 1.8.2
       '@oak/oak':
         specifier: npm:@jsr/oak__oak@14.2.0
         version: /@jsr/oak__oak@14.2.0
       fastify:
-        specifier: ^4.26.2
+        specifier: 4.26.2
         version: 4.26.2
       fastify-uws:
         specifier: workspace:^
         version: link:../..
       h3:
-        specifier: ^1.11.1
+        specifier: 1.11.1
         version: 1.11.1(uWebSockets.js@20.42.0)
       hono:
-        specifier: ^4.1.0
-        version: 4.1.1
+        specifier: 4.1.0
+        version: 4.1.0
       hyper-express:
-        specifier: ^6.14.12
+        specifier: 6.14.12
         version: 6.14.12
       polka:
         specifier: 1.0.0-next.25
@@ -1302,6 +1299,7 @@ packages:
       inherits: 2.0.4
       readable-stream: 3.6.2
       stream-shift: 1.0.3
+    dev: true
 
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -1614,8 +1612,8 @@ packages:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
     dev: false
 
-  /hono@4.1.1:
-    resolution: {integrity: sha512-+ljwSwMby5vYaA1ZmP8iQSq/bF5wb8gGwFdybJk3A4yNwtn4X0zuyim49VNCYHBUi/jfY0bnzwntth4/eX6NHw==}
+  /hono@4.1.0:
+    resolution: {integrity: sha512-9no6DCHb4ijB1tWdFXU6JnrnFgzwVZ1cnIcS1BjAFnMcjbtBTOMsQrDrPH3GXbkNEEEkj8kWqcYBy8Qc0bBkJQ==}
     engines: {node: '>=16.0.0'}
     dev: false
 
@@ -2359,6 +2357,7 @@ packages:
 
   /stream-shift@1.0.3:
     resolution: {integrity: sha512-76ORR0DO1o1hlKwTbi/DM3EXWGf3ZJYO8cXX5RJwnul2DEg2oyoZyjLNoQM8WsvZiFKCRfC1O0J7iCvie3RZmQ==}
+    dev: true
 
   /stream-wormhole@1.1.0:
     resolution: {integrity: sha512-gHFfL3px0Kctd6Po0M8TzEvt3De/xu6cnRrjlfYNhwbhLPLwigI2t1nc6jrzNuaYg5C4YF78PPFuQPzRiqn9ew==}
