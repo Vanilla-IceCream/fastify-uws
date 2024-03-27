@@ -1,3 +1,4 @@
+import { delay } from 'jsr:@std/async';
 import { join } from 'jsr:@std/path';
 import { parse } from 'jsr:@std/toml';
 
@@ -65,7 +66,7 @@ function rustPkg(name: string) {
   return version;
 }
 
-async function oha(target: Target) {
+async function oha() {
   const cmd = new Deno.Command('oha', {
     args: ['-c', '100', '-z', '30s', '--no-tui', '-j', 'http://127.0.0.1:3000/api/hello-world'],
     stdin: 'null',
@@ -75,8 +76,14 @@ async function oha(target: Target) {
 
   const decoder = new TextDecoder();
   const output = decoder.decode((await cmd.output()).stdout);
+  const report = JSON.parse(output);
+  const status = Object.keys(report.statusCodeDistribution);
 
-  return JSON.parse(output).summary.requestsPerSec;
+  if (status.length === 1 && status[0] === '200') {
+    return report.summary.requestsPerSec;
+  }
+
+  return undefined;
 }
 
 const header = `| | Version | Language | Router | Requests/sec |`;
@@ -109,8 +116,8 @@ async function bench() {
 
         server.spawn();
 
-        await new Promise((resolve) => setTimeout(resolve, 5000));
-        target.requestsPerSec = await oha(target);
+        await delay(5000);
+        target.requestsPerSec = await oha();
 
         serverAbortController.abort();
       }
@@ -131,8 +138,8 @@ async function bench() {
 
         server.spawn();
 
-        await new Promise((resolve) => setTimeout(resolve, 5000));
-        target.requestsPerSec = await oha(target);
+        await delay(5000);
+        target.requestsPerSec = await oha();
 
         serverAbortController.abort();
       }
@@ -153,8 +160,8 @@ async function bench() {
 
         server.spawn();
 
-        await new Promise((resolve) => setTimeout(resolve, 5000));
-        target.requestsPerSec = await oha(target);
+        await delay(5000);
+        target.requestsPerSec = await oha();
 
         serverAbortController.abort();
       }
@@ -175,8 +182,8 @@ async function bench() {
 
         server.spawn();
 
-        await new Promise((resolve) => setTimeout(resolve, 5000));
-        target.requestsPerSec = await oha(target);
+        await delay(5000);
+        target.requestsPerSec = await oha();
 
         serverAbortController.abort();
       }
