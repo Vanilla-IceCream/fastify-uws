@@ -48,19 +48,19 @@
     "it-pushable": "^3.2.3",
     "it-to-stream": "^1.0.0",
     "streamx": "^2.16.1",
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.42.0"
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.43.0"
   },
   "devDependencies": {
     "@fastify/websocket": "^10.0.1",
-    "@types/node": "^20.11.25",
+    "@types/node": "^20.11.30",
     "@vitest/coverage-v8": "^1.4.0",
     "axios": "^1.6.7",
     "eventsource": "^2.0.2",
     "fastify": "^4.26.2",
     "form-data": "^4.0.0",
-    "rollup-plugin-node-externals": "^7.0.1",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.6",
+    "rollup-plugin-node-externals": "^7.1.1",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6",
     "vite-plugin-dts": "^3.7.3",
     "vitest": "^1.4.0",
     "ws": "^8.16.0"

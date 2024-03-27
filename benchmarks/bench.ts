@@ -62,8 +62,12 @@ function versionify(version: string) {
 
 function rustPkg(name: string) {
   const version = parse(Deno.readTextFileSync(`./rust/${name}/Cargo.toml`)).dependencies[name];
-  if (name === 'rocket') return version.version;
+  if (isObject(version)) return version.version;
   return version;
+}
+
+function isObject(value: any): boolean {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 async function oha() {
