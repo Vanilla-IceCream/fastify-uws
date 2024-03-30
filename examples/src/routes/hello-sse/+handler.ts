@@ -3,6 +3,8 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 export default (async (app) => {
   // $ node client-es.mjs
   app.get('', (req, reply) => {
+    app.log.info('Client connected');
+
     let index = 0;
 
     reply.sse({ id: String(index), data: `Some message ${index}` });

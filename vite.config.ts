@@ -7,7 +7,14 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/fastify-uws.ts'),
+      fileName: '[name]',
       formats: ['es', 'cjs'],
+    },
+    rollupOptions: {
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: resolve(__dirname, 'src'),
+      },
     },
   },
   plugins: [
