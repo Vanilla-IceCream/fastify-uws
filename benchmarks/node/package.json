@@ -3,7 +3,6 @@
   "type": "module",
   "dependencies": {
     "@hono/node-server": "1.9.0",
-    "@oak/oak": "npm:@jsr/oak__oak@14.2.0",
     "fastify": "4.26.2",
     "fastify-uws": "workspace:^",
     "h3": "1.11.1",

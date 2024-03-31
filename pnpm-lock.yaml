@@ -78,9 +78,6 @@ importers:
       '@hono/node-server':
         specifier: 1.9.0
         version: 1.9.0
-      '@oak/oak':
-        specifier: npm:@jsr/oak__oak@14.2.0
-        version: /@jsr/oak__oak@14.2.0
       fastify:
         specifier: 4.26.2
         version: 4.26.2
@@ -517,103 +514,6 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
-
-  /@jsr/oak__commons@0.7.0:
-    resolution: {integrity: sha512-6Gj4tJcpjvB+WMlNz/MFbhnIo/FFa2V03dnbB/3QuOmVoqc2U4iS3Dga9OKjxYm/gNPSgMEO5yahj2ngO8lNuQ==, tarball: https://npm.jsr.io/~/7/@jsr/oak__commons/0.7.0.tgz}
-    dependencies:
-      '@jsr/std__assert': 0.218.2
-      '@jsr/std__media-types': 0.218.2
-    dev: false
-
-  /@jsr/oak__oak@14.2.0:
-    resolution: {integrity: sha512-tK8uCzkcLiwnEqiRLwvWRqEEYq792350EpSnE8drQjg341YZcnrqkJWOwlLG5NMjFuxZBE7fywx7MKxGadv04w==, tarball: https://npm.jsr.io/~/7/@jsr/oak__oak/14.2.0.tgz}
-    dependencies:
-      '@jsr/oak__commons': 0.7.0
-      '@jsr/std__assert': 0.218.2
-      '@jsr/std__bytes': 0.218.2
-      '@jsr/std__crypto': 0.218.2
-      '@jsr/std__encoding': 0.218.2
-      '@jsr/std__http': 0.218.2
-      '@jsr/std__io': 0.218.2
-      '@jsr/std__media-types': 0.218.2
-      '@jsr/std__path': 0.218.2
-      path-to-regexp: 6.2.1
-    dev: false
-
-  /@jsr/std__assert@0.218.2:
-    resolution: {integrity: sha512-q+GPURACyVh0XMypR3BBtBFKG7LDw67NiVWHn4FS9LKMDMKuGxFq69DWuS2+1g7YPcGCvLK/S6KVLtkMRruncA==, tarball: https://npm.jsr.io/~/7/@jsr/std__assert/0.218.2.tgz}
-    dependencies:
-      '@jsr/std__fmt': 0.218.2
-    dev: false
-
-  /@jsr/std__async@0.218.2:
-    resolution: {integrity: sha512-jeH+u4aochWqwOALjmgIXc5JYfMnQz6jRSjG1gNZJiYM7pecgHtHh3oAtRDASdewPhlnBMuF2RNcCeTUkIFEzg==, tarball: https://npm.jsr.io/~/7/@jsr/std__async/0.218.2.tgz}
-    dependencies:
-      '@jsr/std__assert': 0.218.2
-    dev: false
-
-  /@jsr/std__bytes@0.218.2:
-    resolution: {integrity: sha512-5WZzfIjZ3lXc/PYvHv4GUC1goF48oAgSvWCKKSJ6dKRXDfWQKbEnW/G4EFgpWqBb+FkLWigd0qjY91I0zzB64A==, tarball: https://npm.jsr.io/~/7/@jsr/std__bytes/0.218.2.tgz}
-    dev: false
-
-  /@jsr/std__cli@0.218.2:
-    resolution: {integrity: sha512-R18hFV6EsSJ+Gb3ECWCysLbp/pObMpVf62UUTnmihBGn1F/sAJ7ultYBhDRG87nyzKq4iQge1pKxoepH0KdZhw==, tarball: https://npm.jsr.io/~/7/@jsr/std__cli/0.218.2.tgz}
-    dependencies:
-      '@jsr/std__assert': 0.218.2
-    dev: false
-
-  /@jsr/std__crypto@0.218.2:
-    resolution: {integrity: sha512-hv9+1gzPpKUv/dz5KPKBe/UD//fL0zHqBtambocqOptGQlPh8/8dqSEuis7f6Nw3h5sY6sydfiJFLPamGiR7TA==, tarball: https://npm.jsr.io/~/7/@jsr/std__crypto/0.218.2.tgz}
-    dependencies:
-      '@jsr/std__assert': 0.218.2
-      '@jsr/std__encoding': 0.218.2
-    dev: false
-
-  /@jsr/std__encoding@0.218.2:
-    resolution: {integrity: sha512-+Qt4tL56kI0vvfDzOufkmIKW99gWvZj7PJtGypLbT1FYTZsCXy6tsHcnGKNC7pMtBAP2YgoB4YKr7gA8MwRrBw==, tarball: https://npm.jsr.io/~/7/@jsr/std__encoding/0.218.2.tgz}
-    dev: false
-
-  /@jsr/std__fmt@0.218.2:
-    resolution: {integrity: sha512-WqgXDfzC7pAqQejZXXqqIJ2t5DoqPumb9j7ylLrlNFoTRbAO2bO6lLfTsEWMfk6I4w1XdLnXT3OB/s6au5lg+A==, tarball: https://npm.jsr.io/~/7/@jsr/std__fmt/0.218.2.tgz}
-    dev: false
-
-  /@jsr/std__http@0.218.2:
-    resolution: {integrity: sha512-+/XcMNzwUE3v3/jCLjnzm8xLIhKFZ/JwYWXtyiGjiYNnvPFkcofEW7S8GE90PEIblfQipIg5IMe5mb7KUVHXPQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__http/0.218.2.tgz}
-    dependencies:
-      '@jsr/std__assert': 0.218.2
-      '@jsr/std__async': 0.218.2
-      '@jsr/std__cli': 0.218.2
-      '@jsr/std__encoding': 0.218.2
-      '@jsr/std__fmt': 0.218.2
-      '@jsr/std__media-types': 0.218.2
-      '@jsr/std__path': 0.218.2
-      '@jsr/std__streams': 0.218.2
-    dev: false
-
-  /@jsr/std__io@0.218.2:
-    resolution: {integrity: sha512-eQSx3QwCTuxOaBJsVkf4dNWA0QEibtJ2XMS6GzAoNvk6aqnrOGQ5XTt0mBVT8FictJhIgIeS9Z0EQY2aroqCzg==, tarball: https://npm.jsr.io/~/7/@jsr/std__io/0.218.2.tgz}
-    dependencies:
-      '@jsr/std__assert': 0.218.2
-      '@jsr/std__bytes': 0.218.2
-    dev: false
-
-  /@jsr/std__media-types@0.218.2:
-    resolution: {integrity: sha512-nIbyI/K422cFUsbG7Vi4GYdDLXoqjBYHXc/3fT0vJDCy8rbS1Yl9/38U+ku7EXfdwLBThCpxGPSMw/TJbBeqXw==, tarball: https://npm.jsr.io/~/7/@jsr/std__media-types/0.218.2.tgz}
-    dev: false
-
-  /@jsr/std__path@0.218.2:
-    resolution: {integrity: sha512-4MR5JhAqCON068HtEwkCl0aCHr3y5vysgmjXFOPUN6tqwHhgVAXjWkZMoLdOuFhd/dxEBjSWO0cayy0UU5CZZQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__path/0.218.2.tgz}
-    dependencies:
-      '@jsr/std__assert': 0.218.2
-    dev: false
-
-  /@jsr/std__streams@0.218.2:
-    resolution: {integrity: sha512-7oXGuydkOGV3p4cWnvPkv2eU0VQ8Ys0nOyZ1B+pAJAY+mJh7lDwAu6DOdMY/OZfnw/JcVy1FEa9cnTnLuvZaYA==, tarball: https://npm.jsr.io/~/7/@jsr/std__streams/0.218.2.tgz}
-    dependencies:
-      '@jsr/std__assert': 0.218.2
-      '@jsr/std__bytes': 0.218.2
-      '@jsr/std__io': 0.218.2
-    dev: false
 
   /@microsoft/api-extractor-model@7.28.3(@types/node@20.11.30):
     resolution: {integrity: sha512-wT/kB2oDbdZXITyDh2SQLzaWwTOFbV326fP0pUwNW00WeliARs0qjmXBWmGWardEzp2U3/axkO3Lboqun6vrig==}
@@ -2029,10 +1929,6 @@ packages:
       lru-cache: 10.2.0
       minipass: 7.0.4
     dev: true
-
-  /path-to-regexp@6.2.1:
-    resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
-    dev: false
 
   /pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}

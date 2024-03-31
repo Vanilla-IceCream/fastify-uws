@@ -39,7 +39,6 @@ const targets: Record<Language, Target[]> = {
     { name: 'hono', version: nodePkg.dependencies.hono, router: true },
     { name: 'hyper-express', version: nodePkg.dependencies['hyper-express'], router: true },
     { name: 'node', version: '20.11.1', router: false },
-    { name: 'oak', version: versionify(nodePkg.dependencies['@oak/oak']), router: true },
     { name: 'polka', version: nodePkg.dependencies.polka, router: true },
     { name: 'uws', version: versionify(nodePkg.dependencies['uWebSockets.js']), router: false },
   ],
