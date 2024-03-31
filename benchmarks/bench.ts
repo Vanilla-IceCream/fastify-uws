@@ -176,7 +176,7 @@ async function bench() {
         target.language = 'Rust';
 
         const server = new Deno.Command('cargo', {
-          args: ['run'],
+          args: ['run', '--release'],
           cwd: join(import.meta.dirname, './rust', target.name),
           stdin: 'inherit',
           stdout: 'inherit',
