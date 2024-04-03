@@ -17,6 +17,6 @@ async fn main() {
         })
     });
 
-    println!("Server listening at http://127.0.0.1:3000");
-    app.run("127.0.0.1:3000").await;
+    println!("Server listening at http://0.0.0.0:3000");
+    app.run("0.0.0.0:3000").await;
 }

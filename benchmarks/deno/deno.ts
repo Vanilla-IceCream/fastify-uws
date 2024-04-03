@@ -1,6 +1,6 @@
 Deno.serve(
   {
-    hostname: '127.0.0.1',
+    hostname: '0.0.0.0',
     port: 3000,
     onListen({ hostname, port }) {
       console.log(`Server listening at http://${hostname}:${port}`);
@@ -16,6 +16,3 @@ Deno.serve(
     return new Response('Not Found', { status: 404 });
   },
 );
-
-// $ deno run -A deno.ts
-// $ curl http://127.0.0.1:3000/api/hello-world

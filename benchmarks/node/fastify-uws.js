@@ -24,9 +24,6 @@ const router = async (app) => {
 
 server.register(router, { prefix: '/api' });
 
-server.listen({ host: '127.0.0.1', port: 3000 }, (err, address) => {
+server.listen({ host: '0.0.0.0', port: 3000 }, (err, address) => {
   console.log(`Server listening at ${address}`);
 });
-
-// $ node fastify-uws.js
-// $ curl http://127.0.0.1:3000/api/hello-world

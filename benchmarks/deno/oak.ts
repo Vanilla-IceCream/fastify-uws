@@ -10,10 +10,7 @@ const app = new Application();
 app.use(router.routes(), router.allowedMethods());
 
 app.addEventListener('listen', () => {
-  console.log(`Server listening at http://127.0.0.1:3000`);
+  console.log(`Server listening at http://0.0.0.0:3000`);
 });
 
-await app.listen({ hostname: '127.0.0.1', port: 3000 });
-
-// $ deno run -A oak.ts
-// $ curl http://127.0.0.1:3000/api/hello-world
+await app.listen({ hostname: '0.0.0.0', port: 3000 });

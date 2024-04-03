@@ -17,6 +17,6 @@ async fn hello_world() -> Json<HelloWorld> {
 async fn main() -> Result<(), std::io::Error> {
     let router = Route::new().at("/hello-world", get(hello_world));
     let app = Route::new().nest("/api", router);
-    println!("Server listening at http://127.0.0.1:3000");
-    Server::new(TcpListener::bind("127.0.0.1:3000")).run(app).await
+    println!("Server listening at http://0.0.0.0:3000");
+    Server::new(TcpListener::bind("0.0.0.0:3000")).run(app).await
 }

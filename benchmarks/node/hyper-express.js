@@ -10,9 +10,6 @@ const server = new Server();
 
 server.use('/api', router);
 
-server.listen(3000, '127.0.0.1').then(() => {
-  console.log(`Server listening at http://127.0.0.1:3000`);
+server.listen(3000, '0.0.0.0').then(() => {
+  console.log(`Server listening at http://0.0.0.0:3000`);
 });
-
-// $ node hyper-express.js
-// $ curl http://127.0.0.1:3000/api/hello-world

@@ -1,5 +1,5 @@
 const server = Bun.serve({
-  hostname: '127.0.0.1',
+  hostname: '0.0.0.0',
   port: 3000,
   fetch(request) {
     const path = new URL(request.url).pathname;
@@ -13,6 +13,3 @@ const server = Bun.serve({
 });
 
 console.log(`Server listening at http://${server.hostname}:${server.port}`);
-
-// $ bun bun.ts
-// $ curl http://127.0.0.1:3000/api/hello-world

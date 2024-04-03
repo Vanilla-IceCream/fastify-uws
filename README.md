@@ -193,7 +193,7 @@ export default (async (app) => {
 ### [oha v1.4.1](https://github.com/hatoo/oha)
 
 ```sh
-$ oha -c 100 -z 30s http://127.0.0.1:3000/api/hello-world
+$ oha -c 100 -z 30s --no-tui http://0.0.0.0:3000/api/hello-world
 ```
 
 |               |       Version | Language        | Router | Requests/sec |

@@ -13,7 +13,7 @@ const router = Resource.group().resources(HelloWorld).pathPrefixes('/api').build
 const chain = Chain.builder().resources(router).build();
 
 Deno.serve({
-  hostname: '127.0.0.1',
+  hostname: '0.0.0.0',
   port: 3000,
   onListen({ hostname, port }) {
     console.log(`Server listening at http://${hostname}:${port}`);
@@ -24,6 +24,3 @@ Deno.serve({
     });
   },
 });
-
-// $ deno run -A drash.ts
-// $ curl http://127.0.0.1:3000/api/hello-world

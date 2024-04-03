@@ -16,7 +16,7 @@ async fn hello_world(_: Request) -> Result<Json<HelloWorld>> {
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let addr = SocketAddr::from_str("127.0.0.1:3000").unwrap();
+    let addr = SocketAddr::from_str("0.0.0.0:3000").unwrap();
     let listener = TcpListener::bind(addr).await?;
     println!("Server listening at http://{addr}");
 

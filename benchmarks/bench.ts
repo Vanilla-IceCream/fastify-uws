@@ -5,7 +5,6 @@ import { parse } from 'jsr:@std/toml';
 import bunPkg from './bun/package.json' assert { type: 'json' };
 import denoPkg from './deno/deno.json' assert { type: 'json' };
 import nodePkg from './node/package.json' assert { type: 'json' };
-import fastifyUwsPkg from '../package.json' assert { type: 'json' };
 
 type Language = 'bun' | 'deno' | 'node' | 'rust';
 
@@ -33,7 +32,7 @@ const targets: Record<Language, Target[]> = {
     { name: 'oak', version: versionify(denoPkg.imports['@oak/oak']), router: true },
   ],
   node: [
-    { name: 'fastify-uws', version: fastifyUwsPkg.version, router: true },
+    { name: 'fastify-uws', version: nodePkg.dependencies['fastify-uws'], router: true },
     { name: 'fastify', version: nodePkg.dependencies.fastify, router: true },
     { name: 'h3', version: nodePkg.dependencies.h3, router: true },
     { name: 'hono', version: nodePkg.dependencies.hono, router: true },

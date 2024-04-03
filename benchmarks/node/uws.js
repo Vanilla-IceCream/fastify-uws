@@ -8,9 +8,6 @@ const server = app.get('/api/hello-world', (response) => {
   response.end(JSON.stringify({ message: 'Hello, World!' }));
 });
 
-server.listen('127.0.0.1', 3000, () => {
-  console.log(`Server listening at http://127.0.0.1:3000`);
+server.listen('0.0.0.0', 3000, () => {
+  console.log(`Server listening at http://0.0.0.0:3000`);
 });
-
-// $ node uws.js
-// $ curl http://127.0.0.1:3000/api/hello-world

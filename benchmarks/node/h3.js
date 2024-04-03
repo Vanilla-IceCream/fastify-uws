@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { createApp, createRouter, defineEventHandler, useBase, toNodeListener } from 'h3';
+import { createApp, createRouter, defineEventHandler, toNodeListener } from 'h3';
 
 const router = createRouter();
 
@@ -12,11 +12,8 @@ router.get(
 
 const app = createApp();
 
-app.use(useBase('/api', router.handler));
+app.use('/api', router.handler);
 
-createServer(toNodeListener(app)).listen(3000, '127.0.0.1', () => {
-  console.log(`Server listening at http://127.0.0.1:3000`);
+createServer(toNodeListener(app)).listen(3000, '0.0.0.0', () => {
+  console.log(`Server listening at http://0.0.0.0:3000`);
 });
-
-// $ node h3.js
-// $ curl http://127.0.0.1:3000/api/hello-world

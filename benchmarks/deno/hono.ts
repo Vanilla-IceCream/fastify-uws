@@ -12,7 +12,7 @@ app.route('/api', router);
 
 Deno.serve(
   {
-    hostname: '127.0.0.1',
+    hostname: '0.0.0.0',
     port: 3000,
     onListen({ hostname, port }) {
       console.log(`Server listening at http://${hostname}:${port}`);
@@ -20,6 +20,3 @@ Deno.serve(
   },
   app.fetch,
 );
-
-// $ deno run -A hono.ts
-// $ curl http://127.0.0.1:3000/api/hello-world

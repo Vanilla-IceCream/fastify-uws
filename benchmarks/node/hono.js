@@ -12,12 +12,9 @@ const app = new Hono();
 app.route('/api', router);
 
 serve({
-  hostname: '127.0.0.1',
+  hostname: '0.0.0.0',
   port: 3000,
   fetch: app.fetch,
 });
 
-console.log(`Server listening at http://127.0.0.1:3000`);
-
-// $ node hono.js
-// $ curl http://127.0.0.1:3000/api/hello-world
+console.log(`Server listening at http://0.0.0.0:3000`);

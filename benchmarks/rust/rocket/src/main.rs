@@ -1,6 +1,7 @@
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
-use rocket::serde::{Serialize, json::Json};
+use rocket::serde::{json::Json, Serialize};
 
 #[derive(Serialize)]
 #[serde(crate = "rocket::serde")]
@@ -18,6 +19,10 @@ fn api() -> Json<HelloWorld> {
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .configure(rocket::Config::figment().merge(("port", 3000)))
+        .configure(
+            rocket::Config::figment()
+                .merge(("address", "0.0.0.0"))
+                .merge(("port", 3000)),
+        )
         .mount("/api", routes![api])
 }

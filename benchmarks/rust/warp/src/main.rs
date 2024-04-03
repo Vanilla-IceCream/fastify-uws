@@ -9,7 +9,7 @@ struct HelloWorld {
 
 #[tokio::main]
 async fn main() {
-    let addr: SocketAddr = ([127, 0, 0, 1], 3000).into();
+    let addr: SocketAddr = ([0, 0, 0, 0], 3000).into();
 
     let api = warp::path("api");
 

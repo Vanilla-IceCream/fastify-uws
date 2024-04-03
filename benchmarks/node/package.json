@@ -4,7 +4,7 @@
   "dependencies": {
     "@hono/node-server": "1.9.0",
     "fastify": "4.26.2",
-    "fastify-uws": "workspace:^",
+    "fastify-uws": "0.7.0",
     "h3": "1.11.1",
     "hono": "4.1.4",
     "hyper-express": "6.15.0",
