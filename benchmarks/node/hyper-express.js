@@ -13,3 +13,7 @@ server.use('/api', router);
 server.listen(3000, '0.0.0.0').then(() => {
   console.log(`Server listening at http://0.0.0.0:3000`);
 });
+
+process.on('SIGINT', () => {
+  process.exit();
+});

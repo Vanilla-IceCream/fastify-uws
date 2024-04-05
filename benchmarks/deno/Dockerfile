@@ -5,4 +5,4 @@ COPY . .
 
 RUN deno cache deno.ts
 
-CMD ["run", "-A", "deno.ts"]
+CMD [ "run", "-A", "deno.ts" ]

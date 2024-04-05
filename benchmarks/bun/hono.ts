@@ -17,3 +17,7 @@ const server = Bun.serve({
 });
 
 console.log(`Server listening at http://${server.hostname}:${server.port}`);
+
+process.on('SIGINT', () => {
+  process.exit();
+});

@@ -15,3 +15,7 @@ new Elysia().use(router).listen(
     console.log(`Server listening at ${server.url.origin}`);
   },
 );
+
+process.on('SIGINT', () => {
+  process.exit();
+});

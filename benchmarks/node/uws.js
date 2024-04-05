@@ -11,3 +11,7 @@ const server = app.get('/api/hello-world', (response) => {
 server.listen('0.0.0.0', 3000, () => {
   console.log(`Server listening at http://0.0.0.0:3000`);
 });
+
+process.on('SIGINT', () => {
+  process.exit();
+});
