@@ -1,12 +1,11 @@
 import { delay } from 'jsr:@std/async';
-import { join } from 'jsr:@std/path';
 
 import type { Target } from './config.ts';
 import { targets } from './config.ts';
 
 async function oha() {
   const cmd = new Deno.Command('oha', {
-    args: ['-c', '100', '-z', '30s', '--no-tui', '-j', 'http://127.0.0.1:3000/api/hello-world'],
+    args: ['-c', '500', '-z', '10s', '--no-tui', '-j', 'http://127.0.0.1:3000/api/hello-world'],
     stdin: 'null',
     stdout: 'piped',
     stderr: 'null',
@@ -21,7 +20,7 @@ async function oha() {
     return report.summary.requestsPerSec;
   }
 
-  return undefined;
+  return '';
 }
 
 const header = `| | Version | Language | Router | Requests/sec |`;
@@ -38,93 +37,33 @@ function row(target: Target) {
 async function bench() {
   for (const lang in targets) {
     for (const target of targets[lang]) {
-      if (lang === 'bun') {
-        const serverAbortController = new AbortController();
+      const serverAbortController = new AbortController();
 
-        target.language = 'TypeScript/Bun';
+      if (lang === 'rust') target.language = 'Rust';
+      if (lang === 'bun') target.language = 'TypeScript/Bun';
+      if (lang === 'deno') target.language = 'TypeScript/Deno';
+      if (lang === 'node') target.language = 'JavaScript/Node';
 
-        const server = new Deno.Command('bun', {
-          args: [`${target.name}.ts`],
-          cwd: join(import.meta.dirname, './bun'),
-          stdin: 'inherit',
-          stdout: 'inherit',
-          stderr: 'inherit',
-          signal: serverAbortController.signal,
-        });
+      console.log(`🚀 Start: ${target.name} (${target.language})`);
+      const server = new Deno.Command('docker', {
+        args: ['run', '--init', '-it', '-p', '3000:3000', `${lang}-${target.name}`],
+        cwd: import.meta.dirname,
+        stdin: 'inherit',
+        stdout: 'null',
+        stderr: 'inherit',
+        signal: serverAbortController.signal,
+      });
 
-        server.spawn();
+      server.spawn();
 
-        await delay(5000);
-        target.requestsPerSec = await oha();
+      console.log(`🎯 Benching...`);
+      await delay(3000);
+      target.requestsPerSec = await oha();
 
-        serverAbortController.abort();
-      }
-
-      if (lang === 'deno') {
-        const serverAbortController = new AbortController();
-
-        target.language = 'TypeScript/Deno';
-
-        const server = new Deno.Command('deno', {
-          args: ['run', '-A', `${target.name}.ts`],
-          cwd: join(import.meta.dirname, './deno'),
-          stdin: 'inherit',
-          stdout: 'inherit',
-          stderr: 'inherit',
-          signal: serverAbortController.signal,
-        });
-
-        server.spawn();
-
-        await delay(5000);
-        target.requestsPerSec = await oha();
-
-        serverAbortController.abort();
-      }
-
-      if (lang === 'node') {
-        const serverAbortController = new AbortController();
-
-        target.language = 'JavaScript/Node';
-
-        const server = new Deno.Command('node', {
-          args: [`${target.name}.js`],
-          cwd: join(import.meta.dirname, './node'),
-          stdin: 'inherit',
-          stdout: 'inherit',
-          stderr: 'inherit',
-          signal: serverAbortController.signal,
-        });
-
-        server.spawn();
-
-        await delay(5000);
-        target.requestsPerSec = await oha();
-
-        serverAbortController.abort();
-      }
-
-      if (lang === 'rust') {
-        const serverAbortController = new AbortController();
-
-        target.language = 'Rust';
-
-        const server = new Deno.Command('cargo', {
-          args: ['run', '--release'],
-          cwd: join(import.meta.dirname, './rust', target.name),
-          stdin: 'inherit',
-          stdout: 'inherit',
-          stderr: 'inherit',
-          signal: serverAbortController.signal,
-        });
-
-        server.spawn();
-
-        await delay(5000);
-        target.requestsPerSec = await oha();
-
-        serverAbortController.abort();
-      }
+      serverAbortController.abort();
+      await delay(3000);
+      console.log(`✅ Done.`);
+      console.log();
     }
   }
 
