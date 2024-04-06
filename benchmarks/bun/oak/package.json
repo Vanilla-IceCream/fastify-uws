@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun ./src/main.ts"
+  },
+  "dependencies": {
+    "@oak/oak": "npm:@jsr/oak__oak@14.2.0"
+  }
+}

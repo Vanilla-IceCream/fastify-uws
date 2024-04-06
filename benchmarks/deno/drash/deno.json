@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "install": "deno cache ./src/main.ts",
+    "start": "deno run -A ./src/main.ts"
+  },
+  "imports": {
+    "drash": "https://esm.sh/@drashland/drash@3.0.0-beta.2/modules/chains/RequestChain/mod.native.js"
+  }
+}

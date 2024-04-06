@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "install": "deno cache ./src/main.ts",
+    "start": "deno run -A ./src/main.ts"
+  },
+  "imports": {
+    "h3": "https://esm.sh/h3@1.11.1"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/main.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "1.9.1",
+    "hono": "4.2.2"
+  }
+}

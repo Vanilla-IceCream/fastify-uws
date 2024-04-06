@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "install": "deno cache ./src/main.ts",
+    "start": "deno run -A ./src/main.ts"
+  },
+  "imports": {
+    "@oak/oak": "jsr:@oak/oak@14.2.0"
+  }
+}
