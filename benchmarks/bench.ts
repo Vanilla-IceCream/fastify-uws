@@ -5,7 +5,7 @@ import { targets } from './config.ts';
 
 async function oha() {
   const cmd = new Deno.Command('oha', {
-    args: ['-c', '500', '-z', '10s', '--no-tui', '-j', 'http://127.0.0.1:3000/api/hello-world'],
+    args: ['-c', '500', '-z', '10s', '--no-tui', '-j', 'http://0.0.0.0:3000/api/hello-world'],
     stdin: 'null',
     stdout: 'piped',
     stderr: 'null',

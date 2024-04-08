@@ -18,7 +18,3 @@ serve({
 });
 
 console.log(`Server listening at http://0.0.0.0:3000`);
-
-process.on('SIGINT', () => {
-  process.exit();
-});
