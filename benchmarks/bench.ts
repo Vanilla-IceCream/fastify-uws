@@ -46,7 +46,14 @@ async function bench() {
 
       console.log(`🚀 Start: ${target.name} (${target.language})`);
       const server = new Deno.Command('docker', {
-        args: ['run', '--init', '-it', '-p', '3000:3000', `${lang}-${target.name}`],
+        args: [
+          'run',
+          lang === 'deno' ? null : '--init',
+          '-it',
+          '-p',
+          '3000:3000',
+          `${lang}-${target.name}`,
+        ].filter(Boolean),
         cwd: import.meta.dirname,
         stdin: 'inherit',
         stdout: 'null',
