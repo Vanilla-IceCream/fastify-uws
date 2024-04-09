@@ -26,8 +26,8 @@ export const targets: Record<Language, Target[]> = {
     { name: 'oak', version: denoPkg('oak', '@oak/oak'), router: true },
   ],
   node: [
-    { name: 'fastify-uws', version: nodePkg('fastify-uws'), router: true },
     { name: 'fastify', version: nodePkg('fastify'), router: true },
+    { name: 'fastify-uws', version: nodePkg('fastify-uws'), router: true },
     { name: 'h3', version: nodePkg('h3'), router: true },
     { name: 'hono', version: nodePkg('hono'), router: true },
     { name: 'hyper-express', version: nodePkg('hyper-express'), router: true },

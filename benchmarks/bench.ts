@@ -37,38 +37,36 @@ function row(target: Target) {
 async function bench() {
   for (const lang in targets) {
     for (const target of targets[lang]) {
-      const serverAbortController = new AbortController();
-
       if (lang === 'rust') target.language = 'Rust';
       if (lang === 'bun') target.language = 'TypeScript/Bun';
       if (lang === 'deno') target.language = 'TypeScript/Deno';
       if (lang === 'node') target.language = 'JavaScript/Node';
 
-      console.log(`🚀 Start: ${target.name} (${target.language})`);
-      const server = new Deno.Command('docker', {
-        args: [
-          'run',
-          lang === 'deno' ? null : '--init',
-          '-it',
-          '-p',
-          '3000:3000',
-          `${lang}-${target.name}`,
-        ].filter(Boolean),
+      const start = new Deno.Command('docker', {
+        args: ['start', `${lang}-${target.name}`],
         cwd: import.meta.dirname,
         stdin: 'inherit',
         stdout: 'null',
         stderr: 'inherit',
-        signal: serverAbortController.signal,
       });
 
-      server.spawn();
+      console.log(`🚀 Start: ${target.name} (${target.language})`);
+      await start.output();
 
-      console.log(`🎯 Benching...`);
       await delay(3000);
+      console.log(`🎯 Benching...`);
       target.requestsPerSec = await oha();
 
-      serverAbortController.abort();
-      await delay(3000);
+      const stop = new Deno.Command('docker', {
+        args: ['stop', `${lang}-${target.name}`],
+        cwd: import.meta.dirname,
+        stdin: 'inherit',
+        stdout: 'null',
+        stderr: 'inherit',
+      });
+
+      await stop.output();
+      await delay(1000);
       console.log(`✅ Done.`);
       console.log();
     }
