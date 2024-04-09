@@ -12,6 +12,7 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
+        exports: 'named',
         preserveModules: true,
         preserveModulesRoot: resolve(__dirname, 'src'),
       },
