@@ -23,7 +23,7 @@ async function warmUp() {
       });
 
       await run.output();
-      await delay(5000);
+      await delay(3000);
 
       const stop = new Deno.Command('docker', {
         args: ['stop', `${lang}-${target.name}`],

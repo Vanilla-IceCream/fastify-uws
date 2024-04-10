@@ -39,6 +39,7 @@ export const targets: Record<Language, Target[]> = {
     { name: 'actix-web', version: rustPkg('actix-web'), router: true },
     { name: 'axum', version: rustPkg('axum'), router: true },
     { name: 'graphul', version: rustPkg('graphul'), router: true },
+    { name: 'hyper', version: rustPkg('hyper'), router: false },
     { name: 'poem', version: rustPkg('poem'), router: true },
     { name: 'rocket', version: rustPkg('rocket'), router: true },
     { name: 'salvo', version: rustPkg('salvo'), router: true },
