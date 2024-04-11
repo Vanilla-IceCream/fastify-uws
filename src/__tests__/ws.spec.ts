@@ -28,11 +28,11 @@ test('WS', async () => {
         });
       });
     },
-    { prefix: '/echo' },
+    { prefix: '/hello-ws' },
   );
 
   await app.ready();
-  const ws = await app.injectWS('/echo');
+  const ws = await app.injectWS('/hello-ws');
 
   let resolve: (value: string) => void;
 

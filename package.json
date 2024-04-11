@@ -51,6 +51,7 @@
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.43.0"
   },
   "devDependencies": {
+    "@fastify/multipart": "^8.2.0",
     "@fastify/websocket": "^10.0.1",
     "@types/node": "^20.11.30",
     "@vitest/coverage-v8": "^1.4.0",
