@@ -56,8 +56,6 @@ export async function* transformAsyncIterable(
   for await (const message of source) {
     yield transform(message);
   }
-
-  yield transform({ event: 'end', data: 'Stream closed' });
 }
 
 function isAsyncIterable<T extends AsyncIterable<unknown>>(source: T | unknown): source is T {
