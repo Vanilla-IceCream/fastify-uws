@@ -17,12 +17,8 @@ async fn hello_world() -> Result<impl Responder> {
 async fn main() -> std::io::Result<()> {
     println!("Server listening at http://0.0.0.0:3000");
 
-    HttpServer::new(|| {
-        App::new().service(
-            web::scope("/api").service(hello_world),
-        )
-    })
-    .bind(("0.0.0.0", 3000))?
-    .run()
-    .await
+    HttpServer::new(|| App::new().service(web::scope("/api").service(hello_world)))
+        .bind(("0.0.0.0", 3000))?
+        .run()
+        .await
 }

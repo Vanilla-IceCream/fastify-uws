@@ -1,5 +1,5 @@
 use salvo::prelude::*;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 struct HelloWorld {
@@ -18,6 +18,9 @@ async fn main() {
     let router = Router::with_path("hello-world").get(hello_world);
     let app = Router::new().push(Router::with_path("api").push(router));
     let acceptor = TcpListener::new("0.0.0.0:3000").bind().await;
-    println!("Server listening at http://{}", acceptor.local_addr().unwrap());
+    println!(
+        "Server listening at http://{}",
+        acceptor.local_addr().unwrap()
+    );
     Server::new(acceptor).serve(app).await;
 }

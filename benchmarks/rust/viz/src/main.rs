@@ -1,7 +1,7 @@
+use serde::{Deserialize, Serialize};
 use std::{net::SocketAddr, str::FromStr};
 use tokio::net::TcpListener;
-use viz::{serve, Request, Result, Router, types::{Json}};
-use serde::{Serialize, Deserialize};
+use viz::{serve, types::Json, Request, Result, Router};
 
 #[derive(Serialize, Deserialize)]
 struct HelloWorld {

@@ -1,5 +1,5 @@
-use graphul::{http::Methods, Graphul, extract::{Json}};
-use serde::{Serialize, Deserialize};
+use graphul::{extract::Json, http::Methods, Graphul};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 struct HelloWorld {
@@ -10,7 +10,7 @@ struct HelloWorld {
 async fn main() {
     let mut app = Graphul::new();
     let mut router = app.group("api");
-    
+
     router.get("/hello-world", || async move {
         Json(HelloWorld {
             message: "Hello, World!".to_string(),

@@ -1,6 +1,6 @@
+use serde::{Deserialize, Serialize};
 use std::net::SocketAddr;
 use warp::Filter;
-use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 struct HelloWorld {
@@ -13,16 +13,15 @@ async fn main() {
 
     let api = warp::path("api");
 
-    let hello_world = warp::path("hello-world")
-        .map(|| {
-            warp::reply::json({ &HelloWorld {
+    let hello_world = warp::path("hello-world").map(|| {
+        warp::reply::json({
+            &HelloWorld {
                 message: "Hello, World!".to_string(),
-            } })
-        });
+            }
+        })
+    });
 
-    let router = warp::any().and(
-        api.and(hello_world)
-    );
+    let router = warp::any().and(api.and(hello_world));
 
     println!("Server listening at http://{}", addr);
     warp::serve(router).run(addr).await;
