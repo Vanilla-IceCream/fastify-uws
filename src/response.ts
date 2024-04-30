@@ -1,8 +1,8 @@
-import { STATUS_CODES } from 'http';
+import { STATUS_CODES } from 'node:http';
 import { Writable } from 'streamx';
 
-import type { HTTPSocket } from './http-socket';
 import { ERR_HEAD_SET, ERR_STREAM_DESTROYED } from './errors';
+import type { HTTPSocket } from './http-socket';
 import { kHead, kHeaders } from './symbols';
 
 class Header {
@@ -140,9 +140,9 @@ export class Response extends Writable {
     }
 
     if (headers) {
-      Object.keys(headers).forEach((key) => {
+      for (const key of Object.keys(headers)) {
         this.setHeader(key, headers[key]);
-      });
+      }
     }
   }
 

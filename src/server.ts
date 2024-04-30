@@ -1,5 +1,5 @@
-import EventEmitter from 'events';
 import dns from 'node:dns/promises';
+import EventEmitter from 'node:events';
 import type { FastifyServerFactoryHandler } from 'fastify';
 import ipaddr from 'ipaddr.js';
 import uws from 'uWebSockets.js';
@@ -60,7 +60,7 @@ export class Server extends EventEmitter {
 
   listen(listenOptions, cb) {
     this[kListen](listenOptions)
-      .then(() => cb && cb())
+      .then(() => cb?.())
       .catch((err) => {
         this[kAddress] = null;
         process.nextTick(() => this.emit('error', err));
@@ -80,7 +80,9 @@ export class Server extends EventEmitter {
       this[kListenSocket] = null;
     }
     if (this[kWs]) {
-      this[kWs].connections.forEach((conn) => conn.close());
+      for (const conn of this[kWs].connections) {
+        conn.close();
+      }
     }
     setTimeout(() => {
       this.emit('close');

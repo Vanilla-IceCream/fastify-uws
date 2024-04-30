@@ -23,7 +23,9 @@
   },
   "scripts": {
     "build": "vite build",
-    "unit": "vitest run"
+    "lint": "biome check --apply ./src",
+    "unit": "vitest run --coverage",
+    "e2e": ""
   },
   "repository": {
     "type": "git",

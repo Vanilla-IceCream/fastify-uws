@@ -1,4 +1,3 @@
-import { Readable, Transform, Writable } from 'stream';
 import type { FastifyReply } from 'fastify';
 import fp from 'fastify-plugin';
 import { pushable } from 'it-pushable';
@@ -10,9 +9,11 @@ export default fp(
       if (!this.raw.headersSent) {
         this.sseContext = { source: pushable({ objectMode: true }) };
 
-        Object.entries(this.getHeaders()).forEach(([key, value]) => {
+        const headers = this.getHeaders();
+
+        for (const [key, value] of Object.entries(headers)) {
           this.raw.setHeader(key, value ?? '');
-        });
+        }
 
         this.raw.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
         this.raw.setHeader('Connection', 'keep-alive');
@@ -29,15 +30,14 @@ export default fp(
 
       if (isAsyncIterable(source)) {
         return handleAsyncIterable(this, source);
-      } else {
-        if (!this.sseContext?.source) {
-          this.sseContext = { source: pushable({ objectMode: true }) };
-          handleAsyncIterable(this, this.sseContext.source);
-        }
-
-        this.sseContext.source.push(source);
-        return;
       }
+      if (!this.sseContext?.source) {
+        this.sseContext = { source: pushable({ objectMode: true }) };
+        handleAsyncIterable(this, this.sseContext.source);
+      }
+
+      this.sseContext.source.push(source);
+      return;
     });
   },
   {

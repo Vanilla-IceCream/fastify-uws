@@ -3,6 +3,16 @@
   "files": {
     "ignore": ["dist", "coverage", "**/.vitepress/cache"]
   },
+  "linter": {
+    "rules": {
+      "style": {
+        "noParameterAssign": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
+      }
+    }
+  },
   "formatter": {
     "indentStyle": "space",
     "lineWidth": 100

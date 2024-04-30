@@ -8,7 +8,7 @@ function defaultErrorHandler(err, request) {
   request.raw.destroy(err);
 }
 
-function fastifyUws(fastify, opts = {}, next) {
+function fastifyUws(fastify, opts, next) {
   const { server } = fastify;
   const { errorHandler = defaultErrorHandler, options } = opts;
 
@@ -16,7 +16,8 @@ function fastifyUws(fastify, opts = {}, next) {
     return next(new Error('invalid errorHandler function'));
   }
 
-  const websocketServer = (server[kWs] = new WebSocketServer(options));
+  const websocketServer = new WebSocketServer(options);
+  server[kWs] = websocketServer;
 
   fastify.decorate('websocketServer', websocketServer);
 
@@ -30,9 +31,9 @@ function fastifyUws(fastify, opts = {}, next) {
 
     const topics = {};
     if (wsOptions.topics) {
-      wsOptions.topics.forEach((topic) => {
+      for (const topic of wsOptions.topics) {
         topics[topic] = WebSocket.allocTopic(namespace, topic);
-      });
+      }
     }
 
     routeOptions.handler = function (request, reply) {
@@ -48,7 +49,7 @@ function fastifyUws(fastify, opts = {}, next) {
             handler: (ws) => {
               const conn = new WebSocket(namespace, ws, topics);
 
-              let result;
+              let result: any;
               try {
                 // request.log.info('fastify-uws: websocket connection opened');
 

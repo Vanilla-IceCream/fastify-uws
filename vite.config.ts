@@ -30,5 +30,9 @@ export default defineConfig({
   ],
   test: {
     globals: true,
+    coverage: {
+      include: ['src/**'],
+      exclude: ['benchmarks/**', 'examples/**'],
+    },
   },
 });

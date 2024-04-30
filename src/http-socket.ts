@@ -1,4 +1,4 @@
-import EventEmitter from 'events';
+import EventEmitter from 'node:events';
 import fastq from 'fastq';
 
 import { ERR_STREAM_DESTROYED } from './errors';
@@ -237,7 +237,7 @@ export class HTTPSocket extends EventEmitter {
   abort() {
     if (this.aborted) return;
     this.aborted = true;
-    this[kQueue] && this[kQueue].kill();
+    this[kQueue]?.kill();
     if (!this[kWs] && !this.writableEnded) {
       this[kRes].close();
     }

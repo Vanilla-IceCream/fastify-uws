@@ -1,4 +1,4 @@
-import EventEmitter from 'events';
+import EventEmitter from 'node:events';
 import uws from 'uWebSockets.js';
 
 import { HTTPSocket } from './http-socket';
