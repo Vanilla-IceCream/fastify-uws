@@ -10,8 +10,8 @@ import { Request } from './request';
 import { Response } from './response';
 import { kAddress, kApp, kClosed, kHandler, kHttps, kListen, kListenSocket, kWs } from './symbols';
 
-function createApp(https?: boolean) {
-  if (!https) return uws.App();
+function createApp() {
+  return uws.App();
 }
 
 const mainServer = {};
@@ -28,7 +28,7 @@ export class Server extends EventEmitter {
   [kWs]?: null | any;
   [kAddress]?: null | any;
   [kListenSocket]?: null | any;
-  [kApp]?: uws.TemplatedApp;
+  [kApp]: uws.TemplatedApp;
   [kClosed]?: boolean;
 
   constructor(handler: FastifyServerFactoryHandler, opts: FastifyUwsOptions = {}) {
@@ -42,7 +42,7 @@ export class Server extends EventEmitter {
     this[kWs] = null;
     this[kAddress] = null;
     this[kListenSocket] = null;
-    this[kApp] = createApp(this[kHttps]);
+    this[kApp] = createApp();
     this[kClosed] = false;
   }
 
@@ -114,7 +114,7 @@ export class Server extends EventEmitter {
 
     const app = this[kApp];
 
-    const onRequest = (method) => (res, req) => {
+    const onRequest = (method: string) => (res: uws.HttpResponse, req: uws.HttpRequest) => {
       const socket = new HTTPSocket(this, res, method === 'GET' || method === 'HEAD');
       const request = new Request(req, socket, method);
       const response = new Response(socket);

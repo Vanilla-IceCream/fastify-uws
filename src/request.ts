@@ -1,5 +1,7 @@
 import { Readable } from 'streamx';
+import uws from 'uWebSockets.js';
 
+import type { HTTPSocket } from './http-socket';
 import { kHeaders, kReq, kUrl } from './symbols';
 
 const noop = () => {};
@@ -8,7 +10,15 @@ function onAbort() {
   this.emit('aborted');
 }
 export class Request extends Readable {
-  constructor(req, socket, method) {
+  socket: HTTPSocket;
+  method: string;
+  httpVersion: string;
+  readableEnded: boolean;
+  [kReq]: uws.HttpRequest;
+  [kUrl]: string | null;
+  [kHeaders]: Record<string, string> | null;
+
+  constructor(req: uws.HttpRequest, socket: HTTPSocket, method: string) {
     super();
 
     this.socket = socket;

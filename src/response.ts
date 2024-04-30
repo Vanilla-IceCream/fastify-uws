@@ -1,11 +1,15 @@
 import { STATUS_CODES } from 'http';
 import { Writable } from 'streamx';
 
+import type { HTTPSocket } from './http-socket';
 import { ERR_HEAD_SET, ERR_STREAM_DESTROYED } from './errors';
 import { kHead, kHeaders } from './symbols';
 
 class Header {
-  constructor(name, value) {
+  name: string;
+  value: string;
+
+  constructor(name: string, value: unknown) {
     this.name = name;
     this.value = String(value);
   }
@@ -13,7 +17,11 @@ class Header {
 
 const EMPTY = Buffer.alloc(0);
 class HTTPResponse {
-  constructor(chunk, end = false) {
+  chunk: Buffer;
+  end: boolean;
+  byteLength: number;
+
+  constructor(chunk?: Buffer | null, end = false) {
     this.chunk = chunk || EMPTY;
     this.empty = !chunk;
     this.end = end;
@@ -34,7 +42,17 @@ const options = {
 };
 
 export class Response extends Writable {
-  constructor(socket) {
+  socket: HTTPSocket;
+  statusCode: number;
+  statusMessage?: string;
+  headersSent: boolean;
+  chunked: boolean;
+  contentLength: number | null;
+  writableEnded: boolean;
+  firstChunk: boolean;
+  [kHeaders]: Map<string, Header>;
+
+  constructor(socket: HTTPSocket) {
     super(options);
 
     this.socket = socket;
@@ -70,23 +88,23 @@ export class Response extends Writable {
     return this.socket.bytesWritten;
   }
 
-  hasHeader(name) {
+  hasHeader(name: string) {
     return this[kHeaders].has(name.toLowerCase());
   }
 
-  getHeader(name) {
+  getHeader(name: string) {
     return this[kHeaders].get(name.toLowerCase())?.value;
   }
 
   getHeaders() {
-    const headers = {};
+    const headers = {} as Record<string, string>;
     this[kHeaders].forEach((header, key) => {
       headers[key] = header.value;
     });
     return headers;
   }
 
-  setHeader(name, value) {
+  setHeader(name: string, value) {
     if (this.headersSent) throw new ERR_HEAD_SET();
 
     const key = name.toLowerCase();
@@ -104,7 +122,7 @@ export class Response extends Writable {
     this[kHeaders].set(key, new Header(name, value));
   }
 
-  removeHeader(name) {
+  removeHeader(name: string) {
     if (this.headersSent) throw new ERR_HEAD_SET();
 
     this[kHeaders].delete(name.toLowerCase());

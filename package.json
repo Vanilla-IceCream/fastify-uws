@@ -55,6 +55,7 @@
     "@fastify/multipart": "^8.2.0",
     "@fastify/websocket": "^10.0.1",
     "@types/node": "^20.11.30",
+    "@types/streamx": "^2.9.5",
     "@vitest/coverage-v8": "^1.4.0",
     "axios": "^1.6.7",
     "eventsource": "^2.0.2",
