@@ -2,7 +2,7 @@ import { STATUS_CODES } from 'http';
 import { Writable } from 'streamx';
 
 import { ERR_HEAD_SET, ERR_STREAM_DESTROYED } from './errors';
-import { kHeaders, kHead } from './symbols';
+import { kHead, kHeaders } from './symbols';
 
 class Header {
   constructor(name, value) {

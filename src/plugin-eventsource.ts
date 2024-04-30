@@ -1,8 +1,8 @@
+import { Readable, Transform, Writable } from 'stream';
 import type { FastifyReply } from 'fastify';
-import { Writable, Readable, Transform } from 'stream';
 import fp from 'fastify-plugin';
-import toStream from 'it-to-stream';
 import { pushable } from 'it-pushable';
+import toStream from 'it-to-stream';
 
 export default fp(
   async (instance, options) => {

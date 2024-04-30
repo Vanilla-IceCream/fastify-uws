@@ -4,7 +4,7 @@ import uws from 'uWebSockets.js';
 import { HTTPSocket } from './http-socket';
 import { Request } from './request';
 import { Response } from './response';
-import { kApp, kWs, kHandler, kTopic, kEnded } from './symbols';
+import { kApp, kEnded, kHandler, kTopic, kWs } from './symbols';
 
 const defaultWebSocketConfig = {
   compression: uws.SHARED_COMPRESSOR,

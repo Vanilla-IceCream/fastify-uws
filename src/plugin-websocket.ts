@@ -1,7 +1,7 @@
 import fp from 'fastify-plugin';
 
-import { WebSocketServer, WebSocket } from './websocket-server';
-import { kWs, kRes } from './symbols';
+import { kRes, kWs } from './symbols';
+import { WebSocket, WebSocketServer } from './websocket-server';
 
 function defaultErrorHandler(err, request) {
   request.log.error(err);

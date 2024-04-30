@@ -1,22 +1,22 @@
 import EventEmitter from 'events';
 import fastq from 'fastq';
 
+import { ERR_STREAM_DESTROYED } from './errors';
 import {
-  kRes,
-  kHttps,
-  kServer,
   kAddress,
-  kRemoteAdress,
   kEncoding,
-  kTimeoutRef,
+  kHead,
+  kHttps,
+  kQueue,
   kReadyState,
+  kRemoteAdress,
+  kRes,
+  kServer,
+  kTimeoutRef,
+  kUwsRemoteAddress,
   kWriteOnly,
   kWs,
-  kUwsRemoteAddress,
-  kQueue,
-  kHead,
 } from './symbols';
-import { ERR_STREAM_DESTROYED } from './errors';
 
 const localAddressIpv6 = Buffer.from([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
 

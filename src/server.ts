@@ -1,14 +1,14 @@
-import type { FastifyServerFactoryHandler } from 'fastify';
-import dns from 'node:dns/promises';
 import EventEmitter from 'events';
-import uws from 'uWebSockets.js';
+import dns from 'node:dns/promises';
+import type { FastifyServerFactoryHandler } from 'fastify';
 import ipaddr from 'ipaddr.js';
+import uws from 'uWebSockets.js';
 
 import { ERR_ADDRINUSE, ERR_ENOTFOUND, ERR_SOCKET_BAD_PORT } from './errors';
 import { HTTPSocket } from './http-socket';
 import { Request } from './request';
 import { Response } from './response';
-import { kHttps, kHandler, kAddress, kListenSocket, kListen, kApp, kClosed, kWs } from './symbols';
+import { kAddress, kApp, kClosed, kHandler, kHttps, kListen, kListenSocket, kWs } from './symbols';
 
 function createApp(https?: boolean) {
   if (!https) return uws.App();

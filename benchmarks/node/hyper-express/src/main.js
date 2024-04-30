@@ -1,4 +1,4 @@
-import { Server, Router } from 'hyper-express';
+import { Router, Server } from 'hyper-express';
 
 const router = new Router();
 

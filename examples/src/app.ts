@@ -1,6 +1,6 @@
-import fastify from 'fastify';
-import { serverFactory, websocket, eventsource } from 'fastify-uws';
 import multipart from '@fastify/multipart';
+import fastify from 'fastify';
+import { eventsource, serverFactory, websocket } from 'fastify-uws';
 
 import router from '~/plugins/router';
 

@@ -1,8 +1,8 @@
-import type { FastifyInstance } from 'fastify';
 import { createReadStream } from 'node:fs';
 import { resolve } from 'node:path';
-import fastify from 'fastify';
 import multipart from '@fastify/multipart';
+import type { FastifyInstance } from 'fastify';
+import fastify from 'fastify';
 import FormData from 'form-data';
 
 import { serverFactory } from '../fastify-uws';

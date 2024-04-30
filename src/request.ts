@@ -1,6 +1,6 @@
 import { Readable } from 'streamx';
 
-import { kReq, kHeaders, kUrl } from './symbols';
+import { kHeaders, kReq, kUrl } from './symbols';
 
 const noop = () => {};
 

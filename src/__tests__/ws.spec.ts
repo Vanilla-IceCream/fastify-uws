@@ -1,6 +1,6 @@
+import websocket from '@fastify/websocket';
 import type { FastifyInstance } from 'fastify';
 import fastify from 'fastify';
-import websocket from '@fastify/websocket';
 
 import { serverFactory } from '../fastify-uws';
 
