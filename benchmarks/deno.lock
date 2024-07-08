@@ -1,0 +1,32 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
+      "jsr:@std/async": "jsr:@std/async@0.221.0",
+      "jsr:@std/collections@^0.221.0": "jsr:@std/collections@0.221.0",
+      "jsr:@std/toml": "jsr:@std/toml@0.221.0"
+    },
+    "jsr": {
+      "@std/assert@0.221.0": {
+        "integrity": "a5f1aa6e7909dbea271754fd4ab3f4e687aeff4873b4cef9a320af813adb489a"
+      },
+      "@std/async@0.221.0": {
+        "integrity": "f5519861754a1bb2898d227dd8ccb545abc975534aa9063e53911d6cb4e365cf",
+        "dependencies": [
+          "jsr:@std/assert@^0.221.0"
+        ]
+      },
+      "@std/collections@0.221.0": {
+        "integrity": "789a365bb79b06c4da79d2b93fe32ddfe03b93ab083e72c1de96303d12f84be5"
+      },
+      "@std/toml@0.221.0": {
+        "integrity": "d64a00b57627b22eff56346d5fca6a23dd969e8df8671b760be954177a24ea84",
+        "dependencies": [
+          "jsr:@std/collections@^0.221.0"
+        ]
+      }
+    }
+  },
+  "remote": {}
+}

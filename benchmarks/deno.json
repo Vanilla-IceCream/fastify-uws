@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "build": "deno run -A build.ts",
+    "warmUp": "deno run -A warmUp.ts",
+    "bench": "deno run -A bench.ts"
+  }
+}

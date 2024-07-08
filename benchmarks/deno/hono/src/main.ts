@@ -1,4 +1,4 @@
-import { Hono } from '@hono/hono';
+import { Hono } from 'hono';
 
 const router = new Hono();
 

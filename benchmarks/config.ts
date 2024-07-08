@@ -21,7 +21,7 @@ export const targets: Record<Language, Target[]> = {
   deno: [
     { name: 'deno', version: '1.44.4', router: false },
     { name: 'drash', version: denoPkg('drash'), router: true },
-    { name: 'h3', version: denoPkg('h3'), router: true },
+    // { name: 'h3', version: denoPkg('h3'), router: true },
     { name: 'hono', version: denoPkg('hono'), router: true },
     { name: 'oak', version: denoPkg('oak', '@oak/oak'), router: true },
   ],
