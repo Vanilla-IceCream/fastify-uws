@@ -190,7 +190,7 @@ export default (async (app) => {
 
 ## Benchmarks
 
-### [oha v1.4.1](https://github.com/hatoo/oha)
+### [oha v1.4.5](https://github.com/hatoo/oha)
 
 ```sh
 $ oha -c 500 -z 10s --no-tui http://0.0.0.0:3000/api/hello-world

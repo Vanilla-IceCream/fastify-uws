@@ -1,4 +1,4 @@
-FROM denoland/deno:1.42.1
+FROM denoland/deno:1.44.4
 
 WORKDIR /usr/src/app
 COPY . .

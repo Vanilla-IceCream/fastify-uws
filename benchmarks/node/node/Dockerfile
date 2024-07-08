@@ -1,4 +1,4 @@
-FROM node:20.12.1
+FROM node:20.15.0
 
 WORKDIR /usr/src/app
 COPY . .

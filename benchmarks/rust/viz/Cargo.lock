@@ -107,9 +107,9 @@ dependencies = [
 
 [[package]]
 name = "bytes"
-version = "1.5.0"
+version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a2bd12c1caf447e69cd4528f47f94d203fd2582878ecb9e9465484c4148a8223"
+checksum = "514de17de45fdb8dc022b1a7975556c53c86f9f0aa5f534b98977b171857c2c9"
 
 [[package]]
 name = "cc"
@@ -210,9 +210,9 @@ checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 
 [[package]]
 name = "form-data"
-version = "0.5.4"
+version = "0.5.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6469885fe504c5767f7a81d25a14501369f8e9c0ab1ac167fa34e61227a4a916"
+checksum = "5c9f1255b81bd56192c67475eefa322f44b85440030547cea7664fd5dc248964"
 dependencies = [
  "bytes",
  "futures-util",
@@ -434,9 +434,9 @@ checksum = "df3b46402a9d5adb4c86a0cf463f42e19994e3ee891101b1841f30a545cb49a9"
 
 [[package]]
 name = "hyper"
-version = "1.2.0"
+version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "186548d73ac615b32a73aafe38fb4f56c0d340e110e5a200bcadbaf2e199263a"
+checksum = "c4fe55fb7a772d59a5ff1dfbff4fe0258d19b89fec4b233e75d35d5d2316badc"
 dependencies = [
  "bytes",
  "futures-channel",
@@ -454,9 +454,9 @@ dependencies = [
 
 [[package]]
 name = "hyper-util"
-version = "0.1.3"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca38ef113da30126bbff9cd1705f9273e15d45498615d138b0c20279ac7a76aa"
+checksum = "3ab92f4f49ee4fb4f997c784b7a2e0fa70050211e0b6a287f898c3c9785ca956"
 dependencies = [
  "bytes",
  "futures-util",
@@ -464,7 +464,6 @@ dependencies = [
  "http-body",
  "hyper",
  "pin-project-lite",
- "socket2",
  "tokio",
 ]
 
@@ -603,9 +602,9 @@ dependencies = [
 
 [[package]]
 name = "path-tree"
-version = "0.7.5"
+version = "0.7.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1c0606c1447c97f647d07b5ff922ee20a96a8c0fc31b4143048bba024569632c"
+checksum = "02bcb8f8cf1dee5acae79493abe06a4dfb40e34406a420e929ffb8dce1e06cdd"
 dependencies = [
  "smallvec",
 ]
@@ -820,9 +819,9 @@ dependencies = [
 
 [[package]]
 name = "smallvec"
-version = "1.13.1"
+version = "1.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6ecd384b10a64542d77071bd64bd7b231f4ed5940fba55e98c3de13824cf3d7"
+checksum = "3c5e1a9a646d36c3599cd173a41282daf47c44583ad367b8e6837255952e5c67"
 
 [[package]]
 name = "socket2"
@@ -853,9 +852,9 @@ dependencies = [
 
 [[package]]
 name = "sync_wrapper"
-version = "0.1.2"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2047c6ded9c721764247e62cd3b03c09ffc529b2ba5b10ec482ae507a4a70160"
+checksum = "a7065abeca94b6a8a577f9bd45aa0867a2238b74e8eb67cf10d492bc39351394"
 
 [[package]]
 name = "thiserror"
@@ -910,9 +909,9 @@ dependencies = [
 
 [[package]]
 name = "tokio"
-version = "1.36.0"
+version = "1.38.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "61285f6515fa018fb2d1e46eb21223fff441ee8db5d0f1435e8ab4f5cdb80931"
+checksum = "ba4f4a02a7a80d6f274636f0aa95c7e383b912d41fe721a31f29e29698585a4a"
 dependencies = [
  "backtrace",
  "bytes",
@@ -929,9 +928,9 @@ dependencies = [
 
 [[package]]
 name = "tokio-macros"
-version = "2.2.0"
+version = "2.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b8a1e28f2deaa14e508979454cb3a223b10b938b45af148bc0986de36f1923b"
+checksum = "5f5ae998a069d4b5aba8ee9dad856af7d520c3699e6159b185c2acd48155d39a"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1026,14 +1025,14 @@ version = "0.0.0"
 dependencies = [
  "serde",
  "tokio",
- "viz 0.8.3",
+ "viz 0.8.8",
 ]
 
 [[package]]
 name = "viz"
-version = "0.8.3"
+version = "0.8.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7254586ce1a502b4a52f9e12b3b0e366ad0202a2cf2e834cb0639a8d569f3cde"
+checksum = "4d864106fba5d1eb5ba3158ee03ee201d0c727e848599fc68fe2a24c8766df54"
 dependencies = [
  "hyper",
  "hyper-util",
@@ -1046,9 +1045,9 @@ dependencies = [
 
 [[package]]
 name = "viz-core"
-version = "0.8.3"
+version = "0.8.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "89b48192d77ea45cd37cfe1a521d9f2a97f906b6d4a5455927366489d8ba8387"
+checksum = "8729d75e2cae28979e75f0f579299ab6ab492695f7fef3f6d494d4cdf54858e4"
 dependencies = [
  "async-trait",
  "bytes",
@@ -1073,9 +1072,9 @@ dependencies = [
 
 [[package]]
 name = "viz-router"
-version = "0.8.3"
+version = "0.8.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bc73b7c6e9bbb230b0246f3b6ac57a3ae1bbe091beed1b9f500c400d4a82020e"
+checksum = "d3e7e1aa37449f1bb37438fa968962255a057b8ed0b40677fe1739295600cfc4"
 dependencies = [
  "path-tree",
  "serde",

@@ -5,6 +5,6 @@
     "start": "bun ./src/main.ts"
   },
   "dependencies": {
-    "@oak/oak": "npm:@jsr/oak__oak@14.2.0"
+    "@oak/oak": "npm:@jsr/oak__oak@16.1.0"
   }
 }

@@ -5,6 +5,6 @@
     "start": "bun ./src/main.ts"
   },
   "dependencies": {
-    "elysia": "1.0.13"
+    "elysia": "1.0.27"
   }
 }
