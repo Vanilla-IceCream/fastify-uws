@@ -1,0 +1,19 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@nhttp/nhttp@2.0.2": "jsr:@nhttp/nhttp@2.0.2"
+    },
+    "jsr": {
+      "@nhttp/nhttp@2.0.2": {
+        "integrity": "3f792cf5681c56d10e6fafa6c1c5f438b45dcba8037b08d5e593771aa6b3ebf8"
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "jsr:@nhttp/nhttp@2.0.2"
+    ]
+  }
+}

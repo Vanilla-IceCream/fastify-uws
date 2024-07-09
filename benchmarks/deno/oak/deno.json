@@ -4,6 +4,6 @@
     "start": "deno run -A ./src/main.ts"
   },
   "imports": {
-    "@oak/oak": "jsr:@oak/oak@16.1.0"
+    "oak": "jsr:@oak/oak@16.1.0"
   }
 }

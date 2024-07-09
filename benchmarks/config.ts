@@ -20,12 +20,12 @@ export const targets: Record<Language, Target[]> = {
   ],
   deno: [
     { name: 'deno', version: '1.44.4', router: false },
-    { name: 'drash', version: denoPkg('drash'), router: true },
-    // { name: 'h3', version: denoPkg('h3'), router: true },
     { name: 'hono', version: denoPkg('hono'), router: true },
-    { name: 'oak', version: denoPkg('oak', '@oak/oak'), router: true },
+    { name: 'nhttp', version: denoPkg('nhttp'), router: true },
+    { name: 'oak', version: denoPkg('oak'), router: true },
   ],
   node: [
+    { name: 'express', version: nodePkg('express'), router: true },
     { name: 'fastify', version: nodePkg('fastify'), router: true },
     { name: 'fastify-uws', version: nodePkg('fastify-uws'), router: true },
     { name: 'h3', version: nodePkg('h3'), router: true },

@@ -1,7 +1,0 @@
-{
-  "version": "3",
-  "remote": {
-    "https://esm.sh/@drashland/drash@3.0.0-beta.2/modules/chains/RequestChain/mod.native.js": "fd55fdf388f86a1c76512c94c3ac248e8fe28221839ed9977efeca328c6a9778",
-    "https://esm.sh/v135/@drashland/drash@3.0.0-beta.2/denonext/modules/chains/RequestChain/mod.native.js": "96e172fc318d7d049b28db682a73cec5258b56608b5a074d86ba257a8916abe0"
-  }
-}

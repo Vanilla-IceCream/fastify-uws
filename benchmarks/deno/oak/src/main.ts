@@ -1,4 +1,4 @@
-import { Application, Router } from '@oak/oak';
+import { Application, Router } from 'oak';
 
 const router = new Router({ prefix: '/api' });
 

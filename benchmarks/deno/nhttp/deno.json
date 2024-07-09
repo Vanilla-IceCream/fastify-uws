@@ -4,6 +4,6 @@
     "start": "deno run -A ./src/main.ts"
   },
   "imports": {
-    "h3": "https://esm.sh/h3@1.11.1"
+    "nhttp": "jsr:@nhttp/nhttp@2.0.2"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/main.js"
+  },
+  "dependencies": {
+    "express": "4.19.2"
+  }
+}
