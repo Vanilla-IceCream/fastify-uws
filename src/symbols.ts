@@ -22,3 +22,6 @@ export const kDestroyError = Symbol('uws.destroyError');
 export const kUwsRemoteAddress = Symbol('uws.uwsRemoteAddress');
 export const kQueue = Symbol('uws.queue');
 export const kHead = Symbol('uws.head');
+export const kWebSocketOptions = Symbol('uws.webSocketOptions');
+export const kListenAll = Symbol('uws.listenAll');
+export const kListening = Symbol('uws.listening');

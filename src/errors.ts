@@ -19,3 +19,4 @@ export const ERR_SOCKET_BAD_PORT = createError(
   'ERR_SOCKET_BAD_PORT',
   'RangeError [ERR_SOCKET_BAD_PORT]: options.port should be >= 0 and < 65536. Received (%s)',
 );
+export const ERR_SERVER_DESTROYED = createError('ERR_SERVER_DESTROYED', 'Server destroyed');

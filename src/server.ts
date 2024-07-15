@@ -4,11 +4,13 @@ import type { FastifyServerFactoryHandler } from 'fastify';
 import ipaddr from 'ipaddr.js';
 import uws from 'uWebSockets.js';
 
-import { ERR_ADDRINUSE, ERR_ENOTFOUND, ERR_SOCKET_BAD_PORT } from './errors';
+import { ERR_ADDRINUSE, ERR_ENOTFOUND, ERR_SERVER_DESTROYED, ERR_SOCKET_BAD_PORT } from './errors';
 import { HTTPSocket } from './http-socket';
 import { Request } from './request';
 import { Response } from './response';
-import { kAddress, kApp, kClosed, kHandler, kHttps, kListen, kListenSocket, kWs } from './symbols';
+import { kAddress, kApp, kClosed, kHandler, kHttps, kListen, kListenAll } from './symbols';
+import { kListenSocket, kListening, kWs } from './symbols';
+import type { WebSocketServer } from './websocket-server';
 
 function createApp() {
   return uws.App();
@@ -25,11 +27,13 @@ export class Server extends EventEmitter {
   [kHandler]: FastifyServerFactoryHandler;
   timeout?: number;
   [kHttps]?: boolean | Record<string, string>;
-  [kWs]?: null | any;
+  [kWs]?: WebSocketServer | null;
   [kAddress]?: null | any;
   [kListenSocket]?: null | any;
   [kApp]: uws.TemplatedApp;
   [kClosed]?: boolean;
+  [kListenAll]?: boolean;
+  [kListening]?: boolean;
 
   constructor(handler: FastifyServerFactoryHandler, opts: FastifyUwsOptions = {}) {
     super();
@@ -50,6 +54,10 @@ export class Server extends EventEmitter {
     return !!this[kHttps];
   }
 
+  get listening() {
+    return this[kListening];
+  }
+
   setTimeout(timeout: number) {
     this.timeout = timeout;
   }
@@ -58,16 +66,31 @@ export class Server extends EventEmitter {
     return this[kAddress];
   }
 
-  listen(listenOptions, cb) {
+  listen(listenOptions: { host: string; port: number; signal: AbortSignal }) {
+    if (listenOptions?.signal) {
+      listenOptions.signal.addEventListener('abort', () => {
+        this.close();
+      });
+    }
+
     this[kListen](listenOptions)
-      .then(() => cb?.())
+      .then(() => {
+        this[kListening] = true;
+        this.emit('listening');
+      })
       .catch((err) => {
         this[kAddress] = null;
         process.nextTick(() => this.emit('error', err));
       });
   }
 
+  closeIdleConnections() {
+    this.close();
+  }
+
   close(cb = () => {}) {
+    this[kAddress] = null;
+    this[kListening] = false;
     if (this[kClosed]) return cb();
     const port = this[kAddress]?.port;
     if (port !== undefined && mainServer[port] === this) {
@@ -84,10 +107,10 @@ export class Server extends EventEmitter {
         conn.close();
       }
     }
-    setTimeout(() => {
+    process.nextTick(() => {
       this.emit('close');
       cb();
-    }, 1);
+    });
   }
 
   ref() {}
@@ -95,6 +118,8 @@ export class Server extends EventEmitter {
   unref() {}
 
   async [kListen]({ port, host }) {
+    if (this[kClosed]) throw new ERR_SERVER_DESTROYED();
+
     if (port !== undefined && port !== null && Number.isNaN(Number(port))) {
       throw new ERR_SOCKET_BAD_PORT(port);
     }
@@ -146,15 +171,20 @@ export class Server extends EventEmitter {
     }
 
     return new Promise((resolve, reject) => {
-      app.listen(longAddress, port, (listenSocket) => {
+      const onListen = (listenSocket) => {
         if (!listenSocket) return reject(new ERR_ADDRINUSE(this[kAddress].address, port));
         this[kListenSocket] = listenSocket;
         port = this[kAddress].port = uws.us_socket_local_port(listenSocket);
-        if (!mainServer[port]) {
-          mainServer[port] = this;
-        }
+        if (!mainServer[port]) mainServer[port] = this;
         resolve();
-      });
+      };
+
+      this[kListenAll] = host === 'localhost';
+      if (this[kListenAll]) {
+        app.listen(port, onListen);
+      } else {
+        app.listen(longAddress, port, onListen);
+      }
     });
   }
 }

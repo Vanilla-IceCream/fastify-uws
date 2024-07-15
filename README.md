@@ -16,6 +16,13 @@ $ pnpm i fastify-uws
 $ bun add fastify-uws
 ```
 
+## Prerequisites
+
+- `fastify` v4.28.1+
+
+> [!WARNING]
+> If your `fastify` version is below `4.28.0`, please install `fastify-uws` version `0.7.1`.
+
 ## Usage
 
 ```ts
