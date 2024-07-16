@@ -66,7 +66,7 @@ export class Server extends EventEmitter {
     return this[kAddress];
   }
 
-  listen(listenOptions: { host: string; port: number; signal: AbortSignal }) {
+  listen(listenOptions: { host: string; port: number; signal: AbortSignal }, cb) {
     if (listenOptions?.signal) {
       listenOptions.signal.addEventListener('abort', () => {
         this.close();
@@ -75,6 +75,7 @@ export class Server extends EventEmitter {
 
     this[kListen](listenOptions)
       .then(() => {
+        cb?.();
         this[kListening] = true;
         this.emit('listening');
       })

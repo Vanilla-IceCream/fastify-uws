@@ -16,19 +16,19 @@ $ pnpm i fastify-uws
 $ bun add fastify-uws
 ```
 
-## Prerequisites
+## Supported
 
-- `fastify` v4.28.1+
-
-> [!WARNING]
-> If your `fastify` version is below `4.28.0`, please install `fastify-uws` version `0.7.1`.
+- `fastify` v4.x
+- `@fastify/websocket` v10.x
 
 ## Usage
+
+Just two lines are needed to speed up your Fastify application.
 
 ```ts
 // app.ts
 import fastify from 'fastify';
-import { serverFactory } from 'fastify-uws';
+import { serverFactory } from 'fastify-uws'; // Import here
 
 import router from '~/plugins/router';
 
@@ -39,7 +39,7 @@ export default () => {
         target: '@fastify/one-line-logger',
       },
     },
-    serverFactory,
+    serverFactory, // And use here
   });
 
   app.register(router);
@@ -129,6 +129,13 @@ export default (async (app) => {
 ```
 
 ### Use [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
+
+Just a single line of change can speed up your WebSocket application in Fastify.
+
+```diff
+- import websocket from '@fastify/websocket';
++ import { websocket } from 'fastify-uws';
+```
 
 ```ts
 // app.ts
