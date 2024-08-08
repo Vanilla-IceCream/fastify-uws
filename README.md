@@ -1,3 +1,5 @@
+![fastify-uws](./.github/assets/logo.png)
+
 # fastify-uws
 
 A performant HTTP and WebSocket server for Fastify with [uWebSockets](https://github.com/uNetworking/uWebSockets.js).
