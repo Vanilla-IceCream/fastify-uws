@@ -230,6 +230,7 @@ $ oha -c 500 -z 10s --no-tui http://0.0.0.0:3000/api/hello-world
 | hyper-express |        6.16.4 | JavaScript/Node |      ✓ |  45,713.5774 |
 | nhttp         |         2.0.2 | TypeScript/Deno |      ✓ |  44,981.6350 |
 | hono          |        4.4.12 | TypeScript/Bun  |      ✓ |  43,572.2954 |
+|               |               |                 |        |            ~ |
 | fastify-uws   |         0.7.1 | JavaScript/Node |      ✓ |  34,054.4867 |
 | deno          |        1.44.4 | TypeScript/Deno |      ✗ |  33,190.7563 |
 | oak           |        16.1.0 | TypeScript/Deno |      ✓ |  32,086.9585 |
@@ -240,4 +241,5 @@ $ oha -c 500 -z 10s --no-tui http://0.0.0.0:3000/api/hello-world
 | fastify       |        4.28.1 | JavaScript/Node |      ✓ |  26,944.1364 |
 | oak           |        16.1.0 | TypeScript/Bun  |      ✓ |  26,180.5017 |
 | hono          |        4.4.12 | JavaScript/Node |      ✓ |  24,536.4926 |
+|               |               |                 |        |            ~ |
 | express       |        4.19.2 | JavaScript/Node |      ✓ |  10,251.3516 |
