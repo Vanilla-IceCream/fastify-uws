@@ -1,5 +1,6 @@
 {
   "tasks": {
+    "install": "deno cache --reload --lock-write ./config.ts ./build.ts ./warmUp.ts ./bench.ts",
     "build": "deno run -A build.ts",
     "warmUp": "deno run -A warmUp.ts",
     "bench": "deno run -A bench.ts"
