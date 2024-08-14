@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { pipeline } from 'node:stream/promises';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
@@ -17,6 +20,12 @@ export default (async (app) => {
     },
     async (req, reply) => {
       const data = await req.file();
+
+      if (!data) return reply.code(400);
+
+      const dir = path.resolve(import.meta.dirname, '../../../dist');
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+      await pipeline(data.file, fs.createWriteStream(path.resolve(dir, data.filename)));
 
       return reply.send({
         message: 'OK',
