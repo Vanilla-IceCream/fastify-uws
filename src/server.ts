@@ -1,5 +1,5 @@
 import dns from 'node:dns/promises';
-import EventEmitter from 'node:events';
+import { EventEmitter } from 'eventemitter3';
 import type { FastifyServerFactoryHandler } from 'fastify';
 import ipaddr from 'ipaddr.js';
 import uws from 'uWebSockets.js';

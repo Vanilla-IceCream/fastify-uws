@@ -1,5 +1,4 @@
-import EventEmitter from 'node:events';
-import fastq from 'fastq';
+import { EventEmitter } from 'eventemitter3';
 
 import { ERR_STREAM_DESTROYED } from './errors';
 import {
@@ -7,7 +6,6 @@ import {
   kEncoding,
   kHead,
   kHttps,
-  kQueue,
   kReadyState,
   kRemoteAdress,
   kRes,
@@ -24,15 +22,15 @@ const toHex = (buf, start, end) => buf.subarray(start, end).toString('hex');
 
 const noop = () => {};
 
-function onAbort() {
+function onAbort(this: HTTPSocket) {
   this.aborted = true;
   this.emit('aborted');
   this.errored && this.emit('error', this.errored);
   this.emit('close');
 }
 
-function onDrain() {
-  this.emit('drain');
+function onDrain(offset) {
+  this.emit('drain', offset);
   return true;
 }
 
@@ -43,51 +41,7 @@ function onTimeout() {
   }
 }
 
-function onWrite(data, cb) {
-  const res = this[kRes];
-
-  this[kReadyState].write = true;
-
-  res.cork(() => {
-    if (this[kHead]) {
-      writeHead(res, this[kHead]);
-      this[kHead] = null;
-    }
-
-    const drained = res.write(getChunk(data));
-    if (drained) {
-      this.bytesWritten += byteLength(data);
-      return cb();
-    }
-
-    drain(this, res, data, cb);
-  });
-}
-
-function cork(res, data) {
-  writeHead(res, this[kHead]);
-  this[kHead] = null;
-  res.end(data);
-}
-
-function end(socket, data) {
-  socket._clearTimeout();
-
-  const res = socket[kRes];
-
-  res.cork(() => {
-    if (socket[kHead]) {
-      writeHead(res, socket[kHead]);
-      socket[kHead] = null;
-    }
-    res.end(getChunk(data));
-    socket.bytesWritten += byteLength(data);
-    socket.emit('close');
-    socket.emit('finish');
-  });
-}
-
-function drain(socket, res, data, cb) {
+function drain(socket, cb) {
   socket.writableNeedDrain = true;
   let done = false;
 
@@ -101,17 +55,10 @@ function drain(socket, res, data, cb) {
 
   const onDrain = () => {
     if (done) return;
-
-    res.cork(() => {
-      done = res.write(getChunk(data));
-      if (done) {
-        socket.writableNeedDrain = false;
-        socket.bytesWritten += byteLength(data);
-        socket.removeListener('close', onClose);
-        socket.removeListener('drain', onDrain);
-        cb();
-      }
-    });
+    socket.writableNeedDrain = false;
+    socket.removeListener('close', onClose);
+    socket.removeListener('drain', onDrain);
+    cb();
   };
 
   socket.on('drain', onDrain);
@@ -128,12 +75,13 @@ function writeHead(res, head) {
 }
 
 function byteLength(data) {
-  if (data.byteLength !== undefined) return data.byteLength;
+  if (data?.empty) return 0;
+  if (data?.byteLength !== undefined) return data.byteLength;
   return Buffer.byteLength(data);
 }
 
 function getChunk(data) {
-  if (data.chunk) return data.chunk;
+  if (data?.chunk) return data.chunk;
   return data;
 }
 
@@ -198,19 +146,23 @@ export class HTTPSocket extends EventEmitter {
     }
 
     if (buf.length === 4) {
-      remoteAddress = `${buf.readUInt8(0)}.${buf.readUInt8(1)}.${buf.readUInt8(2)}.${buf.readUInt8(
-        3,
-      )}`;
+      remoteAddress = `${buf.readUInt8(0)}.${buf.readUInt8(1)}.${buf.readUInt8(
+        2,
+      )}.${buf.readUInt8(3)}`;
     } else {
       // avoid to call toHex if local
       if (buf.equals(localAddressIpv6)) {
         remoteAddress = '::1';
       } else {
-        remoteAddress = `${toHex(buf, 0, 2)}:${toHex(buf, 2, 4)}:${toHex(buf, 4, 6)}:${toHex(
+        remoteAddress = `${toHex(buf, 0, 2)}:${toHex(buf, 2, 4)}:${toHex(
           buf,
+          4,
           6,
-          8,
-        )}:${toHex(buf, 8, 10)}:${toHex(buf, 10, 12)}:${toHex(buf, 12, 14)}:${toHex(buf, 14)}`;
+        )}:${toHex(buf, 6, 8)}:${toHex(buf, 8, 10)}:${toHex(
+          buf,
+          10,
+          12,
+        )}:${toHex(buf, 12, 14)}:${toHex(buf, 14)}`;
       }
     }
 
@@ -237,7 +189,6 @@ export class HTTPSocket extends EventEmitter {
   abort() {
     if (this.aborted) return;
     this.aborted = true;
-    this[kQueue]?.kill();
     if (!this[kWs] && !this.writableEnded) {
       this[kRes].close();
     }
@@ -264,12 +215,12 @@ export class HTTPSocket extends EventEmitter {
       this[kRes].onData((chunk, isLast) => {
         if (done) return;
 
-        chunk = Buffer.from(chunk);
-
-        this.bytesRead += Buffer.byteLength(chunk);
+        this.bytesRead += chunk.byteLength;
 
         if (encoding) {
-          chunk = chunk.toString(encoding);
+          chunk = Buffer.from(chunk).toString(encoding);
+        } else {
+          chunk = Buffer.copyBytesFrom(new Uint8Array(chunk));
         }
 
         this.emit('data', chunk);
@@ -293,26 +244,44 @@ export class HTTPSocket extends EventEmitter {
     if (!data) return this.abort();
 
     this.writableEnded = true;
-    const queue = this[kQueue];
 
-    // fast end
-    if (!queue || queue.idle()) {
-      end(this, data);
+    this._clearTimeout();
+
+    const res = this[kRes];
+
+    res.cork(() => {
+      if (this[kHead]) {
+        writeHead(res, this[kHead]);
+        this[kHead] = null;
+      }
+      res.end(getChunk(data));
+      this.bytesWritten += byteLength(data);
+      this.emit('close');
+      this.emit('finish');
       cb();
-      return;
-    }
-
-    queue.push(data, cb);
+    });
   }
 
   write(data, _, cb = noop) {
     if (this.destroyed) throw new ERR_STREAM_DESTROYED();
 
-    if (!this[kQueue]) {
-      this[kQueue] = fastq(this, onWrite, 1);
-    }
+    const res = this[kRes];
 
-    this[kQueue].push(data, cb);
+    this[kReadyState].write = true;
+
+    res.cork(() => {
+      if (this[kHead]) {
+        writeHead(res, this[kHead]);
+        this[kHead] = null;
+      }
+
+      const drained = res.write(getChunk(data));
+      this.bytesWritten += byteLength(data);
+
+      if (drained) return cb();
+      drain(this, cb);
+    });
+
     return !this.writableNeedDrain;
   }
 

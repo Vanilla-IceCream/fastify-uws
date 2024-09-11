@@ -91,9 +91,8 @@ export class Request extends Readable {
 
       if (!data) {
         this.readableEnded = true;
+        cb();
       }
-
-      cb();
     });
   }
 }
