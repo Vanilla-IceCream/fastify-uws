@@ -111,6 +111,8 @@ app.register(multipart);
 ```ts
 // src/routes/hello-fd/+handler.ts
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
+import fs from 'node:fs';
+import { pipeline } from 'node:stream/promises';
 
 export default (async (app) => {
   app.post('', async (req, reply) => {
@@ -123,6 +125,8 @@ export default (async (app) => {
     data.encoding;
     data.mimetype;
 
+    await pipeline(data.file, fs.createWriteStream(data.filename));
+    // or
     // await data.toBuffer(); // Buffer
 
     return reply.send({ message: 'ok' });
