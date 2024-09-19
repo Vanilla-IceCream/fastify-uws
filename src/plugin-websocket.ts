@@ -90,6 +90,6 @@ function fastifyUws(fastify, opts, next) {
 }
 
 export default fp(fastifyUws, {
-  fastify: '4.x',
+  fastify: '5.x',
   name: '@fastify/websocket',
 });

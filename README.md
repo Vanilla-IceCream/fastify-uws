@@ -20,8 +20,8 @@ $ bun add fastify-uws
 
 ## Supported
 
-- `fastify` v4.x
-- `@fastify/websocket` v10.x
+- `fastify` v5.x
+- `@fastify/websocket` v11.x
 
 ## Usage
 
