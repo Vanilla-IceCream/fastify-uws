@@ -4,6 +4,6 @@
     "start": "deno run -A ./src/main.ts"
   },
   "imports": {
-    "hono": "jsr:@hono/hono@4.4.12"
+    "hono": "jsr:@hono/hono@4.6.3"
   }
 }

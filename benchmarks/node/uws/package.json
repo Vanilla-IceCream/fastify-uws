@@ -5,6 +5,6 @@
     "start": "node ./src/main.js"
   },
   "dependencies": {
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.44.0"
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.48.0"
   }
 }

@@ -741,13 +741,14 @@ dependencies = [
 
 [[package]]
 name = "mio"
-version = "0.8.11"
+version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4a650543ca06a924e8b371db273b2756685faae30f8487da1b56505a8f78b0c"
+checksum = "80e04d1dcff3aae0704555fe5fee3bcfaf3d1fdf8a7e521d5b9d2b42acb52cec"
 dependencies = [
+ "hermit-abi",
  "libc",
  "wasi",
- "windows-sys 0.48.0",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -838,16 +839,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "071dfc062690e90b734c0b2273ce72ad0ffa95f0c74596bc250dcfd960262841"
 dependencies = [
  "autocfg",
-]
-
-[[package]]
-name = "num_cpus"
-version = "1.16.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4161fcb6d602d4d2081af7c3a45852d875a03dd337a6bfdd6e06407b61342a43"
-dependencies = [
- "hermit-abi",
- "libc",
 ]
 
 [[package]]
@@ -1255,16 +1246,16 @@ checksum = "e86697c916019a8588c99b5fac3cead74ec0b4b819707a682fd4d23fa0ce1ba1"
 name = "salvo"
 version = "0.0.0"
 dependencies = [
- "salvo 0.68.4",
+ "salvo 0.72.4",
  "serde",
  "tokio",
 ]
 
 [[package]]
 name = "salvo"
-version = "0.68.4"
+version = "0.72.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "591a41ac90e952ca622b6d012129336a5aca71dd1ba03d05fd1ab4b3ee476125"
+checksum = "f46940b4451d4c4c39a8998ec41671801feb8d75e142c7794cd4826c989f5408"
 dependencies = [
  "salvo-jwt-auth",
  "salvo-proxy",
@@ -1273,9 +1264,9 @@ dependencies = [
 
 [[package]]
 name = "salvo-jwt-auth"
-version = "0.68.4"
+version = "0.72.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d2140ece82476b670589f1ca90639277e5be9d3a7780b1b15cb801b6851a2de6"
+checksum = "1d939878fd6fad9fe3dbc8784d557d2c36c7520330f28322d023f1ffa2395f9f"
 dependencies = [
  "base64 0.22.0",
  "bytes",
@@ -1293,9 +1284,9 @@ dependencies = [
 
 [[package]]
 name = "salvo-proxy"
-version = "0.68.4"
+version = "0.72.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ddc8a85fff7503a3fc0673ea5e32f656c76147d345ea2b7ab5e9dff5e1b8cd0b"
+checksum = "cda48e01333576e78ca09974cecc507f2ae68c52eebc58debb5a745813216598"
 dependencies = [
  "fastrand",
  "futures-util",
@@ -1311,9 +1302,9 @@ dependencies = [
 
 [[package]]
 name = "salvo-serde-util"
-version = "0.68.4"
+version = "0.72.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "170e19c27303e855beb58a28226712b3ede149a4a019098747b123bbbb222d48"
+checksum = "a06ddf5a36d50190f982482af90259a5fe29ec041ad0e61df31410090f2e92ba"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1322,9 +1313,9 @@ dependencies = [
 
 [[package]]
 name = "salvo_core"
-version = "0.68.4"
+version = "0.72.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7e0a64876b439b2e5176459f5159be6131321a11554db1cfd34204580b9f5b12"
+checksum = "5a5f6962a39666781301f8ff2fb9a3873dc5f5d11348672cf3334b7393276a1e"
 dependencies = [
  "async-trait",
  "base64 0.22.0",
@@ -1346,7 +1337,6 @@ dependencies = [
  "multer",
  "multimap",
  "nix",
- "once_cell",
  "parking_lot",
  "percent-encoding",
  "pin-project",
@@ -1367,9 +1357,9 @@ dependencies = [
 
 [[package]]
 name = "salvo_macros"
-version = "0.68.4"
+version = "0.72.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ea5a8f4a082a91529f085bc53bdad4e7e0fbe419f7188f5dd6265acdaf990876"
+checksum = "84549ee77bca8a611329ffcf0d849d2474ad484aa60171a0757fcb07169b978e"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -1661,26 +1651,25 @@ checksum = "1f3ccbac311fea05f86f61904b462b55fb3df8837a366dfc601a0161d0532f20"
 
 [[package]]
 name = "tokio"
-version = "1.38.0"
+version = "1.40.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ba4f4a02a7a80d6f274636f0aa95c7e383b912d41fe721a31f29e29698585a4a"
+checksum = "e2b070231665d27ad9ec9b8df639893f46727666c6767db40317fbe920a5d998"
 dependencies = [
  "backtrace",
  "bytes",
  "libc",
  "mio",
- "num_cpus",
  "pin-project-lite",
  "socket2",
  "tokio-macros",
- "windows-sys 0.48.0",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
 name = "tokio-macros"
-version = "2.3.0"
+version = "2.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5f5ae998a069d4b5aba8ee9dad856af7d520c3699e6159b185c2acd48155d39a"
+checksum = "693d596312e88961bc67d7f1f97af8a70227d9f90c31bba5806eec004978d752"
 dependencies = [
  "proc-macro2",
  "quote",

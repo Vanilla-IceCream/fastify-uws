@@ -36,14 +36,14 @@ export const targets: Record<Language, Target[]> = {
     { name: 'uws', version: nodePkg('uws', 'uWebSockets.js'), router: false },
   ],
   rust: [
-    { name: 'actix-web', version: rustPkg('actix-web'), router: true },
+    // { name: 'actix-web', version: rustPkg('actix-web'), router: true },
     { name: 'axum', version: rustPkg('axum'), router: true },
     { name: 'graphul', version: rustPkg('graphul'), router: true },
     { name: 'hyper', version: rustPkg('hyper'), router: false },
     { name: 'poem', version: rustPkg('poem'), router: true },
-    { name: 'rocket', version: rustPkg('rocket'), router: true },
-    { name: 'salvo', version: rustPkg('salvo'), router: true },
-    { name: 'viz', version: rustPkg('viz'), router: true },
+    // { name: 'rocket', version: rustPkg('rocket'), router: true },
+    // { name: 'salvo', version: rustPkg('salvo'), router: true },
+    // { name: 'viz', version: rustPkg('viz'), router: true },
     { name: 'warp', version: rustPkg('warp'), router: true },
   ],
 };

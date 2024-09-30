@@ -5,6 +5,6 @@
     "start": "node ./src/main.js"
   },
   "dependencies": {
-    "hyper-express": "6.16.4"
+    "hyper-express": "6.17.2"
   }
 }

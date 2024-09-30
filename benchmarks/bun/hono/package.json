@@ -5,6 +5,6 @@
     "start": "bun ./src/main.ts"
   },
   "dependencies": {
-    "hono": "4.4.12"
+    "hono": "4.6.3"
   }
 }
