@@ -5,7 +5,7 @@
     "start": "node ./src/main.js"
   },
   "dependencies": {
-    "fastify": "4.28.1",
-    "fastify-uws": "0.8.1"
+    "fastify": "5.0.0",
+    "fastify-uws": "1.0.0"
   }
 }
