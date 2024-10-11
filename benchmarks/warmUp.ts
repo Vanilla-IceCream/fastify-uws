@@ -8,7 +8,7 @@ async function warmUp() {
       const run = new Deno.Command('docker', {
         args: [
           'run',
-          lang === 'deno' ? null : '--init',
+          '--init',
           '--name',
           `${lang}-${target.name}`,
           '-dit',

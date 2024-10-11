@@ -12,14 +12,14 @@ export interface Target {
 
 export const targets: Record<Language, Target[]> = {
   bun: [
-    { name: 'bun', version: '1.1.29', router: false },
+    { name: 'bun', version: '1.1.30', router: false },
     { name: 'elysia', version: bunPkg('elysia'), router: true },
     { name: 'h3', version: bunPkg('h3'), router: true },
     { name: 'hono', version: bunPkg('hono'), router: true },
     { name: 'oak', version: bunPkg('oak', '@oak/oak'), router: true },
   ],
   deno: [
-    { name: 'deno', version: '1.46.3', router: false },
+    { name: 'deno', version: '2.0.0', router: false },
     { name: 'hono', version: denoPkg('hono'), router: true },
     { name: 'nhttp', version: denoPkg('nhttp'), router: true },
     { name: 'oak', version: denoPkg('oak'), router: true },
@@ -31,7 +31,7 @@ export const targets: Record<Language, Target[]> = {
     { name: 'h3', version: nodePkg('h3'), router: true },
     { name: 'hono', version: nodePkg('hono'), router: true },
     { name: 'hyper-express', version: nodePkg('hyper-express'), router: true },
-    { name: 'node', version: '20.17.0', router: false },
+    { name: 'node', version: '20.18.0', router: false },
     { name: 'polka', version: nodePkg('polka'), router: true },
     { name: 'uws', version: nodePkg('uws', 'uWebSockets.js'), router: false },
   ],

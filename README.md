@@ -218,32 +218,30 @@ $ oha -c 500 -z 10s --no-tui http://0.0.0.0:3000/api/hello-world
 
 |               |       Version | Language        | Router | Requests/sec |
 | :------------ | ------------: | :-------------- | -----: | -----------: |
-| hyper         |         1.4.0 | Rust            |      ✗ |  54,852.5710 |
-| viz           |         0.8.8 | Rust            |      ✓ |  54,767.9522 |
-| salvo         |        0.68.4 | Rust            |      ✓ |  54,550.5513 |
-| warp          |         0.3.7 | Rust            |      ✓ |  54,412.2379 |
-| graphul       |         1.0.1 | Rust            |      ✓ |  53,995.5395 |
-| axum          |         0.7.5 | Rust            |      ✓ |  53,730.4898 |
-| poem          |         3.0.1 | Rust            |      ✓ |  53,011.8436 |
-| uws           |       20.44.0 | JavaScript/Node |      ✗ |  52,569.3922 |
-| bun           |        1.1.18 | TypeScript/Bun  |      ✗ |  51,434.7305 |
-| rocket        |         0.5.1 | Rust            |      ✓ |  50,213.6357 |
-| actix-web     |         4.8.0 | Rust            |      ✓ |  48,072.2446 |
-| nhttp         |         2.0.2 | TypeScript/Deno |      ✓ |  47,501.5437 |
-| elysia        |        1.0.27 | TypeScript/Bun  |      ✓ |  45,774.7223 |
-| hyper-express |        6.16.4 | JavaScript/Node |      ✓ |  44,410.8668 |
-| hono          |        4.4.12 | TypeScript/Bun  |      ✓ |  44,272.6046 |
-| hono          |        4.4.12 | TypeScript/Deno |      ✓ |  42,049.4956 |
-| deno          |        1.44.4 | TypeScript/Deno |      ✗ |  40,959.3045 |
-|               |               |                 |        |            ~ |
-| h3            |        1.12.0 | TypeScript/Bun  |      ✓ |  33,830.7969 |
-| fastify-uws   |         0.8.1 | JavaScript/Node |      ✓ |  32,644.0851 |
-| oak           |        16.1.0 | TypeScript/Deno |      ✓ |  31,757.4717 |
-| h3            |        1.12.0 | JavaScript/Node |      ✓ |  30,557.6711 |
-| polka         | 1.0.0-next.25 | JavaScript/Node |      ✓ |  30,074.4079 |
-| node          |       20.15.0 | JavaScript/Node |      ✗ |  28,620.6313 |
-| oak           |        16.1.0 | TypeScript/Bun  |      ✓ |  26,580.4056 |
-| fastify       |        4.28.1 | JavaScript/Node |      ✓ |  25,896.2251 |
-| hono          |        4.4.12 | JavaScript/Node |      ✓ |  23,898.3443 |
-|               |               |                 |        |            ~ |
-| express       |        4.19.2 | JavaScript/Node |      ✓ |  10,599.2688 |
+| hyper         |         1.4.1 | Rust            |      ✗ |  56,175.6102 |
+| warp          |         0.3.7 | Rust            |      ✓ |  55,868.5861 |
+| axum          |         0.7.7 | Rust            |      ✓ |  54,588.2828 |
+| bun           |        1.1.30 | TypeScript/Bun  |      ✗ |  54,098.4841 |
+| graphul       |         1.0.1 | Rust            |      ✓ |  53,949.4400 |
+| poem          |         3.1.0 | Rust            |      ✓ |  53,849.0781 |
+| uws           |       20.48.0 | JavaScript/Node |      ✗ |  52,802.8029 |
+| elysia        |        1.1.17 | TypeScript/Bun  |      ✓ |  52,257.3305 |
+|               |               |                 |        |     ~ 5.5k ~ |
+| hyper-express |        6.17.2 | JavaScript/Node |      ✓ |  46,745.4887 |
+| hono          |         4.6.3 | TypeScript/Bun  |      ✓ |  46,685.6014 |
+| nhttp         |         2.0.2 | TypeScript/Deno |      ✓ |  44,874.2535 |
+| deno          |         2.0.0 | TypeScript/Deno |      ✗ |  44,753.8552 |
+| hono          |         4.6.3 | TypeScript/Deno |      ✓ |  43,280.7544 |
+|               |               |                 |        |     ~ 9.2k ~ |
+| h3            |        1.12.0 | TypeScript/Bun  |      ✓ |  34,043.4693 |
+| fastify-uws   |         1.0.0 | JavaScript/Node |      ✓ |  31,295.8715 |
+| polka         | 1.0.0-next.28 | JavaScript/Node |      ✓ |  31,086.5543 |
+| oak           |        17.0.0 | TypeScript/Deno |      ✓ |  30,730.7971 |
+| node          |       20.18.0 | JavaScript/Node |      ✗ |  29,230.1719 |
+| oak           |        17.0.0 | TypeScript/Bun  |      ✓ |  27,449.3417 |
+| fastify       |         5.0.0 | JavaScript/Node |      ✓ |  27,408.6679 |
+| hono          |         4.6.3 | JavaScript/Node |      ✓ |  25,138.5659 |
+|               |               |                 |        |     ~ 4.9k ~ |
+| h3            |        1.12.0 | JavaScript/Node |      ✓ |  20,193.2311 |
+|               |               |                 |        |     ~ 9.2k ~ |
+| express       |        4.21.0 | JavaScript/Node |      ✓ |  10,949.1532 |
