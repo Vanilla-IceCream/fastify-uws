@@ -6,12 +6,14 @@ import type { HTTPSocket } from './http-socket';
 import { kHead, kHeaders } from './symbols';
 
 class Header {
+  isMultiValue: boolean;
   name: string;
-  value: string;
+  value: unknown;
 
   constructor(name: string, value: unknown) {
+    this.isMultiValue = Array.isArray(value);
     this.name = name;
-    this.value = String(value);
+    this.value = this.isMultiValue ? value : String(value);
   }
 }
 

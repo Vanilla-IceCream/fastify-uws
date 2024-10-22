@@ -31,7 +31,7 @@ test('FD', async () => {
   );
 
   const formData = new FormData();
-  formData.append('image', createReadStream(resolve(__dirname, '../../fastify.png')));
+  formData.append('image', createReadStream(resolve(__dirname, '../../.github/assets/logo.png')));
 
   const res = await app.inject({
     method: 'POST',
@@ -40,5 +40,5 @@ test('FD', async () => {
     body: formData,
   });
 
-  expect(res.json()).toEqual({ message: 'OK', filename: 'fastify.png' });
+  expect(res.json()).toEqual({ message: 'OK', filename: 'logo.png' });
 });

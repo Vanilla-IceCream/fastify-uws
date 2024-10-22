@@ -1,6 +1,6 @@
 {
   "name": "fastify-uws",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A performant HTTP and WebSocket server for Fastify with uWebSockets.",
   "main": "./dist/fastify-uws.cjs",
   "module": "./dist/fastify-uws.js",
@@ -45,12 +45,12 @@
   "dependencies": {
     "@fastify/error": "^4.0.0",
     "eventemitter3": "^5.0.1",
-    "fastify-plugin": "^5.0.0",
+    "fastify-plugin": "^5.0.1",
     "ipaddr.js": "^2.2.0",
     "it-pushable": "^3.2.3",
     "it-to-stream": "^1.0.0",
     "streamx": "^2.20.1",
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.48.0"
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.49.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.1",

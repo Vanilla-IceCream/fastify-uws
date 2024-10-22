@@ -3,6 +3,7 @@ import { EventEmitter } from 'eventemitter3';
 import { ERR_STREAM_DESTROYED } from './errors';
 import {
   kAddress,
+  kClientError,
   kEncoding,
   kHead,
   kHttps,
@@ -69,7 +70,13 @@ function writeHead(res, head) {
   if (head.status) res.writeStatus(head.status);
   if (head.headers) {
     for (const header of head.headers.values()) {
-      res.writeHeader(header.name, header.value);
+      if (header.isMultiValue) {
+        for (const value of header.value) {
+          res.writeHeader(header.name, value);
+        }
+      } else {
+        res.writeHeader(header.name, header.value);
+      }
     }
   }
 }
@@ -106,6 +113,7 @@ export class HTTPSocket extends EventEmitter {
     this[kRemoteAdress] = null;
     this[kUwsRemoteAddress] = null;
     this[kHead] = null;
+    this[kClientError] = false;
 
     this.once('error', noop); // maybe?
     res.onAborted(onAbort.bind(this));
@@ -264,6 +272,23 @@ export class HTTPSocket extends EventEmitter {
 
   write(data, _, cb = noop) {
     if (this.destroyed) throw new ERR_STREAM_DESTROYED();
+
+    if (this[kClientError] && data.startsWith('HTTP/')) {
+      const [header, body] = data.split('\r\n\r\n');
+      const [first, ...headers] = header.split('\r\n');
+      const [, code, statusText] = first.split(' ');
+      this[kHead] = {
+        headers: headers
+          .map((header) => {
+            const [name, ...value] = header.split(': ');
+            return { name, value: value.join(': ').trim() };
+          })
+          .filter((header) => header.name.toLowerCase() !== 'content-length'),
+        status: `${code} ${statusText}`,
+      };
+      data = body;
+      return this.end(data, _, cb);
+    }
 
     const res = this[kRes];
 

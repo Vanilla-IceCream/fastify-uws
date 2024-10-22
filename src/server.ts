@@ -1,20 +1,38 @@
 import dns from 'node:dns/promises';
+import { METHODS } from 'node:http';
 import { EventEmitter } from 'eventemitter3';
 import type { FastifyServerFactoryHandler } from 'fastify';
 import ipaddr from 'ipaddr.js';
 import uws from 'uWebSockets.js';
 
-import { ERR_ADDRINUSE, ERR_ENOTFOUND, ERR_SERVER_DESTROYED, ERR_SOCKET_BAD_PORT } from './errors';
+import {
+  ERR_ADDRINUSE,
+  ERR_ENOTFOUND,
+  ERR_INVALID_METHOD,
+  ERR_SERVER_DESTROYED,
+  ERR_SOCKET_BAD_PORT,
+} from './errors';
 import { HTTPSocket } from './http-socket';
 import { Request } from './request';
 import { Response } from './response';
-import { kAddress, kApp, kClosed, kHandler, kHttps, kListen, kListenAll } from './symbols';
+import {
+  kAddress,
+  kApp,
+  kClientError,
+  kClosed,
+  kHandler,
+  kHttps,
+  kListen,
+  kListenAll,
+} from './symbols';
 import { kListenSocket, kListening, kWs } from './symbols';
 import type { WebSocketServer } from './websocket-server';
 
 function createApp() {
   return uws.App();
 }
+
+const VALID_METHODS = new Map(METHODS.map((method) => [method.toLowerCase(), method]));
 
 const mainServer = {};
 
@@ -142,8 +160,16 @@ export class Server extends EventEmitter {
 
     const app = this[kApp];
 
-    const onRequest = (method: string) => (res: uws.HttpResponse, req: uws.HttpRequest) => {
+    const onRequest = (res: uws.HttpResponse, req: uws.HttpRequest) => {
+      const method = VALID_METHODS.get(req.getMethod());
       const socket = new HTTPSocket(this, res, method === 'GET' || method === 'HEAD');
+
+      if (!method) {
+        socket[kClientError] = true;
+        this.emit('clientError', new ERR_INVALID_METHOD(), socket);
+        return;
+      }
+
       const request = new Request(req, socket, method);
       const response = new Response(socket);
       if (request.headers.upgrade) {
@@ -152,16 +178,7 @@ export class Server extends EventEmitter {
       this[kHandler](request, response);
     };
 
-    app
-      .connect('/*', onRequest('CONNECT'))
-      .del('/*', onRequest('DELETE'))
-      .get('/*', onRequest('GET'))
-      .head('/*', onRequest('HEAD'))
-      .options('/*', onRequest('OPTIONS'))
-      .patch('/*', onRequest('PATCH'))
-      .post('/*', onRequest('POST'))
-      .put('/*', onRequest('PUT'))
-      .trace('/*', onRequest('TRACE'));
+    app.any('/*', onRequest);
 
     if (port !== 0 && mainServer[port]) {
       this[kWs] = mainServer[port][kWs];

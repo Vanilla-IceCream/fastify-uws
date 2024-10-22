@@ -1,5 +1,6 @@
 import createError from '@fastify/error';
 
+export const ERR_INVALID_METHOD = createError('HPE_INVALID_METHOD', 'Invalid method encountered');
 export const ERR_HEAD_SET = createError(
   'ERR_HEAD_SET',
   'Cannot set headers after they are sent to the client',
