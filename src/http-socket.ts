@@ -1,4 +1,6 @@
 import { EventEmitter } from 'eventemitter3';
+import type uws from 'uWebSockets.js';
+import type { Server } from './server';
 
 import { ERR_STREAM_DESTROYED } from './errors';
 import {
@@ -19,7 +21,7 @@ import {
 
 const localAddressIpv6 = Buffer.from([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
 
-const toHex = (buf, start, end) => buf.subarray(start, end).toString('hex');
+const toHex = (buf: Buffer, start: number, end: number) => buf.subarray(start, end).toString('hex');
 
 const noop = () => {};
 
@@ -35,7 +37,7 @@ function onDrain(offset) {
   return true;
 }
 
-function onTimeout() {
+function onTimeout(this: HTTPSocket) {
   if (!this.destroyed) {
     this.emit('timeout');
     this.abort();
@@ -66,7 +68,7 @@ function drain(socket, cb) {
   socket.once('close', onClose);
 }
 
-function writeHead(res, head) {
+function writeHead(res: uws.HttpResponse, head) {
   if (head.status) res.writeStatus(head.status);
   if (head.headers) {
     for (const header of head.headers.values()) {
@@ -93,29 +95,32 @@ function getChunk(data) {
 }
 
 export class HTTPSocket extends EventEmitter {
-  constructor(server, res, writeOnly) {
+  aborted = false;
+  writableNeedDrain = false;
+  bytesRead = 0;
+  bytesWritten = 0;
+  writableEnded = false;
+  errored: any = null;
+
+  [kServer]: Server;
+  [kRes]: uws.HttpResponse;
+  [kWriteOnly]: boolean;
+  [kReadyState]: { read: boolean; write: boolean } = { read: false, write: false };
+  [kEncoding]: any = null;
+  [kRemoteAdress]: any = null;
+  [kUwsRemoteAddress]: any = null;
+  [kHead]: any = null;
+  [kClientError] = false;
+  [kTimeoutRef]?: NodeJS.Timeout;
+
+  constructor(server: Server, res: uws.HttpResponse, writeOnly: boolean) {
     super();
 
-    this.aborted = false;
-    this.writableNeedDrain = false;
-    this.bytesRead = 0;
-    this.bytesWritten = 0;
-    this.writableEnded = false;
-    this.errored = null;
     this[kServer] = server;
     this[kRes] = res;
     this[kWriteOnly] = writeOnly;
-    this[kReadyState] = {
-      read: false,
-      write: false,
-    };
-    this[kEncoding] = null;
-    this[kRemoteAdress] = null;
-    this[kUwsRemoteAddress] = null;
-    this[kHead] = null;
-    this[kClientError] = false;
 
-    this.once('error', noop); // maybe?
+    this.once('error', noop);
     res.onAborted(onAbort.bind(this));
     res.onWritable(onDrain.bind(this));
 
@@ -154,23 +159,13 @@ export class HTTPSocket extends EventEmitter {
     }
 
     if (buf.length === 4) {
-      remoteAddress = `${buf.readUInt8(0)}.${buf.readUInt8(1)}.${buf.readUInt8(
-        2,
-      )}.${buf.readUInt8(3)}`;
+      remoteAddress = `${buf.readUInt8(0)}.${buf.readUInt8(1)}.${buf.readUInt8(2)}.${buf.readUInt8(3)}`;
     } else {
       // avoid to call toHex if local
       if (buf.equals(localAddressIpv6)) {
         remoteAddress = '::1';
       } else {
-        remoteAddress = `${toHex(buf, 0, 2)}:${toHex(buf, 2, 4)}:${toHex(
-          buf,
-          4,
-          6,
-        )}:${toHex(buf, 6, 8)}:${toHex(buf, 8, 10)}:${toHex(
-          buf,
-          10,
-          12,
-        )}:${toHex(buf, 12, 14)}:${toHex(buf, 14)}`;
+        remoteAddress = `${toHex(buf, 0, 2)}:${toHex(buf, 2, 4)}:${toHex(buf, 4, 6)}:${toHex(buf,6,8)}:${toHex(buf, 8, 10)}:${toHex(buf, 10, 12)}:${toHex(buf, 12, 14)}:${toHex(buf, 14, buf.lenght)}`;
       }
     }
 

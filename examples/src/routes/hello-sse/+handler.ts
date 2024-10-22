@@ -22,7 +22,6 @@ export default (async (app) => {
     req.raw.on('close', () => {
       clearInterval(interval);
       app.log.info('Client disconnected');
-      reply.sse({ event: 'close' });
     });
   });
 }) as FastifyPluginAsyncTypebox;
