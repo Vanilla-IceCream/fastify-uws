@@ -165,7 +165,7 @@ export class HTTPSocket extends EventEmitter {
       if (buf.equals(localAddressIpv6)) {
         remoteAddress = '::1';
       } else {
-        remoteAddress = `${toHex(buf, 0, 2)}:${toHex(buf, 2, 4)}:${toHex(buf, 4, 6)}:${toHex(buf,6,8)}:${toHex(buf, 8, 10)}:${toHex(buf, 10, 12)}:${toHex(buf, 12, 14)}:${toHex(buf, 14, buf.lenght)}`;
+        remoteAddress = `${toHex(buf, 0, 2)}:${toHex(buf, 2, 4)}:${toHex(buf, 4, 6)}:${toHex(buf, 6, 8)}:${toHex(buf, 8, 10)}:${toHex(buf, 10, 12)}:${toHex(buf, 12, 14)}:${toHex(buf, 14, buf.lenght)}`;
       }
     }
 

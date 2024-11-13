@@ -245,3 +245,7 @@ $ oha -c 500 -z 10s --no-tui http://0.0.0.0:3000/api/hello-world
 | h3            |        1.12.0 | JavaScript/Node |      ✓ |  20,193.2311 |
 |               |               |                 |        |     ~ 9.2k ~ |
 | express       |        4.21.0 | JavaScript/Node |      ✓ |  10,949.1532 |
+
+## Credits
+
+This project is based on [`@geut/fastify-uws`](https://github.com/geut/fastify-uws) and is licensed under the MIT License.
