@@ -1,8 +1,12 @@
 {
   "tasks": {
-    "install": "deno cache ./config.ts ./build.ts ./warmUp.ts ./bench.ts",
     "build": "deno run -A build.ts",
     "warmUp": "deno run -A warmUp.ts",
     "bench": "deno run -A bench.ts"
+  },
+  "imports": {
+    "@std/async": "jsr:@std/async@^1.0.14",
+    "@std/path": "jsr:@std/path@^1.1.2",
+    "@std/toml": "jsr:@std/toml@^1.0.10"
   }
 }

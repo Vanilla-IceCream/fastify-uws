@@ -1,16 +1,16 @@
-import { parse } from 'jsr:@std/toml';
+import { parse } from '@std/toml';
 
-type Language = 'bun' | 'deno' | 'node' | 'rust';
+type Ecosystem = 'bun' | 'deno' | 'node' | 'rust';
 
 export interface Target {
   name: string;
   version: string;
-  language?: string;
+  ecosystem?: string;
   router: boolean;
   requestsPerSec?: number;
 }
 
-export const targets: Record<Language, Target[]> = {
+export const targets: Record<Ecosystem, Target[]> = {
   bun: [
     { name: 'bun', version: '1.1.30', router: false },
     { name: 'elysia', version: bunPkg('elysia'), router: true },

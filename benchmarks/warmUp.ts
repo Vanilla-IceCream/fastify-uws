@@ -1,4 +1,4 @@
-import { delay } from 'jsr:@std/async';
+import { delay } from '@std/async';
 
 import { targets } from './config.ts';
 

@@ -1,4 +1,4 @@
-import { delay } from 'jsr:@std/async';
+import { delay } from '@std/async';
 
 import type { Target } from './config.ts';
 import { targets } from './config.ts';
@@ -23,11 +23,11 @@ async function oha() {
   return '';
 }
 
-const header = `| | Version | Language | Router | Requests/sec |`;
+const header = `| | Version | Ecosystem | Router | Requests/sec |`;
 const alignment = `| :- | -: | :- | -: | -: |`;
 
 function row(target: Target) {
-  const row = `| ${target.name} | ${target.version} | ${target.language} | ${
+  const row = `| ${target.name} | ${target.version} | ${target.ecosystem} | ${
     target.router ? '✓' : '✗'
   } | ${target.requestsPerSec?.toLocaleString(undefined, { minimumFractionDigits: 4 })} |\n`;
 
@@ -37,10 +37,10 @@ function row(target: Target) {
 async function bench() {
   for (const lang in targets) {
     for (const target of targets[lang]) {
-      if (lang === 'rust') target.language = 'Rust';
-      if (lang === 'bun') target.language = 'TypeScript/Bun';
-      if (lang === 'deno') target.language = 'TypeScript/Deno';
-      if (lang === 'node') target.language = 'JavaScript/Node';
+      if (lang === 'rust') target.ecosystem = 'Rust';
+      if (lang === 'bun') target.ecosystem = 'Bun';
+      if (lang === 'deno') target.ecosystem = 'Deno';
+      if (lang === 'node') target.ecosystem = 'Node';
 
       const start = new Deno.Command('docker', {
         args: ['start', `${lang}-${target.name}`],
@@ -50,7 +50,7 @@ async function bench() {
         stderr: 'inherit',
       });
 
-      console.log(`🚀 Start: ${target.name} (${target.language})`);
+      console.log(`🚀 Start: ${target.name} (${target.ecosystem})`);
       await start.output();
 
       await delay(3000);
