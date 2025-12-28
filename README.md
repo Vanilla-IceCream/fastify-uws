@@ -173,7 +173,7 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-### ~~Use [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource)~~
+### Use [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource)
 
 ```ts
 // app.ts
@@ -206,6 +206,55 @@ export default (async (app) => {
       clearInterval(interval);
       app.log.info('Client disconnected');
       reply.sse({ event: 'close' });
+    });
+  });
+}) as FastifyPluginAsyncTypebox;
+```
+
+Just a single line of change can speed up your WebSocket application in Fastify.
+
+```diff
+- import sse from '@fastify/sse';
++ import { sse } from 'fastify-uws';
+```
+
+```ts
+// app.ts
+import { sse } from 'fastify-uws';
+
+app.register(sse);
+```
+
+```ts
+// src/routes/hello-sse/+handler.ts
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
+
+export default (async (app) => {
+  // $ node client-es.mjs
+  app.get('', { sse: true }, async (req, reply) => {
+    app.log.info('Client connected');
+    reply.sse.keepAlive();
+
+    let index = 0;
+    await reply.sse.send({ id: String(index), data: `Some message ${index}` });
+
+    const interval = setInterval(async () => {
+      if (reply.sse.isConnected) {
+        index += 1;
+
+        await reply.sse.send({ id: String(index), data: `Some message ${index}` });
+
+        if (index === 10) {
+          clearInterval(interval);
+        }
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    reply.sse.onClose(() => {
+      clearInterval(interval);
+      app.log.info('Client disconnected');
     });
   });
 }) as FastifyPluginAsyncTypebox;

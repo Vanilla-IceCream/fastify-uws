@@ -4,6 +4,7 @@ export default (async (app) => {
   // $ node client-es.mjs
   app.get('', { sse: true }, async (req, reply) => {
     app.log.info('Client connected');
+    reply.sse.keepAlive();
 
     let index = 0;
     await reply.sse.send({ id: String(index), data: `Some message ${index}` });
