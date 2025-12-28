@@ -1,5 +1,5 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type } from '@sinclair/typebox';
+import { Type } from 'typebox';
 
 export default (async (app) => {
   // $ curl http://127.0.0.1:3000/api/hello-http

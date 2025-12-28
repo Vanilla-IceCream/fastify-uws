@@ -1,9 +1,9 @@
+import uws from 'uWebSockets.js';
 import dns from 'node:dns/promises';
 import { METHODS } from 'node:http';
 import { EventEmitter } from 'eventemitter3';
 import type { FastifyServerFactoryHandler } from 'fastify';
 import ipaddr from 'ipaddr.js';
-import uws from 'uWebSockets.js';
 
 import {
   ERR_ADDRINUSE,
@@ -24,8 +24,10 @@ import {
   kHttps,
   kListen,
   kListenAll,
+  kListening,
+  kListenSocket,
+  kWs,
 } from './symbols';
-import { kListenSocket, kListening, kWs } from './symbols';
 import type { WebSocketServer } from './websocket-server';
 
 function createApp() {

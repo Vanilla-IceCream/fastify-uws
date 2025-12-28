@@ -1,5 +1,5 @@
-import { Readable } from 'streamx';
 import type uws from 'uWebSockets.js';
+import { Readable } from 'streamx';
 
 import type { HTTPSocket } from './http-socket';
 import { kHeaders, kReq, kUrl } from './symbols';

@@ -7,20 +7,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fastify/multipart": "^9.0.0",
-    "@fastify/one-line-logger": "^2.0.0",
-    "@fastify/type-provider-typebox": "^5.0.0",
-    "@sinclair/typebox": "^0.33.12",
-    "fastify": "^5.0.0",
-    "fastify-plugin": "^5.0.0",
-    "fastify-uws": "workspace:^"
+    "@fastify/multipart": "^9.3.0",
+    "@fastify/one-line-logger": "^2.0.2",
+    "@fastify/sse": "^0.4.0",
+    "@fastify/type-provider-typebox": "^6.1.0",
+    "fastify": "^5.6.2",
+    "fastify-plugin": "^5.1.0",
+    "fastify-uws": "workspace:^",
+    "typebox": "^1.0.69"
   },
   "devDependencies": {
-    "@types/node": "^20.16.5",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.6",
-    "vite-node": "^2.1.1",
-    "vite-plugin-fastify": "^1.2.5",
-    "vite-plugin-fastify-routes": "^1.1.1"
+    "@types/node": "^24.10.4",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0",
+    "vite-node": "^5.2.0",
+    "vite-plugin-fastify": "^1.2.6",
+    "vite-plugin-fastify-routes": "^1.1.3"
   }
 }

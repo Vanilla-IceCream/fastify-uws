@@ -1,6 +1,7 @@
 import multipart from '@fastify/multipart';
+import sse from '@fastify/sse';
 import fastify from 'fastify';
-import { eventsource, serverFactory, websocket } from 'fastify-uws';
+import { serverFactory, websocket } from 'fastify-uws';
 
 import router from '~/plugins/router';
 
@@ -15,7 +16,7 @@ export default () => {
   });
 
   app.register(websocket);
-  app.register(eventsource);
+  app.register(sse);
   app.register(multipart);
 
   app.register(router);

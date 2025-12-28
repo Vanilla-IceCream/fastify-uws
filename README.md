@@ -20,8 +20,11 @@ $ bun add fastify-uws
 
 ## Supported
 
-- `fastify` v5.x
-- `@fastify/websocket` v11.x
+`fastify-uws` v1.x supports the following versions:
+
+- Node.js: v20, v22, and v24
+- `fastify`: v5.x
+- `@fastify/websocket`: v11.x
 
 ## Usage
 
@@ -76,7 +79,7 @@ start();
 ```ts
 // src/routes/hello-http/+handler.ts
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type } from '@sinclair/typebox';
+import { Type } from 'typebox';
 
 export default (async (app) => {
   app.get(
@@ -170,7 +173,7 @@ export default (async (app) => {
 }) as FastifyPluginAsyncTypebox;
 ```
 
-### Use [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource)
+### ~~Use [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource)~~
 
 ```ts
 // app.ts

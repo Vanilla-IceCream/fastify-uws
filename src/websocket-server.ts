@@ -1,11 +1,10 @@
+import uws from 'uWebSockets.js';
 import { EventEmitter } from 'eventemitter3';
 import { Duplex } from 'streamx';
-import uws from 'uWebSockets.js';
-import type { Server } from './server';
-
 import { HTTPSocket } from './http-socket';
 import { Request } from './request';
 import { Response } from './response';
+import type { Server } from './server';
 import { kApp, kEnded, kHandler, kTopic, kWs } from './symbols';
 
 const defaultWebSocketConfig = {
@@ -127,9 +126,11 @@ export class WebSocketStream extends Duplex {
       mapReadable?: (packet: { data: any; isBinary: boolean }) => any; // optional function to map input data
       byteLengthReadable?: (packet: { data: any; isBinary: boolean }) => number | 1024; // optional function that calculates the byte size of input data,
       mapWritable?: (data: any) => { data: any; isBinary: boolean; compress: boolean }; // optional function to map input data
-      byteLengthWritable?: (packet: { data: any; isBinary: boolean; compress: boolean }) =>
-        | number
-        | 1024; // optional function that calculates the byte size of input data
+      byteLengthWritable?: (packet: {
+        data: any;
+        isBinary: boolean;
+        compress: boolean;
+      }) => number | 1024; // optional function that calculates the byte size of input data
     } = {},
   ) {
     const { compress = false } = opts;

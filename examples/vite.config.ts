@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { defineConfig } from 'vite';
 import fastify from 'vite-plugin-fastify';
 import fastifyRoutes from 'vite-plugin-fastify-routes';

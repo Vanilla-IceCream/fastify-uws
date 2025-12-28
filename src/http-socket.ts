@@ -1,8 +1,7 @@
-import { EventEmitter } from 'eventemitter3';
 import type uws from 'uWebSockets.js';
-import type { Server } from './server';
-
+import { EventEmitter } from 'eventemitter3';
 import { ERR_STREAM_DESTROYED } from './errors';
+import type { Server } from './server';
 import {
   kAddress,
   kClientError,

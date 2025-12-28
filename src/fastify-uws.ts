@@ -4,8 +4,8 @@ import { Server } from './server';
 export const serverFactory: FastifyServerFactory<any> = (handler, opts) =>
   new Server(handler, opts);
 
-export { default as websocket } from './plugin-websocket';
 export { default as eventsource } from './plugin-eventsource';
+export { default as websocket } from './plugin-websocket';
 
 declare module 'fastify' {
   interface RouteShorthandOptions<RawServer extends RawServerBase = RawServerDefault> {
