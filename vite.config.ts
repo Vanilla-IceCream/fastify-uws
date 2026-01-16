@@ -20,7 +20,7 @@ export default defineConfig({
   },
   plugins: [
     dts({
-      exclude: ['**/__tests__/**'],
+      exclude: ['vite.config.ts', '**/__tests__/**'],
     }),
     {
       ...nodeExternals(),

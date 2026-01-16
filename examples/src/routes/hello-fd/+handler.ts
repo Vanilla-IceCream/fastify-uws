@@ -15,13 +15,16 @@ export default (async (app) => {
             message: Type.String(),
             filename: Type.Optional(Type.String()),
           }),
+          400: Type.Object({
+            message: Type.String(),
+          }),
         },
       },
     },
     async (request, reply) => {
       const data = await request.file();
 
-      if (!data) return reply.code(400);
+      if (!data) return reply.code(400).send({ message: 'No file uploaded' });
 
       const dir = path.resolve(import.meta.dirname, '../../../dist');
       if (!fs.existsSync(dir)) fs.mkdirSync(dir);

@@ -20,7 +20,7 @@ test('FD', async () => {
   app.register(helloFd, { prefix: '/hello-fd' });
 
   const formData = new FormData();
-  
+
   formData.append(
     'image',
     createReadStream(resolve(import.meta.dirname, '../../.github/assets/logo.png')),

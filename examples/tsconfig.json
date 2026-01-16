@@ -4,9 +4,10 @@
     "strict": true,
     "strictNullChecks": true,
 
+    "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "paths": {
       "~/*": ["src/*"]
     },
@@ -22,11 +23,10 @@
     "isolatedModules": true,
 
     "jsx": "preserve",
-    "lib": ["ESNext", "DOM"],
+    "lib": ["ESNext"],
     "target": "esnext",
 
     "skipLibCheck": true
   },
-  "include": ["src", "vite.config.ts"],
-  "exclude": ["node_modules", "dist", "coverage"]
+  "include": ["src/**/*", "vite.config.ts"]
 }
