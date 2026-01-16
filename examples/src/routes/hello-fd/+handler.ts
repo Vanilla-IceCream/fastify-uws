@@ -18,8 +18,8 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
-      const data = await req.file();
+    async (request, reply) => {
+      const data = await request.file();
 
       if (!data) return reply.code(400);
 

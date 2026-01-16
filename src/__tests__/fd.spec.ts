@@ -5,6 +5,7 @@ import type { FastifyInstance } from 'fastify';
 import fastify from 'fastify';
 import FormData from 'form-data';
 
+import helloFd from '../../examples/src/routes/hello-fd/+handler';
 import { serverFactory } from '../fastify-uws';
 
 let app: FastifyInstance;
@@ -16,19 +17,7 @@ beforeEach(() => {
 test('FD', async () => {
   app.register(multipart);
 
-  app.register(
-    async (router) => {
-      router.post('', async (req, reply) => {
-        const data = await req.file();
-
-        return reply.send({
-          message: 'OK',
-          filename: data?.filename,
-        });
-      });
-    },
-    { prefix: '/hello-fd' },
-  );
+  app.register(helloFd, { prefix: '/hello-fd' });
 
   const formData = new FormData();
   formData.append('image', createReadStream(resolve(__dirname, '../../.github/assets/logo.png')));

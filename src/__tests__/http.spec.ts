@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import fastify from 'fastify';
 
+import helloHttp from '../../examples/src/routes/hello-http/+handler';
 import { serverFactory } from '../fastify-uws';
 
 let app: FastifyInstance;
@@ -10,16 +11,7 @@ beforeEach(() => {
 });
 
 test('HTTP - GET', async () => {
-  app.register(
-    async (router) => {
-      router.get('', async (req, reply) => {
-        return reply.send({
-          message: 'Hello, World!',
-        });
-      });
-    },
-    { prefix: '/hello-http' },
-  );
+  app.register(helloHttp, { prefix: '/hello-http' });
 
   const res = await app.inject({ method: 'GET', url: '/hello-http' });
 

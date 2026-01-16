@@ -2,6 +2,7 @@ import websocket from '@fastify/websocket';
 import type { FastifyInstance } from 'fastify';
 import fastify from 'fastify';
 
+import helloWs from '../../examples/src/routes/hello-ws/+handler';
 import { serverFactory } from '../fastify-uws';
 
 let app: FastifyInstance;
@@ -13,23 +14,7 @@ beforeEach(() => {
 test('WS', async () => {
   app.register(websocket);
 
-  app.register(
-    async (_app) => {
-      _app.get('', { websocket: true }, (socket) => {
-        app.log.info('Client connected');
-
-        socket.on('message', (message: MessageEvent) => {
-          console.log(`Client message: ${message}`);
-          socket.send('Hello from Fastify!');
-        });
-
-        socket.on('close', () => {
-          _app.log.info('Client disconnected');
-        });
-      });
-    },
-    { prefix: '/hello-ws' },
-  );
+  app.register(helloWs, { prefix: '/hello-ws' });
 
   await app.ready();
   const ws = await app.injectWS('/hello-ws');
