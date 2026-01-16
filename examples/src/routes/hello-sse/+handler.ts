@@ -2,29 +2,12 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 
 export default (async (app) => {
   // $ node client-es.mjs
-  app.get('', { sse: true }, async (req, reply) => {
+  app.get('', { sse: true }, async (request, reply) => {
     app.log.info('Client connected');
-    reply.sse.keepAlive();
 
-    let index = 0;
-    await reply.sse.send({ id: String(index), data: `Some message ${index}` });
+    await reply.sse.send({ data: 'Hello from Fastify!' });
 
-    const interval = setInterval(async () => {
-      if (reply.sse.isConnected) {
-        index += 1;
-
-        await reply.sse.send({ id: String(index), data: `Some message ${index}` });
-
-        if (index === 10) {
-          clearInterval(interval);
-        }
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-
-    reply.sse.onClose(() => {
-      clearInterval(interval);
+    request.raw.on('close', () => {
       app.log.info('Client disconnected');
     });
   });
