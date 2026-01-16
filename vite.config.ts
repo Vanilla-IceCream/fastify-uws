@@ -6,7 +6,7 @@ import dts from 'vite-plugin-dts';
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/fastify-uws.ts'),
+      entry: resolve(import.meta.dirname, 'src/index.ts'),
       fileName: '[name]',
       formats: ['es', 'cjs'],
     },
@@ -14,7 +14,7 @@ export default defineConfig({
       output: {
         exports: 'named',
         preserveModules: true,
-        preserveModulesRoot: resolve(__dirname, 'src'),
+        preserveModulesRoot: resolve(import.meta.dirname, 'src'),
       },
     },
   },

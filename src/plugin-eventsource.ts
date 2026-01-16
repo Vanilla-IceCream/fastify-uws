@@ -3,6 +3,11 @@ import fp from 'fastify-plugin';
 import { pushable } from 'it-pushable';
 import toStream from 'it-to-stream';
 
+/**
+ * @deprecated
+ * 
+ * Please use the official `@fastify/sse` instead.
+ */
 export default fp(
   async (instance, options) => {
     instance.decorateReply('sse', function (this: FastifyReply, source: MessageEvent) {

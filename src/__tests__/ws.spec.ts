@@ -3,7 +3,7 @@ import type { FastifyInstance } from 'fastify';
 import fastify from 'fastify';
 
 import helloWs from '../../examples/src/routes/hello-ws/+handler';
-import { serverFactory } from '../fastify-uws';
+import { serverFactory } from '..';
 
 let app: FastifyInstance;
 
