@@ -20,11 +20,20 @@ $ bun add fastify-uws
 
 ## Supported
 
-`fastify-uws` v1.x supports the following versions:
+`fastify-uws` v2.x supports the following versions:
 
 - Node.js: v20, v22, and v24
 - `fastify`: v5.x
 - `@fastify/websocket`: v11.x
+
+#### Breaking Changes from v1.x
+
+While `fastify-uws` v1.x supports the same Node.js, `fastify`, and `@fastify/websocket` versions as v2.x, the `eventsource` API has been removed in v2.x as Fastify now provides official Server-Sent Events (SSE) support via `@fastify/sse`.
+
+```diff
+- import { eventsource } from 'fastify-uws';
++ import sse from '@fastify/sse';
+```
 
 ## Usage
 
